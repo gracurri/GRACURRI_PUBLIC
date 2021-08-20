@@ -1,0 +1,35 @@
+{
+  "signUp": [
+    {
+      "id": "sssss",
+      "password": "123456789a@",
+      "passwordHint": "숭실대학교",
+      "name": "soomin",
+      "number": 20202020,
+      "department": "globalmedia"
+    }
+  ],
+  "semester": {
+    "first": "1-1",
+    "second": "1-2",
+    "third": "2-2"
+  },
+  "emailcheck": [
+    {
+      "id": "sallybig@naver.com"
+    },
+    {
+      "id": "bap0967@naver.com"
+    }
+  ],
+  "sign_in": [
+    {
+      "id": "sssss",
+      "PW": "123456789a@"
+    },
+    {
+      "id": "sallybig",
+      "PW": "123456789a@"
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<title>GRACURRI</title>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="grade_sub.css">
+    <!-- css 파일 참조 -->
+    <link rel="stylesheet" href="topbar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="icon" href="./images/GRACURRI_LOGO.png">
+    <link rel="js" href="grade_sub.js">
+    <link rel="js" href="cookie.js">
+</head>
+<title>GRACURRI</title>
+
+<body>
+    <div class="parent">        
+        <div class="topbar">
+        <div class="Gname">
+            <b>Gracurri</b>
+        </div>
+        <div class="btns">
+            <a href="" id="btn1">About us </a>
+            <a href="http://192.168.0.7:3000/realmain" id="btn3">로그인</a>
+            <div id="loginDone"></div>
+            <button type="button" onclick = "location.href='../signup_img/sign_up.html'" class="signupbtn" id="btn4">회원가입</button>
+        </div>
+    </div>
+        <div class="inner-box">
+            <div class="backbtn">
+                <a href="5.html" id="back">BACK</a>
+            </div>
+            <div class="bread">
+                <!--나중에 따로 분류 필요하면 클래스 추가-->
+                <div class="list list1">
+                    <p class="subject">과목 이름 넣기</p>
+                </div>
+                <div class="list">
+                    <p class="subject">과목 이름 넣기</p>
+                </div>
+                <div class="list">
+                    <p class="subject">과목 이름 넣기</p>
+                </div>
+                <div class="list">
+                    <p class="subject">과목 이름 넣기</p>
+                </div>
+                <div class="list">
+                    <p class="subject">과목 이름 넣기</p>
+                </div>
+                <div class="list">
+                    <p class="subject">과목 이름 넣기</p>
+                </div>
+                <div class="list">
+                    <p class="subject">과목 이름 넣기</p>
+                </div>
+                <div class="list">
+                    <p class="subject">과목 이름 넣기</p>
+                </div>
+            </div>
+            <div class="text">
+                <!--왼쪽정렬이랑 줄바꿈 기능 있으려나-->
+                <p style="margin-left: 190px;"><strong id="semester"></strong></p>
+                <p><strong>상세과목 입니다.</strong></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Html Content 로딩
+        // $('#result').load("./brownMainImg/brownMain.html");
+        // $(function(){
+        //     $("#btnRequest").on("click", function(){
+        //         // URL 주소에 존재하는 HTML 코드에서 <li> 요소를 읽은 후에
+        //         // id가 "list"인 요소에 배치한다.
+        //         $("#list").load("./brownMainImg/brownMain.html li")
+        //     })
+        // })
+
+    
+    window.onload = function(){
+        //서버 맞춰서 수정해야함
+        function test(){
+            var url = new URL("http://localhost:3000/semester")
+            var semester = document.getElementById('semester');
+        
+            const config = {
+                headers : { 
+                    'Accept': 'application/json'
+                }
+            }
+            
+            var semesterAll = ["first", "second"]
+
+            fetch(url, config)
+            .then(res => {
+                // response 처리
+                console.log(res);
+                // 응답을 JSON 형태로 파싱
+                return res.json();
+                })
+                .then(data => {
+                // json 출력
+                console.log(data.first)
+                //data.*** 변경하면 학기 변경됨
+                semester.innerText = data.first + "의"
+                })
+                .catch(err => {
+                // error 처리
+                console.log('Fetch Error', err);
+            });
+        }
+        let userCookieId;
+            
+        var getCookie = function(name) {
+            var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return value? value[2] : null;
+        };        
+
+
+            function getLoginInfo(){
+
+                var url = new URL("http://localhost:3000/sign_in")
+
+                const config = {
+                    headers : { 
+                        'Accept': 'application/json'
+                    }
+                }
+
+                fetch(url, config)
+                .then(res => {
+                    // response 처리
+                    console.log(res);
+                    // 응답을 JSON 형태로 파싱
+                    return res.json();
+                    })
+
+                .then(data => {
+                    // json 출력
+                    value = data[0].id;
+                    console.log(value);
+                    var date = new Date();
+                    date.setTime(date.getTime() + 100 * 60 * 60 * 24 * 1000);
+                    document.cookie = 'idCookie=' + value + ';expires=' + date.toUTCString() + ';path=/' + "; domain=localhost";
+                    console.log(document.cookie);
+                })
+                .then(
+                    document.getElementById('loginDone').innerText = getCookie('idCookie') + "님",
+                    document.getElementById('btn3').style.display = "none",
+                    document.getElementById('btn4').style.display = "none"
+                )
+                .catch(err => {
+                    // error 처리
+                    console.log('Fetch Error', err);
+                });
+                
+            }
+
+            test();
+            getLoginInfo();
+
+        }
+    </script>
+</body>
+
+</html>

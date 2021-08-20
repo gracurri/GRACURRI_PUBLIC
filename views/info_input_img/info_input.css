@@ -1,0 +1,144 @@
+@font-face {
+    font-family: "AppleSDGothicNeo";
+    src: url('../AppleSDGothicNeoB.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoL.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoEB.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoH.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoM.ttf') format('truetype');
+}
+
+.parent {
+    width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('./background.png');
+    background-repeat: no-repeat;
+    background-position-y: 60px;
+    background-size: 1920px,auto;
+}
+
+.inner-box {
+    background-image: url('./inputbox.png');
+    background-repeat: no-repeat;
+    background-position-x: right;
+    padding: 0px 130px 70px 90px;
+    display: flex;
+}
+
+.created {
+    background-image: url('./created.png');
+    background-repeat: no-repeat;
+    width: 1002px;
+    height: 708px;
+    margin-left: 50px;
+    margin-top: 150px;
+    padding-top: 100px;
+}
+
+.listen {
+    background-image: url('./listen.png');
+    background-repeat: no-repeat;
+    width: 557px;
+    height: 708px;
+    margin-top: 150px;
+    padding-top: 100px;
+}
+
+
+
+style{
+    @media screen and (min-width: 1680px) and (max-width: 5000px)
+}
+
+.hide{
+    opacity: 0;
+}
+
+.search{
+    margin-left: auto;
+    margin-right: 50px;
+    background-image: url('./search.png');
+    width: 392px;
+    height: 104px;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.subject_name{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: transparent;
+    color: rgb(255, 132, 0);
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;                                                                 
+    font-size:20px;
+    z-index: 2;
+    text-align: center;
+    font-family: AppleSDGothicNeo;
+
+}
+
+.subject{
+    width: 363px;
+    height: 117px;
+    background-image: url("./subject.png");
+    position: relative;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: AppleSDGothicNeo;
+}
+
+.name{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);                                                                   
+    font-size:20px;
+    z-index: 2;
+    text-align: center;
+    font-family: AppleSDGothicNeo;
+    color: rgb(136, 70, 0);
+}
+
+
+.listen2{
+    position:absolute;
+    margin-top: -60px;
+}
+.listen3{
+    position:absolute;
+    margin-left:1080px;
+    margin-top: 10px;
+}
+.listen4{
+    position:absolute;
+    margin-left:1080px;
+    margin-top: 80px;
+}
+
+.btnWrap{
+    width: 155px; height: 40px;
+    float: right;
+    position: relative;
+    top: 880px;
+
+}
+
+.nextBtn{
+    background: url("./next.png") no-repeat;
+    border: none;
+    width: 155px; height: 40px;
+    cursor: pointer;
+    margin-right: 130px;
+}
+
+.subjectResult{
+    height: 468px;
+    overflow-y: auto;
+}

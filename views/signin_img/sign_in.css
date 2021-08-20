@@ -1,0 +1,150 @@
+@font-face {
+    font-family: "AppleSDGothicNeo";
+    src: url('../AppleSDGothicNeoB.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Applelight";
+    src: url('../AppleSDGothicNeoL.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoEB.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoH.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoM.ttf') format('truetype') ;
+}
+
+::placeholder {
+    font-family: AppleSDGothicNeo;
+    color: #BF9285;
+}
+ 
+.parent{
+    width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('../signin_img/background.png');
+    background-repeat: no-repeat;
+    background-position-y: 60px;
+    background-size: 1920px,auto;
+} 
+
+.inner-box2 {
+    width: 1140px;
+    height: 1020px;
+    background-image: url('../signin_img/longcirclebackground.png');
+    background-repeat: no-repeat;
+    background-position-x: right;    
+    background-position-y: 60px;
+    padding: 60px 0px 120px 0px;
+    display: flex;
+}
+
+.logo {
+    background-image: url('../signin_img/logo.png');
+    background-repeat: no-repeat;
+    width: 642px;
+    height: 665px;
+    margin-left: 150px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.login {
+    background-image: url('../signin_img/login.png');
+    background-repeat: no-repeat;
+    width: 577px;
+    height: 577px;
+    margin-left: 250px;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+}
+
+.id-box{
+    z-index: 3;
+    position: relative;
+    height: 40px;
+    margin-top: 170px;
+    margin-left: 175px;
+}
+.pw-box{
+    z-index: 3;
+    position: relative;
+    height: 40px;
+    margin-top: 45px;
+    margin-left: 175px;
+}
+
+.pwQ-box{
+    z-index: 3;
+    position: relative;
+    height: 40px;
+    margin-top: 30px;
+    margin-left: 175px;
+}
+
+.login-button{
+    z-index: 3;
+    position: relative;
+    height: 40px;
+    margin-top: 30px;
+    margin-left: 250px;
+}
+
+
+.text-line_id {
+    position: relative;
+    background-color: transparent;
+    color: rgb(104, 33, 27);
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+
+}
+
+.text-line_pw {
+    position: relative;
+    background-color: transparent;
+    color: rgb(104, 33, 27);
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.pwfind{
+    font-family: AppleSDGothicNeo;
+    color:rgb(104, 33, 27);
+    background-color: transparent;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.loginbtn{
+    font-family: AppleSDGothicNeo;
+    color:rgb(104, 33, 27);
+    background-color: transparent;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.g-signin2{
+    position:absolute;
+    top:400px;
+    height:10%;
+    /*�닔�젙�븘�슂 萸붿�� 紐⑤Ⅴ寃좎쓬*/
+}
+

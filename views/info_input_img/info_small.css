@@ -1,0 +1,102 @@
+@font-face {
+    font-family: "AppleSDGothicNeo";
+    src: url('../AppleSDGothicNeoB.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoL.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoEB.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoH.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoM.ttf') format('truetype');
+}
+
+body{
+    background-image:  url('./background.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: auto;
+}
+
+style{
+    @media screen and  and (max-width: 1680px)
+}
+
+.hide{
+    position: relative;
+    top: 50%;
+    left:50%;
+    color: rgb(136, 70, 0);
+}
+
+.search{
+    position: relative;
+    opacity: 0;
+}
+
+.subject_name{
+    position: absolute;
+    background-color: transparent;
+    color: rgb(255, 132, 0);
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);                                                                   
+    font-size:20px;
+    z-index: 2;
+    text-align: center;
+    font-family: AppleSDGothicNeo;
+    margin-top: 180px;
+    margin-left:-485px;
+
+}
+
+.subject{
+    position: absolute;
+    margin-top: -2%;
+    margin-left: 10%;
+    font-family: AppleSDGothicNeo;
+}
+
+.subj{
+    opacity: 0;
+}
+
+.name{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);                                                                   
+    font-size:20px;
+    z-index: 2;
+    text-align: center;
+    font-family: AppleSDGothicNeo;
+    color: rgb(136, 70, 0);
+    opacity: 0;
+}
+
+.listen{
+    opacity: 0;
+}
+
+.listen2{
+    position:absolute;
+    margin-top: -60px;
+    opacity: 0;
+
+}
+.listen3{
+    position:absolute;
+    margin-left:1080px;
+    margin-top: 10px;
+    opacity: 0;
+
+}
+.listen4{
+    position:absolute;
+    margin-left:1080px;
+    margin-top: 80px;
+    opacity: 0;
+
+}

@@ -1,0 +1,1 @@
+INSERT INTO users (EMAIL , PW , username) VALUES('simwonjun@gracurri.com', 'fortest1!' , '심원준');

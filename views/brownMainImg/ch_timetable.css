@@ -1,0 +1,81 @@
+@font-face {
+    font-family: "AppleSDGothicNeo";
+    src: url('../AppleSDGothicNeoB.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoL.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoEB.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoH.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoM.ttf') format('truetype');
+}
+
+.parent {
+    width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('./background_bm.png');
+    background-repeat: no-repeat;
+    background-position-y: 60px;
+    background-size: 1920px,auto;
+}
+
+.inner-box {
+    height: 1020px;
+    padding: 10px 0px 10px 0px;
+    display: flex;
+}
+
+.text {    
+    background-image: url('./text_bm.png');
+    background-repeat: no-repeat;
+    width: 388px;
+    height: 138px;
+    margin-left: 100px;
+    margin-top: 350px;
+}
+
+.bread-bm {
+    background-image: url('./bread_bm.png');
+    background-repeat: no-repeat;
+    width: 649px;
+    height: 763px;
+    margin-top: 100px;
+    margin-left: 148px;
+}
+
+.sauce {
+    background-image: url('./sauce_bm.png');
+    /*?��?�� �? 짤린걸로 ?���?*/
+    background-repeat: no-repeat;
+    width: 649px;
+    height: 763px;
+    margin-left: 312px;
+    margin-top: 100px;
+
+}
+
+.grade{
+    background-image: url('./grade_bm.png');
+    width: 511px;
+    height: 109px;
+    position: relative;
+    margin-top: -35px;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+.grade1 {
+    margin-top: 60px;
+}
+
+.textgrade{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -55%);                                                                   
+    font-size:30px;
+    z-index: 2;
+    text-align: center;
+    font-weight: bold;
+    font-family: AppleSDGothicNeo;
+    color: rgb(136, 70, 0);
+}
+

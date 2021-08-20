@@ -1,0 +1,94 @@
+@font-face {
+    font-family: "AppleSDGothicNeo";
+    src: url('AppleSDGothicNeoB.ttf') format('truetype');
+    src: url('AppleSDGothicNeoL.ttf') format('truetype');
+    src: url('AppleSDGothicNeoEB.ttf') format('truetype');
+    src: url('AppleSDGothicNeoH.ttf') format('truetype');
+    src: url('AppleSDGothicNeoM.ttf') format('truetype');
+}
+
+/* 이미지 수직 가운데 정렬 */
+/* #bread{line-height: 1000px;}
+#bread img{vertical-align: middle;} */
+
+
+.parent {
+    width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('images/5background.png');
+    background-repeat: no-repeat;
+    background-position-y: 60px;
+    background-size: 1920px,auto;
+}
+
+.inner-box {
+    height: 1020px;
+    padding: 0px 0px 100px 0px;
+    display: flex;
+}
+
+#back{
+    color: rgb(172, 88, 90);
+    background-color: transparent;
+    font-family: AppleSDGothicNeo;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.backbtn{
+    margin-top: 100px;
+    margin-left: 75px;
+    margin-right: 75px;
+    width: 100px;
+    text-align: center;
+}
+
+.bread{
+    background-image: url('images/5bread.png');
+    background-repeat: no-repeat;
+    width: 648px;
+    height: 678px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 386px;
+}
+
+.text{
+    float: left;
+    color: rgb(172, 88, 90);
+    font-size: 50px;
+    font-family: AppleSDGothicNeo;
+    margin: auto;
+}
+
+.list{
+    background-image: url('images/5list.png');
+    background-repeat: no-repeat;
+    width: 511px;
+    height: 109px;
+    margin-top: -45px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.list1{
+    margin-top: 50px;
+}
+
+.subject{
+    position: absolute;  
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);      
+    color: rgb(136, 70, 0);                                                           
+    font-size:30px;
+    font-weight: bold;
+    z-index: 2;
+    text-align: center;
+    font-family: AppleSDGothicNeo;
+
+}
+

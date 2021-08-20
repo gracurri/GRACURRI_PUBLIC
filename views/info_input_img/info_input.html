@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<title>GRACURRI</title>
+
+<head>
+    <meta charset="UTF-8">
+    <link href="info_small.css" media="screen and (max-width: 1680px) rel="stylesheet">
+    <link href="info_in.css" media="screen and (min-width: 1680px) rel="stylesheet">
+    <link rel="stylesheet" href="../topbar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="icon" href="./GRACURRI_LOGO.png">
+    <style> 
+        @import url(info_input.css) screen and (min-width: 1680px);
+        @import url(info_small.css) screen and (max-width: 1680px);
+    </style>
+
+</head>
+
+<body>
+    <div class="parent">
+        <div class="topbar">
+            <div class="Gname">
+                <b>Gracurri</b>
+            </div>
+            <div class="btns">
+                <a href="" id="btn1">About us </a>
+                <a href="http://192.168.0.7:3000/realmain" id="btn3">로그인</a>
+                <button type="button" onclick = "location.href='../signup_img/sign_up.html'" class="signupbtn" id="btn4">회원가입</button>
+            </div>
+        </div>
+        
+        <div class="inner-box">
+            <div class="created">
+                <div class="search">
+                    <input type="id" class="subject_name" id="search_class" placeholder="과목 찾기" onkeypress="searchClassFunc(event);"/>
+                </div>
+                <div class="subjectResult">
+                    
+                </div>
+            </div>
+            <div class="listen">
+                <div class="subject" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
+                    <span class="name">들은 과목 이름 넣기 1</span>
+                </div>
+                <div class="subject" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
+                    <span class="name">들은 과목 이름 넣기 2</span>
+                </div>
+                <div class="subject" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
+                    <span class="name">들은 과목 이름 넣기 3</span>
+                </div>
+                <div class="subject" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
+                    <span class="name">들은 과목 이름 넣기 4</span>
+                </div>
+            </div>
+            <div class="btnWrap">
+                <input type="button" class="nextBtn">
+            </div>
+        </div>
+
+    </div>
+    <script>
+        allowDrop = function() {
+            event.preventDefault();
+        };
+        
+        dropItem = function() {
+            var _targetEle = event.target;
+            var _id = event.dataTransfer.getData('text');
+            var _moveEle = document.getElementById(_id );
+            _targetEle.appendChild(_moveEle);
+        };
+        
+        dragStart = function() {
+            var _thisEle = event.target;
+            var _thisId = _thisEle.id;
+            _thisEle.classList.add('is-dragging');
+            event.dataTransfer.setData('text/plain', _thisId);
+        };
+        
+        dragEnd = function() {
+            var _thisEle = event.target;
+            _thisEle.classList.remove('is-dragging');
+        };
+
+        let doc = document;
+        let searchClass = doc.getElementById('search_class').value;
+        const classNameOne = doc.getElementById('classNameOne');
+
+        const searchClassFunc = async()=>{
+            if (window.event.keyCode == 13) {
+                searchClass = doc.getElementById('search_class').value;
+                alert('enter')
+                //서버 맞춰서 수정해야함
+                console.log(searchClass)
+                
+                fetch("http://localhost:3000/search_class?key=" + searchClass)
+                .then((res) => res.json())
+                .then((res) => {
+                    console.log(res)
+                    const countSearchResult = res.length
+                    subjectResult = doc.querySelector('.subjectResult')
+
+                    for(const i = 0; i < countSearchResult; i++){
+                        const subjectDiv = doc.createElement('div');
+                        const subjectP = doc.createElement('p');
+                        const subjectName = doc.createTextNode(res[i].과목이름)
+
+                        subjectP.appendChild(subjectName);
+                        subjectP.classList.add('name')
+
+                        subjectDiv.appendChild(subjectP);
+                        subjectDiv.classList.add('subject')
+                        
+                        //ondragover랑 ondrop도 추가!
+
+                        subjectResult.appendChild(subjectDiv);
+                    }
+                })
+                .catch(err => {
+                    // error 처리
+                    console.log('Fetch Error', err);
+                });
+            }   
+        }
+    </script>
+</body>
+
+
+
+
+</html>

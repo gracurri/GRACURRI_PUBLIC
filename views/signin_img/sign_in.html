@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<title>GRACURRI</title>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="sign_in.css">
+    <!-- css 파일 참조 -->
+    <link rel="stylesheet" href="../topbar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="icon" href="./logo.png">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="98494788840-gvhc3r64nsh3qt6a9n6sq0f13u5h6g5f.apps.googleusercontent.com">
+
+
+</head>
+
+<body>
+    <div class="parent">
+        <div class="topbar">
+            <div class="Gname">
+                <b>Gracurri</b>
+            </div>
+            <div class="btns">
+                <a href="" id="btn1">About us </a>
+                <a href="http://192.168.0.7:3000/realmain" id="btn3">로그인</a>
+                <button type="button" onclick="location.href='localhost:3000/signup'" class="signupbtn" id="btn4">회원가입</button>
+            </div>
+        </div>
+
+
+        <div class="inner-box">
+            <div class="logo">
+            </div>
+
+            <div class="login">
+                <div class="id-box">
+                    <input type="id" class="text-line_id" placeholder="Username" />
+                </div>
+                <div class="pw-box">
+                    <input type="password" class="text-line_pw" placeholder="Password" />
+                </div>
+                <div class="pwQ-box">
+                    <button type="button" onclick="location.href='../question/question.html'" class="pwfind">아이코, 비밀번호를 잊었습니다.</button>
+                </div>
+                <div class="login-button">
+                    <button type="button" onclick="location.href='realmain.html'" class="loginbtn">로그인</button>
+                </div>
+
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+</html>

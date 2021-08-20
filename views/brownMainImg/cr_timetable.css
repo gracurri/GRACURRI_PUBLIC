@@ -1,0 +1,78 @@
+@font-face {
+    font-family: "AppleSDGothicNeo";
+    src: url('../AppleSDGothicNeoB.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoL.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoEB.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoH.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoM.ttf') format('truetype');
+}
+
+.parent{
+    width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('./background_bm.png');
+    background-repeat: no-repeat;
+    background-position-y: 60px;
+    background-size: 1920px,auto;
+}
+
+.inner-box {
+    height: 1020px;
+    padding: 0px 0px 10px 0px;
+    display: flex;
+}
+
+.sauce{
+    background-image: url('./sauce_bm.png');
+    /*?��?�� �? 짤린걸로 ?���?*/
+    background-repeat: no-repeat;
+    width: 324px;
+    height: 763px;
+    margin-top: 100px;
+
+}
+
+.cheese{
+    background-image: url('./cheese_bm.png');
+    background-repeat: no-repeat;
+    width: 633px;
+    height: 766px;
+    margin-top: 100px;
+    margin-left: 320px;
+}
+
+.time{
+    margin-top: 70px;
+    margin-left: 90px;
+    border: 2px solid #d2d2d2;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: AppleSDGothicNeo;
+    border-collapse: collapse;
+    border-style: hidden;
+    border-radius: 10px;
+}
+
+
+tr, th, td { 
+    padding: 5px;
+    text-align: center;
+    /* 둥글게 만들기 */
+    border-top-left-radius: 18px; border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px; border-bottom-right-radius: 18px;
+
+}
+
+table tbody tr td th {
+
+
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    border-left: 10px solid transparent;
+    border-right: 5px solid;
+    border-color: transparent;
+
+    border-left-width: 20px;
+  }

@@ -1,0 +1,138 @@
+@font-face {
+    font-family: "AppleSDGothicNeo";
+    src: url('../AppleSDGothicNeoB.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Applelight";
+    src: url('../AppleSDGothicNeoL.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoEB.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoH.ttf') format('truetype');
+    src: url('../AppleSDGothicNeoM.ttf') format('truetype');
+}
+
+
+body {
+    font-family: AppleSDGothicNeo;
+}
+
+.parent {
+    width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('./background.png');
+    background-repeat: no-repeat;
+    background-position-y: 60px;
+    background-size: 1920px,auto;
+}
+
+.inner-box {
+    background-image: url('./yellowbox.png');
+    background-repeat: no-repeat;
+    background-position-x: right;
+    padding: 100px 130px 70px 90px;
+}
+
+
+.ips {
+    display: flex;
+    flex-direction: column;
+    justify-self: space-around;
+    align-items: center;
+
+    margin: 200px;
+    height: 1525px;
+
+}
+
+::placeholder {
+    color: #BF9285;
+}
+
+.textbox {
+    background-color: #FDF3DE;
+    color: #BF9285;
+    width: 500px;
+    height: 50px;
+    outline: #FDF3DE;
+    border-style: solid;
+    border-width: 15px;
+    border-radius: 25px;
+    border: #FDF3DE;
+    font-size: 30px;
+    padding: 25px;
+}
+
+.hintText{
+    color: #946D63;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+#pwbox {
+    margin-top: 60px;
+}
+
+#id_request {
+    background-color: #c08c6e;
+    position: absolute;
+    border-color: #c08c6e;
+    color: white;
+    margin-left: 30px;
+}
+
+#checkbtn:hover {
+    background-color: transparent;
+}
+
+#repw {
+    margin-top: 60px;
+}
+
+#pwHint {
+    margin-top: 60px;
+}
+
+#namebox {
+    margin-top: 60px;
+}
+
+#schoolid {
+    margin-top: 60px;
+}
+
+.pos {
+    line-height: 1000px;
+    position: relative;
+}
+
+img {
+    vertical-align: middle;
+}
+
+/*라디오 기본 모양 없애기*/
+
+#departmentbtns{
+    margin-top: 70px;
+}
+#departmentbtns input[type="radio"]{
+    display: none;
+}
+
+#departmentbtns input[type="radio"] + label{
+    opacity: 70%;
+}
+
+#departmentbtns input[type="radio"]:checked + label{
+    opacity: 100%;
+}
+
+#sever{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#sever span, div{
+    text-align: center;
+}

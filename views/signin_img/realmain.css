@@ -1,0 +1,96 @@
+
+.parent{
+    width: 1920px; 
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('./background.png');
+    background-repeat: no-repeat;
+    background-position-y: 60px;
+    background-size: 1920px,auto;
+}
+
+.scroll-container{
+    display: flex;
+}
+
+.scroll-container {
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    scroll-snap-align: center;
+
+  }
+  
+  .scroll-area {
+    scroll-snap-align: start;
+  }
+
+.inner-box {
+    height: 1020px;
+    background-image: url('./longcirclebackground.png');
+    background-repeat: no-repeat;
+    background-position-x: left;    
+    background-position-y: 60px;
+    padding: 60px 0px 120px 0px;
+    display: flex;
+}
+
+.text{
+    background-image: url('./write.png');
+    background-repeat: no-repeat;
+    width: 577px;
+    height: 577px;
+    margin-left: 300px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.logo {
+    background-image: url('./logo.png');
+    background-repeat: no-repeat;
+    width: 642px;
+    height: 665px;
+    margin-left: 250px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.slide-btn{
+    width: 70px;
+    height: 665px;
+    margin-left: 81px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* body {
+    background: #333333;
+}
+
+.text-line_id {
+    position: absolute;
+    background-color: transparent;
+    color: rgb(104, 33, 27);
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    padding: 3px 10px;
+    margin-top: 214px;
+    margin-left: 1180px;
+}
+
+.text-line_pw {
+    position: absolute;
+    background-color: transparent;
+    color: rgb(104, 33, 27);
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    padding: 3px 10px;
+    margin-top: 300px;
+    margin-left: 1180px;
+} */

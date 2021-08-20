@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="realmain.css">
+    <link rel="stylesheet" href="sign_in.css">
+    <!-- css 파일 참조 -->
+    
+    <link rel="stylesheet" href="../topbar.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" integrity="sha512-rCjfoab9CVKOH/w/T6GbBxnAH5Azhy4+q1EXW5XEURefHbIkRbQ++ZR+GBClo3/d3q583X/gO4FKmOFuhkKrdA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="icon" href="./logo.png">
+    
+</head>
+
+<body>
+    <div class="parent">
+
+        <div class="topbar">
+            <div class="Gname">
+                <b>Gracurri</b>
+            </div>
+            <div class="btns">
+                <a href="" id="btn1">About us </a>
+                <a href="http://192.168.0.7:3000/realmain" id="btn3">로그인</a>
+                <button type="button" onclick = "location.href='../signup_img/sign_up.html'" class="signupbtn" id="btn4">회원가입</button>
+
+            </div>
+        </div>
+        <div class="scroll-container" id="scroll">
+            <div class="scroll-area">
+                <div class="inner-box">
+                    <div class="text"></div>
+                    <div class="logo"></div>
+                </div>
+            </div>
+            <div class="scroll-area" >
+                <div class="inner-box2">
+    
+                    <div class="login">
+                        <div class="id-box">
+                            <input type="id" id="userId" class="text-line_id" placeholder="Username" />
+                        </div>
+                        <div class="pw-box">
+                            <input type="password" id="userPass" class="text-line_pw" placeholder="Password" />
+                        </div>
+                        <div class="pwQ-box">
+                            <button type="button" onclick="location.href='../question/question.html'" class="pwfind">아이코, 비밀번호를 잊었습니다.</button>
+                        </div>
+                        <div class="login-button">
+                            <button type="button" id="loginBtn" class="loginbtn">로그인</button>
+                        </div>
+    
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <script>
+    window.onload = function(){
+
+        var doc = document;
+        const login = doc.getElementById('loginBtn');
+
+        const signIn = async()=>{
+            
+            const userid = doc.getElementById('userId').value;
+            const userpass = doc.getElementById('userPass').value;
+
+            if (!userid){
+                alert('아이디를 입력하세요.');
+                doc.getElementById('userId').focus();
+                return;
+            }
+
+            if (!userpass){
+                alert('비밀번호를 입력하세요.');
+                doc.getElementById('userPass').focus();
+                return;
+            }
+
+            const resultSignUp = [userid, userpass]
+            
+
+            //서버 맞춰서 수정해야함
+            fetch("http://localhost:3000/sign_in", {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                        id: resultSignUp[0],
+                        PW: resultSignUp[1],
+                }),
+            })
+            .then((res) => res.json())
+            .then((res) => {
+                console.log(res)
+                //location.replace('../grade_sub.html')
+            })
+            .catch(err => {
+                // error 처리
+                console.log('Fetch Error', err);
+                
+            });
+        }
+
+    login.addEventListener('click', signIn);
+    }
+    </script>
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
+    
+</body>
+
+
+
+
+</html>

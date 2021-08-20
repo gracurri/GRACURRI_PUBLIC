@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<!--회원가입페이지-->
+<title>GRACURRI</title>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../topbar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="sign_up.css">
+    <link rel="icon" href="./GRACURRI_LOGO.png">
+    <script src="sign_up_func.js"></script>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="topbar">
+            <div class="Gname">
+                <b>Gracurri</b>
+            </div>
+            <div class="btns">
+                <a href="" id="btn1">About us </a>
+                <a href="../signin_img/realmain.html" id="btn3">로그인</a>
+                <button type="button" onclick = "location.href='../signup_img/sign_up.html'" class="signupbtn" id="btn4">회원가입</button>
+            </div>
+        </div>
+        <div class="inner-box">
+            <div class="ips">
+                <form method="POST" id="sever" action="http://localhost:3000/signUp">
+                <span id="idboxs">
+                    <input type="text" class="textbox" id="userId" name="id" placeholder="아이디(이메일 주소)">
+                    <!-- <span id="checkbtn"> -->
+                        <button class="btn btn-outline-secondary" id="id_request" type="button">중복확인</button>
+                    <!-- </span> -->
+                </span>
+                <span id="pwbox">
+                    <input type="password" name="pass" class="textbox" id="userPass" placeholder="비밀번호">
+                </span>
+                <span id="repw">
+                    <input type="password" name="pass" class="textbox" id="userConfirm" placeholder="비밀번호 재확인">
+                </span>
+                <span id="pwHint">
+                    <div class="hintText">비밀번호 힌트: 가장 기억에 남는 장소는?</div>
+                    <div class="hintText">(힌트는 비밀번호를 찾을 때 사용됩니다)</div>
+                    <input type="text" name="pass" class="textbox" id="userHint" placeholder="ex) 숭실대학교">
+                </span>
+                <span id="namebox">
+                    <input type="text" class="textbox" id="userName" placeholder="이름">
+                </span>
+                <span id="schoolid">
+                    <input type="text" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="textbox" id="userSchool" placeholder="학번">
+                </span>
+                <div id="departmentbtns">
+                    <!--학부 선택 버튼-->
+                    <input type="radio" id="globalMedia" name="department">
+                    <label for="globalMedia"><img src="glmediabtn.png"></label>
+                    <input type="radio" id="computer" name="department">
+                    <label for="computer"><img src="computer_btn.png"></label>
+                </div>
+                <div id="signupbtn">
+                    <button type="button" id="signUp" style="border: 0; outline: 0; background-color: rgb(247, 203,107);"><img src="./signup_btn.png"></button>
+                </div>
+            </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
