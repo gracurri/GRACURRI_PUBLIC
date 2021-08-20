@@ -59,6 +59,8 @@
 
     </div>
     <script>
+        const doc = document;
+
         allowDrop = function() {
             event.preventDefault();
         };
@@ -82,28 +84,30 @@
             _thisEle.classList.remove('is-dragging');
         };
 
-        let doc = document;
+        
         let searchClass = doc.getElementById('search_class').value;
-        const classNameOne = doc.getElementById('classNameOne');
 
         const searchClassFunc = async()=>{
             if (window.event.keyCode == 13) {
                 searchClass = doc.getElementById('search_class').value;
-                alert('enter')
                 //서버 맞춰서 수정해야함
                 console.log(searchClass)
                 
                 fetch("http://localhost:3000/search_class?key=" + searchClass)
+                //fetch("http://localhost:3000/test")
                 .then((res) => res.json())
                 .then((res) => {
                     console.log(res)
-                    const countSearchResult = res.length
+                    const countSearchResult = Object.keys(res.result).length
                     subjectResult = doc.querySelector('.subjectResult')
 
-                    for(const i = 0; i < countSearchResult; i++){
+                    console.log(countSearchResult)
+                    console.log(res.result[0].name)
+
+                    for(i = 0; i < countSearchResult; i++){
                         const subjectDiv = doc.createElement('div');
                         const subjectP = doc.createElement('p');
-                        const subjectName = doc.createTextNode(res[i].과목이름)
+                        const subjectName = doc.createTextNode(res.result[i].name)
 
                         subjectP.appendChild(subjectName);
                         subjectP.classList.add('name')
