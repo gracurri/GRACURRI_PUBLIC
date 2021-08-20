@@ -61,6 +61,22 @@
     margin-bottom: auto;
 }
 
+.start{
+    margin-top: 400px;
+    margin-left: 600px;
+    width: 100px;
+    size: 64px;
+    text-align: center;
+    font-family: AppleSDGothicNeo;
+    color:rgb(104, 33, 27);
+    background-color: transparent;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
 /* body {
     background: #333333;
 }
