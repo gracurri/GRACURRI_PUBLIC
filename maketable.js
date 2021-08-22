@@ -15,9 +15,10 @@ exports.makeplan = function(req, res) {
             if (error) {
                 console.log('error!');
             } else {
-                for (var i = 0; i < results.length; i++) {
-                    attended.push(results[i].classcodes);
+                for (var i = 0; i < results[0].classcodes.length; i += 10) {
+                    attended.push(results[0].classcodes.slice(i, i + 10));
                 }
+                let user = new userstatus(attended);
             }
         })
 }
@@ -35,7 +36,7 @@ class userstatus {
     constructor(attended) {
         db.query('USE subjects;');
         for (var i = 0; i < length(attended); i++) {
-            db.query('SELECT division,unit from subject where id=?', [attended[i]], function(error, results, fields) {
+            db.query('SELECT division,unit,etc_div from subject where id=?', [attended[i]], function(error, results, fields) {
                 current += parseInt(results[0].unit);
                 //전공 및 교양 필수/선택 체크
                 if (results[0].division.includes("전기")) {
@@ -45,6 +46,10 @@ class userstatus {
                 } else if (results[0].division.includes("교필")) {
                     curr_etc_must += results[0].unit;
                 } else if (results[0].division.includes("교선")) {
+                    //교선 분야 확인
+                    if (results[0].etc_div.includes('사회과학')) {
+                        this.socialstudy = true;
+                    }
                     curr_etc_select += results[0].unit;
                 }
             })
