@@ -31,19 +31,21 @@ class userstatus {
     language = false; //언어교양
     humanities = false; //인문학교양
     socialstudy = false; //사회과학교양
-    chapel = 0; //채플
     christion = 0; //기독교과목
     constructor(attended) {
         db.query('USE subjects;');
         for (var i = 0; i < length(attended); i++) {
             db.query('SELECT division,unit from subject where id=?', [attended[i]], function(error, results, fields) {
                 current += parseInt(results[0].unit);
+                //전공 및 교양 필수/선택 체크
                 if (results[0].division.includes("전기")) {
                     current_major_basic += results[0].unit;
                 } else if (results[0].division.includes("전필")) {
                     current_major_must += results[0].unit;
                 } else if (results[0].division.includes("교필")) {
                     curr_etc_must += results[0].unit;
+                } else if (results[0].division.includes("교선")) {
+                    curr_etc_select += results[0].unit;
                 }
             })
         }

@@ -1,5 +1,5 @@
 var subjectdb = require('./database');
-exports.search = function(key, res) {
+exports.search = function(key, res) { //info_input과목검색
     console.log(key);
     subjectdb.query('use subjects;')
     subjectdb.query('SELECT name,id from subject WHERE name LIKE' + subjectdb.escape('%' + key + '%') + ';',
