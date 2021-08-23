@@ -49,6 +49,12 @@ class userstatus {
                     //교선 분야 확인
                     if (results[0].etc_div.includes('사회과학')) {
                         this.socialstudy = true;
+                    } else if (results[0].etc_div.includes('국제어문')) {
+                        this.language = true;
+                    } else if (results[0].etc_iv.inclues('인문학')) {
+                        this.humanities = true;
+                    } else if (results[0].etc_idv.includes('숭실품성')) {
+                        this.ethics = true;
                     }
                     curr_etc_select += results[0].unit;
                 }
