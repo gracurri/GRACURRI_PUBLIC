@@ -1,7 +1,7 @@
 //users_classes_attended,to_attend관련 함수들
 var db = require('./database');
 exports.postattendedclasses = function(body, res) {
-    userdb.query('use gracurri_user;')
+    db.query('use gracurri_user;')
     db.query('UPDATE users_classes_attended SET classcodes=? WHERE EMAIL=?;', [body.classes, body.email], function(error, res) {
         if (error) {
             res.send({
@@ -17,7 +17,7 @@ exports.postattendedclasses = function(body, res) {
     })
 }
 exports.gettoattend = function(body, res) {
-    userdb.query('use gracurri_user;');
+    db.query('use gracurri_user;');
     db.query('SELECT ? from semesters where EMAIL=?', [body.semester, body.id],
         function(error, results, fields) {
             if (error) {
