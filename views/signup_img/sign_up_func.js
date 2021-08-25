@@ -118,6 +118,9 @@ window.onload = function(){
                 if(res.code === 200){
                     console.log(res)
                     alert('회원가입을 축하드립니다!')
+                    doc.cookie = "userid=" + data.id
+                    console.log(doc.cookie)
+                    location.replace('../info_input_img/info_input.html')
                 }
             })
             .catch(err => {
