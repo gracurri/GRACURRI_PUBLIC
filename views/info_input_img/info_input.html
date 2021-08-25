@@ -128,11 +128,18 @@
             }   
         }
 
+        function getCookie(name) {
+            let matches = document.cookie.match(new RegExp(
+                            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                        ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+
         //쿠키
         doc.getElementById('loginDone').innerText = getCookie('userid') + "님",
         doc.getElementById('btn3').style.display = "none",
         doc.getElementById('btn4').style.display = "none"
-        
+
     </script>
 </body>
 
