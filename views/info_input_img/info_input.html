@@ -61,6 +61,7 @@
     <script>
         const doc = document;
 
+        //드래그 엔 드롭
         allowDrop = function() {
             event.preventDefault();
         };
@@ -84,7 +85,7 @@
             _thisEle.classList.remove('is-dragging');
         };
 
-        
+        //검색 기능
         let searchClass = doc.getElementById('search_class').value;
 
         const searchClassFunc = async()=>{
@@ -126,6 +127,12 @@
                 });
             }   
         }
+
+        //쿠키
+        doc.getElementById('loginDone').innerText = getCookie('userid') + "님",
+        doc.getElementById('btn3').style.display = "none",
+        doc.getElementById('btn4').style.display = "none"
+        
     </script>
 </body>
 

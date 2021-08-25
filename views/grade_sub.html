@@ -98,6 +98,7 @@
                 console.log('Fetch Error', err);
             });
         }
+        
         let userCookieId;
             
         var getCookie = function(name) {
@@ -134,7 +135,7 @@
                     console.log(document.cookie);
                 })
                 .then(
-                    document.getElementById('loginDone').innerText = getCookie('idCookie') + "님",
+                    document.getElementById('loginDone').innerText = getCookie('userid') + "님",
                     document.getElementById('btn3').style.display = "none",
                     document.getElementById('btn4').style.display = "none"
                 )
