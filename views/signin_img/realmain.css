@@ -63,10 +63,9 @@
 
 .start{
     margin-top: 400px;
-    margin-left: 600px;
-    width: 100px;
-    size: 64px;
+    margin-left: 400px;
     text-align: center;
+    font-size: 32px;
     font-family: AppleSDGothicNeo;
     color:rgb(104, 33, 27);
     background-color: transparent;
