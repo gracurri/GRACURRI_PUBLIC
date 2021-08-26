@@ -21,7 +21,7 @@ exports.storestatus = function(req) {
         })
     let user = new userstatus(attended);
     db.query('USE gracurri_user;')
-    db.query('UPDATE users SET unit_attended=?,major_basic=?,major_must=?,major_select=?,etc_must=?,etc_select=?,ethics=?,language=?,humanities=?,socialstudy=?;', [user.current, user.current_major_basic, user.current_major_must, user.curr_major_select, user.curr_etc_must, user.curr_etc_select, user.ethics, user.humanities, user.socialstudy],
+    db.query('UPDATE users SET unit_attended=?,major_basic=?,major_must=?,major_select=?,etc_must=?,etc_select=?,ethics=?,language=?,humanities=?,socialstudy=?,semester=?;', [user.current, user.current_major_basic, user.current_major_must, user.curr_major_select, user.curr_etc_must, user.curr_etc_select, user.ethics, user.humanities, user.socialstudy, user.semester],
         function(error, results, fileds) {
             if (error) {
                 console.log('error occurred during unit pushing'); //error detecting
@@ -76,6 +76,19 @@ class userstatus {
                         this.ethics = 1;
                     }
                     curr_etc_select += results[0].unit;
+                }
+                if (results[0].targetstudent.includes('1학년')) {
+                    if (this.semester < 1) {
+                        this.semester = 1;
+                    }
+                } else if (results[0].targetstudent.includes('2학년')) {
+                    if (this.semester < 2) {
+                        this.semester = 2;
+                    }
+                } else if (results[0].targetstudent.includes('3학년')) {
+                    if (this.semester < 3) {
+                        this.semester = 3;
+                    }
                 }
             })
         }
