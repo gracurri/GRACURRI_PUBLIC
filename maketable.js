@@ -34,8 +34,13 @@ exports.storestatus = function(req) {
 exports.makeplan = function(req) { //학기들 계획짜는 함수
     var attended = [];
     db.query('USE gracurri_user;');
-    db.query('SELECT classcodes from users_classes_attended WHERE EMAIL=?', [req.body.id])
-
+    db.query('SELECT classcodes from users_classes_attended WHERE EMAIL=?', [req.body.id], function(error, results, fields) {
+        if (error) {
+            console.log('error');
+        } else {
+            attended = results[0];
+        }
+    })
 }
 class userstatus {
     current = 0; //현재 이수학점
