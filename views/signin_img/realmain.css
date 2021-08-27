@@ -34,6 +34,19 @@
     display: flex;
 }
 
+.inner-box2 {
+    width: 1140px;
+    height: 1020px;
+    background-image: url('../signin_img/longcirclebackground.png');
+    background-repeat: no-repeat;
+    background-position-x: right;    
+    background-position-y: 60px;
+    padding: 60px 0px 120px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .text{
     background-image: url('./write.png');
     background-repeat: no-repeat;
@@ -62,19 +75,20 @@
 }
 
 .start{
-    margin-top: 400px;
-    margin-left: 400px;
-    text-align: center;
-    font-size: 32px;
+    width: 363px;
+    height: 117px;
+    background-image: url("./subject.png");
+    position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
     font-family: AppleSDGothicNeo;
-    color:rgb(104, 33, 27);
     background-color: transparent;
-    outline: none;
-    outline-style: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
+    border: none;
+    text-align: center;
+    font-family: AppleSDGothicNeo;
+    color: rgb(136, 70, 0);
 }
 /* body {
     background: #333333;
@@ -109,14 +123,3 @@
     margin-top: 300px;
     margin-left: 1180px;
 } */
-
-.start{
-    width: 363px;
-    height: 117px;
-    background-image: url("./subject.png");
-    position: relative;
-    margin-top: 0;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: AppleSDGothicNeo;
-}

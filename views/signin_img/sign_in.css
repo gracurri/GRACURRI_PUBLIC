@@ -26,17 +26,6 @@
     background-size: 1920px,auto;
 } 
 
-.inner-box2 {
-    width: 1140px;
-    height: 1020px;
-    background-image: url('../signin_img/longcirclebackground.png');
-    background-repeat: no-repeat;
-    background-position-x: right;    
-    background-position-y: 60px;
-    padding: 60px 0px 120px 0px;
-    display: flex;
-}
-
 .logo {
     background-image: url('../signin_img/logo.png');
     background-repeat: no-repeat;
