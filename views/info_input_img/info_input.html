@@ -24,9 +24,8 @@
             </div>
             <div class="btns">
                 <a href="" id="btn1">About us </a>
-                <div id="loginDone"></div>
                 <a href="http://localhost:3000/realmain" id="btn3">로그인</a>
-                <button type="button" onclick = "location.href='../signup_img/sign_up.html'" class="signupbtn" id="btn4">회원가입</button>
+                <button type="button" onclick = "location.href='localhost:3000/signUp'" class="signupbtn" id="btn4">회원가입</button>
             </div>
         </div>
         
@@ -103,8 +102,8 @@
                     const countSearchResult = Object.keys(res.result).length
                     subjectResult = doc.querySelector('.subjectResult')
 
-                    console.log(countSearchResult)
-                    console.log(res.result[0].name)
+                    // console.log(countSearchResult)
+                    // console.log(res.result[0].name)
 
                     for(i = 0; i < countSearchResult; i++){
                         const subjectDiv = doc.createElement('div');
@@ -129,19 +128,21 @@
             }   
         }
 
+        //쿠키
         function getCookie(name) {
             let matches = document.cookie.match(new RegExp(
                             "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
                         ));
-            return matches ? decodeURIComponent(matches[1]) : 'sallybig@naver.com';
+            return matches ? decodeURIComponent(matches[1]) : undefined;
         }
 
-        //쿠키
+
         doc.getElementById('loginDone').innerText = getCookie('userid') + "님"
         doc.getElementById('btn3').style.display = "none"
         doc.getElementById('btn4').style.display = "none"
 
     </script>
+    
 </body>
 
 

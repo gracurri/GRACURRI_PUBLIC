@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <script src="./timetable.js"></script>
+    <script src="./cr_timetable.js"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">   
         $(document).ready( function() {
@@ -12,6 +13,7 @@
         $("#headers").load("cr_timetable.html");  // 원하는 파일 경로를 삽입하면 된다        
         });
     </script>
+    
     <link rel="stylesheet" href="cr_timetable.css">
     <link rel="stylesheet" href="timetable.css">
     <link rel="stylesheet" href="../topbar.css">
@@ -76,7 +78,7 @@
                 <div class="swiper-slide">
                     <div class="inner-box">
                         <div class="sauce">
-                            <p class="make"  type="button">
+                            <p class="make" id="maketable"  type="button">
                                 <b>이번 학기</b><br>
                                 시간표<br>
                                 만들기<br>
@@ -90,6 +92,20 @@
             </div>
         </div>
     </div>
+    <script>
+        //쿠키
+        function getCookie(name) {
+            let matches = document.cookie.match(new RegExp(
+                            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                        ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+
+
+        doc.getElementById('loginDone').innerText = getCookie('userid') + "님"
+        doc.getElementById('btn3').style.display = "none"
+        doc.getElementById('btn4').style.display = "none"
+    </script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"  type="text/javascript" >
     // jquery
 
