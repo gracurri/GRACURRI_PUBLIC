@@ -50,6 +50,10 @@ app.get('/question', function(req, res) {
     app.use(express.static('views/question'));
     res.sendFile(__dirname + '/views/question/question.html');
 })
+app.get('/grade_sub', function(req, res) {
+    app.use(express.static('views'));
+    res.sendFile(__dirname + '/views/grade_sub.html');
+})
 
 //routing ends
 app.get('/search_class', function(req, res) { //과목검색
@@ -66,11 +70,14 @@ app.get('/to_attend', function(req, res) { //들어야할 과목 (grade_sub.html
 
 app.post('/info_input', function(req, res) {
     cdhandling.postattendedclasses(req.body, res);
+    tablemaking.storestatus(req); //시간표 제작
+    tablemaking.makeplan(req); //계획수립
 })
 app.post('/signup', function(req, res) {
     console.log("회원가입 발생");
     udhandling.signup(req.body, res);
     udhandling.signup2(req.body, res);
+
 })
 app.post('/emailcheck', function(req, res) {
     console.log("email check");

@@ -62,19 +62,18 @@
 }
 
 .start{
+    height: 50px;
+    width: 300px;
+    border-radius: 20px;
     margin-top: 400px;
     margin-left: 400px;
     text-align: center;
     font-size: 32px;
     font-family: AppleSDGothicNeo;
-    color:rgb(104, 33, 27);
-    background-color: transparent;
-    outline: none;
-    outline-style: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
+    background-color: rgb(172, 88, 10);
+    border-radius: 12px;
+    border: none;
+    color: white;
 }
 /* body {
     background: #333333;
