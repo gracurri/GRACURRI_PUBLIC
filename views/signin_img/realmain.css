@@ -109,3 +109,14 @@
     margin-top: 300px;
     margin-left: 1180px;
 } */
+
+.start{
+    width: 363px;
+    height: 117px;
+    background-image: url("./subject.png");
+    position: relative;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: AppleSDGothicNeo;
+}

@@ -12,6 +12,7 @@
         $("#headers").load("cr_timetable.html");  // 원하는 파일 경로를 삽입하면 된다        
         });
     </script>
+    
     <link rel="stylesheet" href="cr_timetable.css">
     <link rel="stylesheet" href="timetable.css">
     <link rel="stylesheet" href="../topbar.css">
@@ -90,6 +91,20 @@
             </div>
         </div>
     </div>
+    <script>
+        //쿠키
+        function getCookie(name) {
+            let matches = document.cookie.match(new RegExp(
+                            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                        ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+
+
+        doc.getElementById('loginDone').innerText = getCookie('userid') + "님"
+        doc.getElementById('btn3').style.display = "none"
+        doc.getElementById('btn4').style.display = "none"
+    </script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"  type="text/javascript" >
     // jquery
 
@@ -119,6 +134,8 @@
              // 시간표 넣기
         $("#headers").load("cr_timetable.html");
         // 버튼클릭시 시간표 정보 로딩
+
+        
 
     </script>
     <button name="ok" value="<?=$groupMemberManageIDX?>;o">승인</button>
