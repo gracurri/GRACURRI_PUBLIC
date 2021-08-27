@@ -25,9 +25,7 @@ tr, th, td {
     padding: 5px;
     text-align: center;
     /* 둥글게 만들기 */
-    border-top-left-radius: 18px; border-top-right-radius: 18px;
-    border-bottom-left-radius: 18px; border-bottom-right-radius: 18px;
-
+    border-radius: 18px;
 }
 
 table tbody tr td th {
