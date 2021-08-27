@@ -75,20 +75,18 @@
 }
 
 .start{
-    width: 363px;
-    height: 117px;
-    background-image: url("./subject.png");
-    position: relative;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: AppleSDGothicNeo;
-    background-color: transparent;
-    border: none;
+    height: 50px;
+    width: 300px;
+    border-radius: 20px;
+    margin-top: 400px;
+    left: 360px;
     text-align: center;
+    font-size: 32px;
     font-family: AppleSDGothicNeo;
-    color: rgb(136, 70, 0);
+    background-color: rgb(172, 88, 10);
+    border-radius: 12px;
+    border: none;
+    color: white;
 }
 /* body {
     background: #333333;
