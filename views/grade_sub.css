@@ -14,6 +14,7 @@
 
 .parent {
     width: 1920px;
+    height: 1080px;
     margin-left: auto;
     margin-right: auto;
     background-image: url('images/5background.png');

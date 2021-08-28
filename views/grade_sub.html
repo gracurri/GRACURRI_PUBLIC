@@ -4,6 +4,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="./timetable.js"></script>
+
     <link rel="stylesheet" href="grade_sub.css">
     <!-- css 파일 참조 -->
     <link rel="stylesheet" href="topbar.css">
@@ -31,7 +33,7 @@
             </div>
             <div class="bread">
                 <!--나중에 따로 분류 필요하면 클래스 추가-->
-                <div class="list list1">
+                <!-- <div class="list list1">
                     <p class="subject">과목 이름 넣기</p>
                 </div>
                 <div class="list">
@@ -54,7 +56,7 @@
                 </div>
                 <div class="list">
                     <p class="subject">과목 이름 넣기</p>
-                </div>
+                </div> -->
             </div>
             <div class="text">
                 <!--왼쪽정렬이랑 줄바꿈 기능 있으려나-->
@@ -63,39 +65,40 @@
             </div>
         </div>
     </div>
+    </div>
     <script>  
     window.onload = function(){
         //서버 맞춰서 수정해야함
-        function test(){
-            var url = new URL("http://localhost:3000/semester")
-            var semester = document.getElementById('semester');
+        // function test(){
+        //     var url = new URL("http://localhost:3000/semester")
+        //     var semester = document.getElementById('semester');
         
-            const config = {
-                headers : { 
-                    'Accept': 'application/json'
-                }
-            }
+        //     const config = {
+        //         headers : { 
+        //             'Accept': 'application/json'
+        //         }
+        //     }
             
-            var semesterAll = ["one", "two","three","four","five","six","seven","eight"]
+        //     var semesterAll = ["one", "two","three","four","five","six","seven","eight"]
 
-            fetch(url, config)
-            .then(res => {
-                // response 처리
-                console.log(res);
-                // 응답을 JSON 형태로 파싱
-                return res.json();
-                })
-                .then(data => {
-                // json 출력
-                console.log(data.first)
-                //data.*** 변경하면 학기 변경됨
-                semester.innerText = data.first + "의"
-                })
-                .catch(err => {
-                // error 처리
-                console.log('Fetch Error', err);
-            });
-        }
+        //     fetch(url, config)
+        //     .then(res => {
+        //         // response 처리
+        //         console.log(res);
+        //         // 응답을 JSON 형태로 파싱
+        //         return res.json();
+        //         })
+        //         .then(data => {
+        //         // json 출력
+        //         console.log(data.first)
+        //         //data.*** 변경하면 학기 변경됨
+        //         semester.innerText = data.first + "의"
+        //         })
+        //         .catch(err => {
+        //         // error 처리
+        //         console.log('Fetch Error', err);
+        //     });
+        // }
         
         let userCookieId;
             
