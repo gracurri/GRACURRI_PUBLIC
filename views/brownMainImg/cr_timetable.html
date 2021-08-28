@@ -3,6 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <script src="./cr_timetable.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+      $(function(){
+        var target = $('#target');
+        $.getJSON('../db.json', function(subjects){
+          $.each(subjects, function(i, subject){
+            var add_data = '';
+            add_data += '<tr>';
+              
+            add_data += '<td>';
+            add_data += subject.name;
+            add_data += subject.professor;
+            add_data += '</td>';
+
+            add_data += '<td>';
+            add_data += subject.name;
+            add_data += subject.professor;
+            add_data += '</td>';
+
+            add_data += '<td>';
+            add_data += subject.name;
+            add_data += subject.professor;
+            add_data += '</td>';
+
+            add_data += '<td>';
+            add_data += subject.name;
+            add_data += subject.professor;
+            add_data += '</td>';
+
+            add_data += '<td>';
+            add_data += subject.name;
+            add_data += subject.professor;
+            add_data += '</td>';
+
+            add_data +- '</tr>';
+            target.append(add_data);
+          });
+        });
+      });
+    </script>
 </head>
 <body>
     <div style="margin-right: 80px">      
@@ -17,7 +57,15 @@
             </tr>
             <tr>
               <th>1</th>
-              <td></td>
+              <td>
+                모바일네트워크
+                <br>
+                최봉준
+                <br>
+                10301145
+                <br>
+                정보과학관
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -87,7 +135,8 @@
               <td></td>
               <td></td>
             </tr>
-          </tr>        
+          </tr>
+          <tbody id="target"></tbody>        
         </table>
     </div>
     <style>
