@@ -1,4 +1,4 @@
-//users_classes_attended,to_attend관련 함수들
+//users_classes_attended,semesters관련 함수들
 var db = require('./database');
 exports.postattendedclasses = function(body, res) {
     db.query('use gracurri_user;')
@@ -16,9 +16,9 @@ exports.postattendedclasses = function(body, res) {
         }
     })
 }
-exports.gettoattend = function(body, res) {
+exports.gettoattend = function(query, res) {
     db.query('use gracurri_user;');
-    db.query('SELECT ? from semesters where EMAIL=?', [body.semester, body.id],
+    db.query('SELECT ? from semesters where EMAIL=?', [query.semester, query.id],
         function(error, results, fields) {
             if (error) {
                 res.send({

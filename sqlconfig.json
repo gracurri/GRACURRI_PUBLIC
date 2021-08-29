@@ -1,5 +1,5 @@
 {
-    "host": "grcurrdb.ckazeqsmvezn.ap-northeast-2.rds.amazonaws.com",
+    "host": "grcurrdbaws.ckazeqsmvezn.ap-northeast-2.rds.amazonaws.com",
     "user": "grcurr",
     "password": "grcurr2021!"
 }

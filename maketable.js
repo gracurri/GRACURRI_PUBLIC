@@ -28,19 +28,16 @@ exports.storestatus = function(req) {
             }
         }
     );
-
-
+    return user;
 }
-exports.makeplan = function(req) { //학기들 계획짜는 함수
-    var attended = [];
-    db.query('USE gracurri_user;');
-    db.query('SELECT classcodes from users_classes_attended WHERE EMAIL=?', [req.body.id], function(error, results, fields) {
-        if (error) {
-            console.log('error');
-        } else {
-            attended = results[0];
-        }
-    })
+exports.makeplan = function(user) { //학기들 계획짜는 함수
+    var attended_names = []
+    db.query('USE subjects;');
+    for (var i = 0; i < user.attended.length; i++) {
+        db.query('SELECT name from subject where id=?', [user.attended[i]], function(error, results, fields) {
+            attended_names.push(results[0]);
+        });
+    }
 }
 class userstatus {
     current = 0; //현재 이수학점
@@ -55,7 +52,9 @@ class userstatus {
     socialstudy = 0; //사회과학교양
     christion = 0; //기독교과목
     semester = 0;
+    attended = [];
     constructor(attended) {
+        this.attended = attended;
         db.query('USE subjects;');
         for (var i = 0; i < length(attended); i++) {
             db.query('SELECT division,unit,etc_div,targetstudent from subject where id=?', [attended[i]], function(error, results, fields) {
