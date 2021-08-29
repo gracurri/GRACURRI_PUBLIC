@@ -10,34 +10,71 @@
         $.getJSON('../db.json', function(subjects){
           $.each(subjects, function(i, subject){
             var add_data = '';
+            add_data += '<tr> <th></th> <th>월</th> <th>화</th> <th>수</th> <th>목</th> <th>금</th> </tr>';
             add_data += '<tr>';
-              
-            add_data += '<td>';
-            add_data += subject.name;
-            add_data += subject.professor;
-            add_data += '</td>';
-
-            add_data += '<td>';
-            add_data += subject.name;
-            add_data += subject.professor;
-            add_data += '</td>';
-
-            add_data += '<td>';
-            add_data += subject.name;
-            add_data += subject.professor;
-            add_data += '</td>';
-
-            add_data += '<td>';
-            add_data += subject.name;
-            add_data += subject.professor;
-            add_data += '</td>';
-
-            add_data += '<td>';
-            add_data += subject.name;
-            add_data += subject.professor;
-            add_data += '</td>';
-
+            add_data += '<th>1</th>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
             add_data +- '</tr>';
+
+            add_data += '<tr>';
+            add_data += '<th>2</th>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data +- '</tr>';
+
+
+            add_data += '<tr>';
+            add_data += '<th>3</th>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data +- '</tr>';
+
+
+            add_data += '<tr>';
+            add_data += '<th>4</th>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data +- '</tr>';
+
+
+            add_data += '<tr>';
+            add_data += '<th>5</th>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data +- '</tr>';
+
+            add_data += '<tr>';
+            add_data += '<th>6</th>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data += '<td></td>';
+            add_data +- '</tr>';
+
+
+            // add_data += '<tr>';
+            //   add_data += '<td>';
+            //   add_data += subject.name;
+            //   add_data += subject.professor;
+            //   add_data += '</td>';
+            // add_data +- '</tr>';
             target.append(add_data);
           });
         });
@@ -46,97 +83,8 @@
 </head>
 <body>
     <div style="margin-right: 80px">      
-      <table class="time"  style="color: #121212; border-collapse: collapse; border-radius: 10px; ">
-          <tr width=19% height=90%>    <!-- 첫번째 열 -->
-              <th></th>
-              <th>월</th>
-              <th>화</th>
-              <th>수</th>
-              <th>목</th>
-              <th>금</th>
-            </tr>
-            <tr>
-              <th>1</th>
-              <td>
-                모바일네트워크
-                <br>
-                최봉준
-                <br>
-                10301145
-                <br>
-                정보과학관
-              </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>2</th>
-              <td></td>
-              <td></td>
-              <td style="background-color: #9c5d0a">인공지능</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>3</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td rowspan="2" style="background-color: #0b8300;">운영체제</td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>4</th>
-              <td></td>
-              <td style="background-color: #eb7dd8">자료구조</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>5</th>
-              <td></td>
-              <td style="background-color: #f8b332">데이터 베이스</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>6</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td style="background-color: #eca4c6">알고리즘</td>
-            </tr>
-            <tr>
-              <th>7</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>8</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>9</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tr>
-          <tbody id="target"></tbody>        
+      <table class="time"  style="color: #121212; border-collapse: collapse; border-radius: 10px; width: 500px; height:500px; ">
+          <tbody id="target" style="margin-right: 100px;"></tbody>        
         </table>
     </div>
     <style>
