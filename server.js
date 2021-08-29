@@ -31,9 +31,6 @@ app.get('/question', function(req, res) {
     app.use(express.static('views/question'))
     res.sendFile(__dirname + "/views/question/question.html")
 })
-app.get('/specific_semester', function(req, res) {
-    res.sendFile(__dirname + "/views/grade_sub.html")
-})
 app.get('/modify_pw', function(req, res) {
     app.use(express.static('views/modify_pw'))
     res.sendFile(__dirname + '/views/modify_pw/modify_pw.html')
@@ -70,8 +67,7 @@ app.get('/to_attend', function(req, res) { //들어야할 과목 (grade_sub.html
 
 app.post('/info_input', function(req, res) {
     cdhandling.postattendedclasses(req.body, res);
-    tablemaking.storestatus(req); //시간표 제작
-    tablemaking.makeplan(req); //계획수립
+    tablemaking.makeplan(req, res); //시간표 제작 및 계획수립
 })
 app.post('/signup', function(req, res) {
     console.log("회원가입 발생");

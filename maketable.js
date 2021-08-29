@@ -6,7 +6,7 @@ const graduation_etc_must = 14; //교양필수
 const graduation_etc_selection = 20; //교양선택
 const graduation_major_without_basic = 66; //전공기초 제외 전공 요학점
 const graduation_christ = 4;
-exports.storestatus = function(req) {
+var storestatus = function(req) {
     var attended = []; //들은과목 배열
     db.query('USE gracurri_user;');
     db.query('SELECT classcodes from users_classes_attended WHERE EMAIL=?', [req.body.id],
@@ -30,14 +30,15 @@ exports.storestatus = function(req) {
     );
     return user;
 }
-exports.makeplan = function(user) { //학기들 계획짜는 함수
+exports.makeplan = function(req, res) { //학기들 계획짜는 함수
     var attended_names = []
     db.query('USE subjects;');
+    let user = storestatus(req);
     for (var i = 0; i < user.attended.length; i++) {
         db.query('SELECT name from subject where id=?', [user.attended[i]], function(error, results, fields) {
             attended_names.push(results[0]);
         });
-    }
+    } //들은 과목들 이름을 불러옴(들은과목 넣어주는 것 방지위해)
 }
 class userstatus {
     current = 0; //현재 이수학점
