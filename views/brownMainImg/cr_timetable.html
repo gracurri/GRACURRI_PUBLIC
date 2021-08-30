@@ -7,74 +7,93 @@
     <script>
       $(function(){
         var target = $('#target');
-        $.getJSON('../db.json', function(subjects){
+        $.getJSON('subject.json', function(subjects){
           $.each(subjects, function(i, subject){
             var add_data = '';
-            add_data += '<tr> <th></th> <th>월</th> <th>화</th> <th>수</th> <th>목</th> <th>금</th> </tr>';
             add_data += '<tr>';
-            add_data += '<th>1</th>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
+              add_data += '<th>1</th>';
+              add_data += '<td>';
+              add_data += subject.name;
+              add_data += '<br>';
+              add_data += subject.professor;
+              add_data += '</td>';
+              add_data += '<td></td>';
             add_data +- '</tr>';
 
             add_data += '<tr>';
-            add_data += '<th>2</th>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data +- '</tr>';
-
-
-            add_data += '<tr>';
-            add_data += '<th>3</th>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data +- '</tr>';
-
-
-            add_data += '<tr>';
-            add_data += '<th>4</th>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data +- '</tr>';
-
-
-            add_data += '<tr>';
-            add_data += '<th>5</th>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data +- '</tr>';
-
-            add_data += '<tr>';
-            add_data += '<th>6</th>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
-            add_data += '<td></td>';
+              add_data += '<th>2</th>';
+              add_data += '<td></td>';
+              add_data += '<td>';
+              add_data += subject.name;
+              add_data += '<br>';
+              add_data += subject.professor;
+              add_data += '</td>';
+              add_data += '<td></td>';
+              add_data += '<td></td>';
+              add_data += '<td></td>';
             add_data +- '</tr>';
 
 
             // add_data += '<tr>';
+            //   add_data += '<th>3</th>';
+            //   add_data += '<td></td>';
+            //   add_data += '<td></td>';
+            //   add_data += '<td>';
+            //   add_data += subject.name;
+            //   add_data += subject.professor;
+            //   add_data += '</td>';
+            //   add_data += '<td></td>';
+            //   add_data += '<td></td>';
+            // add_data +- '</tr>';
+
+
+            // add_data += '<tr>';
+            //   add_data += '<th>4</th>';
+            //   add_data += '<td></td>';
+            //   add_data += '<td>';
+            //   add_data += subject.name;
+            //   add_data += subject.professor;
+            //   add_data += '</td>';
+            //   add_data += '<td></td>';
+            //   add_data += '<td></td>';
+            //   add_data += '<td></td>';
+            // add_data +- '</tr>';
+
+
+            // add_data += '<tr>';
+            //   add_data += '<th>5</th>';
+            //   add_data += '<td></td>';
+            //   add_data += '<td></td>';
+            //   add_data += '<td>';
+            //   add_data += subject.name;
+            //   add_data += subject.professor;
+            //   add_data += '</td>';
+            //   add_data += '<td></td>';
+            //   add_data += '<td></td>';
+            // add_data +- '</tr>';
+
+            // add_data += '<tr>';
+            //   add_data += '<th>6</th>';
+            //   add_data += '<td></td>';
+            //   add_data += '<td></td>';
+            //   add_data += '<td></td>';
+            //   add_data += '<td></td>';
             //   add_data += '<td>';
             //   add_data += subject.name;
             //   add_data += subject.professor;
             //   add_data += '</td>';
             // add_data +- '</tr>';
+
+
+            // add_data += '<tr>';
+            //   add_data += '<th>7</th>';
+            //   add_data += '<td></td>';
+            //   add_data += '<td>';
+            //   add_data += subject.name;
+            //   add_data += subject.professor;
+            //   add_data += '</td>';
+            // add_data +- '</tr>';
+
             target.append(add_data);
           });
         });
@@ -82,9 +101,19 @@
     </script>
 </head>
 <body>
-    <div style="margin-right: 80px">      
+    <div style="margin-right: 80px">  
       <table class="time"  style="color: #121212; border-collapse: collapse; border-radius: 10px; width: 500px; height:500px; ">
-          <tbody id="target" style="margin-right: 100px;"></tbody>        
+        <thead>
+          <tr>
+            <th></th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+          </tr>
+        </thead>  
+        <tbody id="target"  style="margin-right: 100px; mask-repeat: no-repeat;"></tbody>        
         </table>
     </div>
     <style>
