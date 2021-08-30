@@ -119,7 +119,7 @@ window.onload = function(){
                     console.log(res)
                     alert('회원가입을 축하드립니다!')
                     doc.cookie = "userid=" + resultSignUp[0]
-                    console.log(doc.cookie)
+                    alert(doc.cookie)
                     location.replace('../info_input_img/info_input.html')
                 }
             })

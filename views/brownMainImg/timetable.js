@@ -31,7 +31,7 @@ window.onload=function(){
         .then((res) => {
             console.log(res)
             if(res.code === 200){
-                location.href = 'http://localhost:3000/grade_sub';
+                location.assign('http://localhost:3000/grade_sub');
                 let semester = doc.getElementById('semester');
                 semester.innerText = grade + "의"
                 //res.result는 서버 응답 맞춰서 수정해야함
