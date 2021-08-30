@@ -1,0 +1,115 @@
+@font-face {
+    font-family: "AppleSDGothicNeo";
+    src: url('./AppleSDGothicNeoB.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Applelight";
+    src: url('./AppleSDGothicNeoL.ttf') format('truetype');
+    src: url('./AppleSDGothicNeoEB.ttf') format('truetype');
+    src: url('./AppleSDGothicNeoH.ttf') format('truetype');
+    src: url('./AppleSDGothicNeoM.ttf') format('truetype');
+}
+
+body {
+    font-family: AppleSDGothicNeo;
+}
+
+::placeholder {
+    color: #BF9285;
+}
+
+.parent {
+    width: 1920px; height: 1080px;
+    background-image: url('./img/bg_q.png');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 1920px, auto;
+
+}
+
+.inner-box {
+    width: 1920px; height: 861px;
+    background-image: url('./img/yellowbox_q.png');
+    background-position-x: center;
+    background-repeat: no-repeat;
+    color: #946d63;
+    font-size: 35px;
+    font-family: Applelight;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0px 120px 0px;
+}
+
+.textbox {
+    background-color: #FDF3DE;
+    color: #BF9285;
+    width: 815px; height: 82px;
+    outline: #FDF3DE;
+    border-radius: 25px;
+    border: 15px solid #FDF3DE;
+    font-size: 30px;
+    padding: 25px;
+}
+
+.inputInfo{
+    height: 82px; width: 815px;
+}
+
+#text{
+    width: 600px; height: 30px;
+    text-align: center;
+    font-family: AppleSDGothicNeo;
+    color:#794437d3
+}
+
+#bar{
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+#namebox{
+    margin-bottom: 30px;
+    margin-bottom: 40px;
+}
+
+#idbox{
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+#numbox{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#answerbox{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#continue{
+    margin-right: 30px;
+}
+
+#cancel{
+    margin-left: 30px;
+}
+
+#hint_question{
+    width: 800px;
+    font-family: AppleSDGothicNeo;
+    font-size: 20px;
+    color:#794437d3;
+    text-align: center;
+}
+
+#submitbtn:hover {
+    background-color: transparent;
+}
+
+.item a{
+    text-decoration: none;
+}
