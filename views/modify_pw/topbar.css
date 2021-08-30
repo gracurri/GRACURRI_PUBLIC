@@ -1,0 +1,81 @@
+@font-face {
+    font-family: "AppleSDGothicNeo";
+    src: url('./AppleSDGothicNeoB.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Applelight";
+    src: url('./AppleSDGothicNeoL.ttf') format('truetype');
+    src: url('./AppleSDGothicNeoEB.ttf') format('truetype');
+    src: url('./AppleSDGothicNeoH.ttf') format('truetype');
+    src: url('./AppleSDGothicNeoM.ttf') format('truetype');
+}
+@font-face{
+    font-family:"NOTO";
+    src:url('./NotoSans-BlackItalic.ttf') format('truetype');
+}
+.topbar {
+    background-image: url('./png files/topbar.png');
+    background-repeat: no-repeat;
+    position: relative;
+    height: 110px;
+    width: 100%;
+    min-width: 1920px;
+    background-size: auto;
+    text-decoration: none;
+    font-family: Applelight;
+    z-index: 100;
+}
+
+.Gname {
+    position: absolute;
+    color: rgb(235, 201, 165);
+    font-size: 71px;
+    font-family: NOTO;
+    left: 60px;
+}
+
+.topbar .btns {
+    font-size: 25px;
+    
+    padding-top: 40px;
+    padding-bottom: 75px;
+    z-index: 1;
+    height: 70px;
+ 
+}
+
+.signupbtn {
+    background-color: rgb(172, 88, 10);
+    border-radius: 12px;
+    border: none;
+    color: white;
+}
+
+#btn1 {
+    position:absolute;
+    color: rgb(172, 88, 10);
+    background-color: transparent;
+    text-decoration: none;
+    left:1200px;
+}
+
+
+#btn3 {
+    
+    position:absolute;
+    color: rgb(172, 88, 10);
+    background-color: transparent;
+    text-decoration: none;
+    font-family: AppleSDGothicNeo;
+    left:1400px;
+}
+
+#btn4 {
+    
+    position:absolute;
+    text-decoration: none;
+    font-size: 25px;
+    font-family: AppleSDGothicNeo;
+    left:1500px;
+}

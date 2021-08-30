@@ -1,0 +1,29 @@
+{
+  "name": "gracurri_server",
+  "version": "1.0.0",
+  "description": "<h2>Server for Gracurri_Server</h2><br>\r node.js",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gracurri/gracurri_server.git"
+  },
+  "author": "sim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gracurri/gracurri_server/issues"
+  },
+  "homepage": "https://github.com/gracurri/gracurri_server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "tedious": "^11.4.0"
+  },
+  "devDependencies": {},
+  "keywords": []
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<!--비밀번호 수정 페이지-->
+<title>GRACURRI</title>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../topbar.css">
+    <link rel="stylesheet" href="question.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="icon" href="./img/GRACURRI_LOGO.png">
+</head>
+
+<body>
+    <div class="parent">
+        <!--top-bar-->
+        <div class="topbar">
+            <div class="Gname">
+                <i>Gracurri</i>
+            </div>
+            <div class="btns">
+                <a href="" id="btn1">About us </a>
+                <a href="http://localhost:3000/realmain" id="btn3">로그인</a>
+                <button type="button" onclick="location.href='../signup_img/sign_up'" class="signupbtn" id="btn4">회원가입</button>
+            </div>
+        </div>
+
+
+        <div class="inner-box ">
+            <form method="POST" id="sever" action="http://localhost:3000/question">
+                <div id="text " style="text-align: center;">
+                    힌트로 비밀번호를 찾습니다.
+                </div>
+                <div class="item " id="bar " style="text-align: center;">
+                    <img src="./img/bar.png ">
+                </div>
+                <div class="item inputInfo " id="namebox " style="margin-bottom: 30px;">
+                    <input type="text " class="textbox " id="userName" placeholder="이름 ">
+                </div>
+                <div class="item inputInfo " id="idbox ">
+                    <input type="text " class="textbox " id="userId" placeholder="아이디(이메일 주소) ">
+                </div>
+                <div class="item inputInfo" id="numbox">
+                    <input type="text" class="textbox" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" id="userSchool" placeholder="학번">
+                </div>
+                <div class="item " id="hint_question " style="text-align: center;">
+                    힌트: 가장 기억에 남는 장소는?
+                </div>
+                <div class="item inputInfo " id="answerbox ">
+                    <input type="text " class="textbox " id="userHint" placeholder="ex) 숭실대학교 ">
+                </div>
+                <div class="item " id="btns" style="margin-top: 40px; text-align: center;">
+                    <button id="continue" onclick="location.href='../modify_pw/modify_pw'" style="border: 0; outline: 0; background-color: transparent;"><img src="../png files/contiue_btn.png "></img></button>
+                    <a href="../signin_img/realmain"> <img src="../png files/cancel_btn.png " id="cancel"> </a>
+                </div>
+        </div>
+    </div>
+        <script src="question.js"></script>
+</body>
+
+
+</html>

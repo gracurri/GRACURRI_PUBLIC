@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<!--비밀번호 수정 페이지-->
+<title>GRACURRI_비밀번호재설정</title>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../topbar.css">
+    <link rel="stylesheet" href="modify_pw.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="icon" href="./img/GRACURRI_LOGO.png">
+    <script src="modify_pw.js"></script>
+</head>
+
+<body>
+    <div class="parent">
+        <!--top-bar-->
+        <div class="topbar">
+            <div class="Gname">
+                <i>Gracurri</i>
+            </div>
+            <div class="btns">
+                <a href="" id="btn1">About us </a>
+                <a href="http://localhost:3000/realmain" id="btn3">로그인</a>
+                <button type="button" onclick="location.href='../signup_img/sign_up'" class="signupbtn" id="btn4">회원가입</button>
+            </div>
+        </div>
+        <!--main-->
+
+        <div class="inner-box">
+            <form method="GET" id="data" action="http://localhost:3000/question"></form>
+            <form method="POST" id="sever" action="http://localhost:3000/modifypw">
+
+                <div class="item" id="text">
+                    비밀번호를 재설정합니다.
+                </div>
+                <div class="item" id="bar">
+                    <img src="./img/bar.png">
+                </div>
+                <div class="item inputInfo" id="pwbox">
+                    <input type="password" class="textbox" id="userPass" placeholder=" 비밀번호(8~32자리)">
+                </div>
+                <div class="item inputInfo" id="repwbox">
+                    <input type="password" class="textbox" id="userConfirm" placeholder=" 비밀번호 재입력">
+                </div>
+                <div class="item" id="notion">
+                    <!--안내문-->
+                    <img src="./img/notion.png">
+                </div>
+                <!--재설정완료 버튼-->
+                <div class="item">
+                    <input class="btn btn-primary" id="submitbtn" type="submit" value="재설정완료">
+                </div>
+        </div>
+    </div>
+
+</body>
+
+
+</html>

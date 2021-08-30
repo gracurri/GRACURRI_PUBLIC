@@ -1,0 +1,108 @@
+@font-face {
+    font-family: "AppleSDGothicNeo";
+    src: url('./AppleSDGothicNeoB.ttf') format('truetype');
+}
+@font-face {
+    font-family: "Applelight";
+    src: url('./AppleSDGothicNeoL.ttf') format('truetype');
+    src: url('./AppleSDGothicNeoEB.ttf') format('truetype');
+    src: url('./AppleSDGothicNeoH.ttf') format('truetype');
+    src: url('./AppleSDGothicNeoM.ttf') format('truetype');
+}
+
+/*기본설정*/
+body {
+    font-family: AppleSDGothicNeo;
+}
+
+::placeholder {
+    color: #BF9285;
+}
+
+/*내용*/
+.parent {
+    width: 1920px; height: 1080px;
+    background-image: url('./img/bg_pw.png');
+    background-repeat: no-repeat;
+    
+    margin-left: auto;
+    margin-right: auto;
+    
+    /*background-position-y: 0px;*/
+    background-size: 1920px, auto;
+}
+
+.inner-box {
+    /*수연언니한테 박스 따로 있는 파일 받아서 수정하기(높이/너비)*/
+    width: 1920px; height: 861px;
+    background-image: url('./img/yellowbox_pw.png');
+    background-position-x: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0px 120px 0px;
+
+    font-family: Applelight;
+    color: #946d63;
+    font-size: 35px;
+}
+
+/*공통된 속성들*/
+
+.textbox {
+    background-color: #FDF3DE;
+    color: #BF9285;
+    width: 815px; height: 82px;
+    outline: #FDF3DE;
+    border-radius: 25px;
+    border: 15px solid #FDF3DE;
+    font-size: 30px;
+    padding: 25px;
+}
+
+.inputInfo{
+    height: 82px; width: 815px;
+}
+
+
+/*각 항목에 부여하는 속성들*/
+
+#text{
+    /*디자인이랑 맞추기*/
+    text-align: center;
+    font-family: AppleSDGothicNeo;
+    height: 30px;
+}
+
+#bar{
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+#pwbox{
+    margin-bottom: 30px;
+}
+
+#repwbox{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#notion{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#submitbtn {
+    margin-top: 30px;
+    width:815px; height: 50px;
+
+    background-color: #c08c6e;
+    border-color: #c08c6e;
+}
+
+#submitbtn:hover {
+    background-color: transparent;
+}
