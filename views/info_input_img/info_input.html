@@ -59,6 +59,20 @@
 
     </div>
     <script>
+        //쿠키
+        function getCookie(name) {
+            let matches = document.cookie.match(new RegExp(
+                            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                        ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+
+
+        doc.getElementById('loginDone').innerText = getCookie('userid') + "님"
+        doc.getElementById('btn3').style.display = "none"
+        doc.getElementById('btn4').style.display = "none"
+    </script>
+    <script>
         const doc = document;
 
         //드래그 엔 드롭
@@ -127,19 +141,6 @@
                 });
             }   
         }
-
-        //쿠키
-        function getCookie(name) {
-            let matches = document.cookie.match(new RegExp(
-                            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-                        ));
-            return matches ? decodeURIComponent(matches[1]) : undefined;
-        }
-
-
-        doc.getElementById('loginDone').innerText = getCookie('userid') + "님"
-        doc.getElementById('btn3').style.display = "none"
-        doc.getElementById('btn4').style.display = "none"
 
     </script>
     
