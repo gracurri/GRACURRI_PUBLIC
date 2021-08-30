@@ -15,14 +15,23 @@ window.onload=function(){
     
     let requestSem;
 
+    
+            
+    var getCookie = function(name) {
+        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return value? value[2] : null;
+    };  
+
+    let userCookieId = getCookie('userid');
+
     const sem = async()=>{
         // 데이터 get
-        fetch("http://localhost:3000/to_attend?semester=" + requestSem)
+        fetch("http://localhost:3000/to_attend?semester=" + requestSem + "&email=" + userCookieId)
         .then((res) => res.json())
         .then((res) => {
             console.log(res)
             if(res.code === 200){
-                location.href='localhost:3000/grade_sub';
+                location.href = 'localhost:3000/grade_sub';
                 let semester = doc.getElementById('semester');
                 semester.innerText = grade + "의"
                 //res.result는 서버 응답 맞춰서 수정해야함
@@ -85,3 +94,4 @@ window.onload=function(){
         sem();
     });
 };
+
