@@ -94,10 +94,4 @@ exports.search = function(key, res) { //info_input과목검색
             "error": "error in search"
         });
     }
-    if (search === false) {
-        res.send({
-            "code": 200,
-            "result": "검색어에 해당하는 과목이 없습니다.";
-        })
-    }
 }
