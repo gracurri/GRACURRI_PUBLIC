@@ -37,7 +37,11 @@ exports.makeplan = function(req, res) { //학기들 계획짜는 함수
     db.query('use gracurri_user;');
     db.query('SELECT major from users where EMAIL=?', [req.body.id], function(error, results) {
         if (results.length > 0) {
-            user.major = results[0].major;
+            if (results[0].major === 'computer') {
+                user.major = '컴퓨터';
+            } else if (results[0].major === 'globalMedia') {
+                user.major = '글로벌미디어';
+            }
         }
     });
     for (var i = 0; i < user.attended.length; i++) {
@@ -48,21 +52,22 @@ exports.makeplan = function(req, res) { //학기들 계획짜는 함수
     let currsem = user.semester + 1; //알고리즘 진행과정에서의 현재 학기
     while (currsem < 9) {
         var max = 18;
-        var major = 0;
-        var etc = 0;
+        var major_must = 0; //전공필수
+        var etc_must = 0; //교양필수
         if (currsem / 2 <= 1) { //1학년때
-            var max = 22;
-            let major = 9; //1학년전기,전필
-            let etc = 8; //1학년교필
-            if (currsem % 2 == 1) { //1학기
-                db.query('SELECT id,name from subject')
-            }
-        } else if (currsem / 2 <= 4) { //2학년
-
+            max = 22;
+            major_must = 9; //1학년전기,전필
+            etc_must; //1학년교필
+        } else if (currsem == 3) { //2학년 1학기
+            etc_must = 2;
+            major_must = 3;
+        } else if (currsem === 4) {
+            major_must = 6;
         } else if (currsem / 2 <= 6) { //3학년
-
-        } else if (currsem / 2 <= 8) { //4학년
-
+            major_must = 3;
+        }
+        if (currsem % 2 == 1) { //1학기과목들
+            db.query('SELECT id,name from subject_1 where division=전필-' + '?' + 'and targetstudent=', [user.major, user.major])
         }
     }
 }
