@@ -25,8 +25,8 @@
             <div class="btns">
                 <a href="" id="btn1">About us </a>
                 <a href="http://localhost:3000/realmain" id="btn3">로그인</a>
-                <button type="button" onclick = "location.href='localhost:3000/signup'" class="signupbtn" id="btn4">회원가입</button>
                 <div id="loginDone"></div>
+                <button type="button" onclick = "location.href='localhost:3000/signup'" class="signupbtn" id="btn4">회원가입</button>
             </div>
         </div>
         
@@ -103,7 +103,7 @@
 
         //검색 기능
         let searchClass = doc.getElementById('search_class').value;
-        const countSearchResult = 0;
+        let countSearchResult = 0;
 
         const searchClassFunc = async()=>{
             if (window.event.keyCode == 13) {
@@ -125,7 +125,6 @@
                     console.log(res)
                     countSearchResult = Object.keys(res.result).length
                     
-
                     // console.log(countSearchResult)
                     // console.log(res.result[0].name)
                     if (countSearchResult > 0){
