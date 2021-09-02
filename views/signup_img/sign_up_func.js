@@ -99,7 +99,7 @@ window.onload = function(){
             alert(resultSignUp)
     
             //서버 맞춰서 수정해야함
-            fetch("http://localhost:3000/signUp", {
+            fetch("http://localhost:3000/signup", {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -120,7 +120,7 @@ window.onload = function(){
                     alert('회원가입을 축하드립니다!')
                     doc.cookie = "userid=" + resultSignUp[0]
                     alert(doc.cookie)
-                    location.replace('../info_input_img/info_input.html')
+                    location.replace('localhost:3000/infoinput')
                 }
             })
             .catch(err => {

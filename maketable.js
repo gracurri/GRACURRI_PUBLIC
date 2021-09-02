@@ -1,5 +1,6 @@
 var db = require('./database')
 const graduation_unit = 133; //졸업학점
+const graduation_major = 51;
 const graduation_major_basic = 18; //전공기초
 const graduation_major_must = 15; //전공필수
 const graduation_etc_must = 14; //교양필수
@@ -30,6 +31,9 @@ var storestatus = function(req) {
     );
     return user;
 }
+var subjectssearch = function(req, res) { //들을 과목을 들은과목들과 비교, 들은 과목은 제외하고 다른 과목을 듣도록함.
+
+}
 exports.makeplan = function(req, res) { //학기들 계획짜는 함수
     var attended_names = []
     db.query('USE subjects;');
@@ -49,8 +53,15 @@ exports.makeplan = function(req, res) { //학기들 계획짜는 함수
             attended_names.push(results[0].name);
         });
     } //들은 과목들 이름을 불러옴(들은과목 넣어주는 것 방지위해)
+    var needed = {
+        "major_must": graduation_major_must - user.current_major_must,
+        "major_basic": graduation_major_basic - user.current_major_basic,
+        "major_select": graduation_major - user.curr_major_select,
+        "etc_must": graduation_etc_must - user.curr_etc_must,
+        "etc_select": graduation_etc_selection - user.curr_etc_select
+    };
     let currsem = user.semester + 1; //알고리즘 진행과정에서의 현재 학기
-    while (currsem < 9) {
+    while (currsem < 9) { //GREEDY 알고리즘
         var max = 18;
         var major_must = 0; //전공필수
         var etc_must = 0; //교양필수
@@ -67,23 +78,26 @@ exports.makeplan = function(req, res) { //학기들 계획짜는 함수
             major_must = 3;
         }
         if (currsem % 2 == 1) { //1학기과목들
-            db.query('SELECT id,name from subject_1 where division=전필-' + '?' + 'and targetstudent=', [user.major, user.major])
+            db.query('SELECT id,name from subject_1 where division=전필-' + '?' + 'and targetstudent like' + db.escape('%' + toString(parseInt(currsem / 2)) + '학년' + user.major + '%'), [user.major],
+                function(error, results, fields) {
+
+                })
         }
     }
 }
 class userstatus {
-    current = 0; //현재 이수학점
-    current_major_basic = 0; //현재 이수 전공기초학점
-    current_major_must = 0; //현재 이수 전공필수학점
-    curr_major_select = 0; //현재 이수 전공선택학점
-    curr_etc_must = 0; //현재 이수 필수교양학점
-    curr_etc_select = 0; //현재 이수 선택교양학점
-    ethics = 0; //품성교양
-    language = 0; //언어교양
-    humanities = 0; //인문학교양
-    socialstudy = 0; //사회과학교양
-    christion = 0; //기독교과목
-    semester = 0;
+    current; //현재 이수학점
+    current_major_basic; //현재 이수 전공기초학점
+    current_major_must; //현재 이수 전공필수학점
+    curr_major_select; //현재 이수 전공선택학점
+    curr_etc_must; //현재 이수 필수교양학점
+    curr_etc_select; //현재 이수 선택교양학점
+    ethics; //품성교양
+    language; //언어교양
+    humanities; //인문학교양
+    socialstudy; //사회과학교양
+    christion; //기독교과목
+    semester;
     attended = [];
     major = '';
     constructor(attended) {

@@ -90,10 +90,11 @@
 
 .make{
     margin-top: 280px;
-    margin-right: 430px;
     text-align: right;
     font-size: 30pt;
     font-family: "AppleSDGothicNeo";
     color: white;
     letter-spacing: 2px;
+    background-color: transparent;
+    border: transparent;
 }
