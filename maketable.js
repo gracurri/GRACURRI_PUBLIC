@@ -31,6 +31,9 @@ var storestatus = function(req) {
     );
     return user;
 }
+var subjectssearch = function(req, res) { //들을 과목을 들은과목들과 비교, 들은 과목은 제외하고 다른 과목을 듣도록함.
+
+}
 exports.makeplan = function(req, res) { //학기들 계획짜는 함수
     var attended_names = []
     db.query('USE subjects;');
@@ -57,9 +60,8 @@ exports.makeplan = function(req, res) { //학기들 계획짜는 함수
         "etc_must": graduation_etc_must - user.curr_etc_must,
         "etc_select": graduation_etc_selection - user.curr_etc_select
     };
-
     let currsem = user.semester + 1; //알고리즘 진행과정에서의 현재 학기
-    while (currsem < 9) {
+    while (currsem < 9) { //GREEDY 알고리즘
         var max = 18;
         var major_must = 0; //전공필수
         var etc_must = 0; //교양필수
@@ -76,7 +78,10 @@ exports.makeplan = function(req, res) { //학기들 계획짜는 함수
             major_must = 3;
         }
         if (currsem % 2 == 1) { //1학기과목들
-            db.query('SELECT id,name from subject_1 where division=전필-' + '?' + 'and targetstudent=', [user.major, user.major])
+            db.query('SELECT id,name from subject_1 where division=전필-' + '?' + 'and targetstudent like' + db.escape('%' + toString(parseInt(currsem / 2)) + '학년' + user.major + '%'), [user.major],
+                function(error, results, fields) {
+
+                })
         }
     }
 }
