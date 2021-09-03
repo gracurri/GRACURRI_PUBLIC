@@ -104,7 +104,8 @@
         //검색 기능
         let searchClass = doc.getElementById('search_class').value;
         let countSearchResult = 0;
-        let subjectResult = doc.querySelector('.subjectResult')
+        let subjectResult = doc.querySelector('.subjectResult');
+        let subject;
 
         const searchClassFunc = async()=>{
             if (window.event.keyCode == 13) {
@@ -123,6 +124,7 @@
                 }
             }
 
+            //검색 내용
             fetch("http://localhost:3000/search_class?key=" + searchClass)
                 //fetch("http://localhost:3000/test")
             .then((res) => res.json())
@@ -156,7 +158,6 @@
                 });
             }    
             doc.getElementById('search_class').value = null;  
-            let subject = doc.querySelector('.subject')
         }
 
     </script>
