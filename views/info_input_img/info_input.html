@@ -104,6 +104,7 @@
         //검색 기능
         let searchClass = doc.getElementById('search_class').value;
         let countSearchResult = 0;
+        let subjectResult = doc.querySelector('.subjectResult')
 
         const searchClassFunc = async()=>{
             if (window.event.keyCode == 13) {
@@ -111,45 +112,51 @@
                 searchClass = doc.getElementById('search_class').value;
                 //서버 맞춰서 수정해야함
                 console.log(searchClass)
+            
+            //기존 내용 삭제하는 코드
+            if (countSearchResult > 0){
+                subjectResult = document.querySelector('.subjectResult')
+                subject = document.querySelector('.subject')
 
-                if (countSearchResult > 0){
-                    for(i = 0; i < countSearchResult; i++){
-                            subjectResult.removeChild('.subject');
-                        }
+                for(i = 0; i < countSearchResult; i++){
+                    subjectResult.removeChild(subject);
                 }
-                
-                fetch("http://localhost:3000/search_class?key=" + searchClass)
+            }
+
+            fetch("http://localhost:3000/search_class?key=" + searchClass)
                 //fetch("http://localhost:3000/test")
-                .then((res) => res.json())
-                .then((res) => {
-                    console.log(res)
-                    countSearchResult = Object.keys(res.result).length
-                    
+            .then((res) => res.json())
+            .then((res) => {
+
+                console.log(res)
+                countSearchResult = Object.keys(res.result).length
+
                     // console.log(countSearchResult)
                     // console.log(res.result[0].name)
-                    if (countSearchResult > 0){
-                        for(i = 0; i < countSearchResult; i++){
-                            const subjectDiv = doc.createElement('div');
-                            const subjectP = doc.createElement('p');
-                            const subjectName = doc.createTextNode(res.result[i].name)
+                if (countSearchResult > 0){
+                    for(i = 0; i < countSearchResult; i++){
+                        const subjectDiv = doc.createElement('div');
+                        const subjectP = doc.createElement('p');
+                        const subjectName = doc.createTextNode(res.result[i].name)
 
-                            subjectP.appendChild(subjectName);
-                            subjectP.classList.add('name')
+                        subjectP.appendChild(subjectName);
+                        subjectP.classList.add('name')
 
-                            subjectDiv.appendChild(subjectP);
-                            subjectDiv.classList.add('subject')
+                        subjectDiv.appendChild(subjectP);
+                        subjectDiv.classList.add('subject')        
                             
-                            //ondragover랑 ondrop도 추가!
-
-                            subjectResult.appendChild(subjectDiv);
-                        }
+                        //ondragover랑 ondrop도 추가!
+                        subjectResult.appendChild(subjectDiv);        
+                    }    
                 }
-                })
+            })
                 .catch(err => {
                     // error 처리
                     console.log('Fetch Error', err);
                 });
-            }   
+            }    
+            doc.getElementById('search_class').value = null;  
+            let subject = doc.querySelector('.subject')
         }
 
     </script>
