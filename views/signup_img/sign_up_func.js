@@ -120,7 +120,7 @@ window.onload = function(){
                     alert('회원가입을 축하드립니다!')
                     doc.cookie = "userid=" + resultSignUp[0]
                     alert(doc.cookie)
-                    location.replace('localhost:3000/infoinput')
+                    location.replace('http://localhost:3000/info_input')
                 }
             })
             .catch(err => {
