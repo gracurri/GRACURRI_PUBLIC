@@ -4,10 +4,12 @@ window.onload = function(){
     var doc = document;
     const make = doc.getElementById('maketable');
 
+    var name;
+    var time;
+    var day;
+
     const sem = async()=>{
-
-
-
+        // GET
         fetch("http://localhost:3000/timetable")
         .then((res) => res.json())
         .then((res) => {
@@ -20,6 +22,8 @@ window.onload = function(){
             console.log('Fetch Error', err);
         });
     }
+
+    make.addEventListener('click', sem);
 }
 
 }
