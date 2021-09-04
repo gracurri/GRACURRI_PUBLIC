@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 .sqlconfig.json
 sqlconfig.json
+node_modules
