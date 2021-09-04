@@ -23,8 +23,7 @@
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "node": "^16.6.1",
-    "tedious": "^11.4.0"
+    "tedious": "^11.8.0"
   },
-  "devDependencies": {},
   "keywords": []
 }
