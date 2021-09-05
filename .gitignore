@@ -130,3 +130,5 @@ dmypy.json
 .sqlconfig.json
 sqlconfig.json
 node_modules
+package.json
+package-lock.json
