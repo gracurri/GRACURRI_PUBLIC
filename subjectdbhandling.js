@@ -3,14 +3,14 @@ exports.search = function(key, res) { //info_input과목검색
     console.log(key);
     subjectdb.query('use subjects;')
     var error = 0
-    var search = false;
+    var searched;
     subjectdb.query('SELECT name,id from subject WHERE name LIKE' + subjectdb.escape('%' + key + '%') + ';',
         function(error, results, fields) {
             if (error) {
                 error = 1;
             } else {
                 if (results.length > 0) {
-                    search = true;
+                    searched = true;
                     if (results.length > 1) { //똑같은 수업 중복되는것 막기
                         let classname = [];
                         for (var i = 0; i < results.length; i++) {
@@ -42,17 +42,19 @@ exports.search = function(key, res) { //info_input과목검색
                             "result": results
                         });
                     }
+                } else {
+                    searched = false;
                 }
             }
         });
-    if (search === false) {
+    if (searched === false) {
         subjectdb.query('SELECT name,id from subject_1 WHERE name LIKE' + subjectdb.escape('%' + key + '%') + ';',
             function(error, results, fields) {
                 if (error) {
                     error = 1;
                 } else {
                     if (results.length > 0) {
-                        search = true;
+                        searched = true;
                         if (results.length > 1) { //똑같은 수업 중복되는것 막기
                             let classname = [];
                             for (var i = 0; i < results.length; i++) {
@@ -93,5 +95,11 @@ exports.search = function(key, res) { //info_input과목검색
             "code": 400,
             "error": "error in search"
         });
+    }
+    if (searched === false) {
+        res.send({
+            "code": 200,
+            "result": "not found"
+        })
     }
 }
