@@ -18,7 +18,7 @@ exports.postattendedclasses = function(body, res) {
 }
 exports.gettoattend = function(query, res) {
     db.query('use gracurri_user;');
-    db.query('SELECT ? from semesters where EMAIL=?', [query.semester, query.id],
+    db.query('SELECT ? from semesters where EMAIL=?', [query.semester, query.email],
         function(error, results, fields) {
             if (error) {
                 res.send({
