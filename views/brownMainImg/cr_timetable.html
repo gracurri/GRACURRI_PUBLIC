@@ -6,11 +6,11 @@
     <script src="./cr_timetable.js"></script>
     <script>
       var num = 1;
+      var day = 1;
+
       $(function(){
         var target = $('#target');
         $.getJSON('subject.json', function(subjects){
-          var num = 1;
-          var day = 1;
           var add_data = '';
           $.each(subjects, function(i, subject){
             if(day % 5 == 1){
@@ -20,36 +20,39 @@
               add_data += '</th>';
             }
             
-              if(day < 6){
-                add_data += '<td>';
+            if(day < 6){
+              add_data += '<td>';
+              add_data += num;
+              add_data += '<br>';
+              add_data += subject.name;
+              add_data += '<br>';
+              add_data += subject.professor;
+              add_data += '<br>';
+              add_data += day;
+              add_data += '</td>';
+              // for(i=day; i<5;i++){
+              //   add_data += '<td>';
+              //     add_data += '</td>';
+              //   }
+              day = day + 1;
+
+            }
+            else{
+              add_data += '<tr>';
+                add_data += '<th>';
+                add_data += "else";
                 add_data += num;
-                add_data += '<br>';
+                add_data += '</th>';
+                add_data += '<td>';
                 add_data += subject.name;
                 add_data += '<br>';
                 add_data += subject.professor;
-                add_data += '<br>';
-                add_data += day;
                 add_data += '</td>';
-
-                day = day + 1;
-
+              num = num + 1;
+              if(day % 5 == 0){
+                add_data += '</tr>';
               }
-              else{
-                add_data += '<tr>';
-                  add_data += '<th>';
-                  add_data += "else";
-                  add_data += num;
-                  add_data += '</th>';
-                  add_data += '<td>';
-                  add_data += subject.name;
-                  add_data += '<br>';
-                  add_data += subject.professor;
-                  add_data += '</td>';
-                num = num + 1;
-                if(day % 5 == 0){
-                  add_data += '</tr>';
-                }
-              }
+            }
 
             target.append(add_data);
           });
