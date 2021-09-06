@@ -14,7 +14,7 @@ window.onload = function(){
         .then((res) => res.json())
         .then((res) => {
             console.log(res)
-            if(res.code === ){
+            if(res.code === 200){
 
             }
         })
@@ -26,4 +26,3 @@ window.onload = function(){
     make.addEventListener('click', sem);
 }
 
-}
