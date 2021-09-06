@@ -47,7 +47,7 @@ exports.search = function(key, res) { //info_input과목검색
                 }
             }
         });
-    if (searched === false) {
+    if (searched != true) {
         subjectdb.query('SELECT name,id from subject_1 WHERE name LIKE' + subjectdb.escape('%' + key + '%') + ';',
             function(error, results, fields) {
                 if (error) {
@@ -96,7 +96,7 @@ exports.search = function(key, res) { //info_input과목검색
             "error": "error in search"
         });
     }
-    if (searched === false) {
+    if (searched != true) {
         res.send({
             "code": 200,
             "result": "not found"
