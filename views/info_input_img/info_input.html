@@ -139,34 +139,39 @@
                 console.log(countSearchResult)
                 console.log("리저트" + res.result)
 
-                const subjectDiv = doc.createElement('div');
-                const subjectP = doc.createElement('p');
+                let subjectDiv = doc.createElement('div');
+                let subjectP = doc.createElement('p');
                 
 
-                if (res.code == 200){
+                if (res.result == 'not found'){
                     console.log('예외')
                     countSearchResult = 1;
-                    const nullName = doc.createTextNode('검색하신 내용이 없습니다.')
+
+                    const nullName = doc.createTextNode('검색하신 내용이 없습니다.');
+                    subjectDiv = doc.createElement('div');
+                    subjectP = doc.createElement('p');
 
                     subjectP.appendChild(nullName);
                     subjectP.classList.add('name')
 
                     subjectDiv.appendChild(subjectP);
-                    subjectDiv.classList.add('subject')   
-                    
+                    subjectDiv.classList.add('subject');        
+                            
+                    //ondragover랑 ondrop도 추가!
+                    subjectResult.appendChild(subjectDiv);    
                 }
                 else {
                     //ondragover랑 ondrop도 추가!
-                    subjectResult.appendChild(subjectDiv);        
-
                     for(i = 0; i < countSearchResult; i++){
-                        const subjectName = doc.createTextNode(res.result[i].name)
+                        subjectDiv = doc.createElement('div');
+                        subjectP = doc.createElement('p');
+                        const subjectName = doc.createTextNode(res.result[i].name);
 
                         subjectP.appendChild(subjectName);
                         subjectP.classList.add('name')
 
                         subjectDiv.appendChild(subjectP);
-                        subjectDiv.classList.add('subject')        
+                        subjectDiv.classList.add('subject');        
                             
                         //ondragover랑 ondrop도 추가!
                         subjectResult.appendChild(subjectDiv);        

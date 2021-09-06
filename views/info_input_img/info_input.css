@@ -142,3 +142,11 @@ style{
     height: 468px;
     overflow-y: auto;
 }
+
+.nullName{
+    font-size: 1.5em;
+    color: rgb(136, 70, 0);
+    text-align: center;
+    font-family: AppleSDGothicNeo;
+    margin-top: 100px;
+}
