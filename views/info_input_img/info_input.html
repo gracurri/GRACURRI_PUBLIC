@@ -60,7 +60,7 @@
 
     </div>
     <script>
-        doc = document;
+        const doc = document;
         //쿠키
         function getCookie(name) {
             let matches = document.cookie.match(new RegExp(
@@ -76,7 +76,7 @@
     </script>
 
     <script>
-        const doc = document;
+        
 
         //드래그 엔 드롭
         allowDrop = function() {
@@ -110,6 +110,7 @@
 
         const searchClassFunc = async()=>{
             if (window.event.keyCode == 13) {
+                console.log('길이' + countSearchResult)
                 subjectResult = doc.querySelector('.subjectResult')
                 searchClass = doc.getElementById('search_class').value;
                 //서버 맞춰서 수정해야함
@@ -117,29 +118,48 @@
             
             //기존 내용 삭제하는 코드
             if (countSearchResult > 0){
+                console.log('지우기 실행')
                 subjectResult = document.querySelector('.subjectResult')
-                subject = document.querySelector('.subject')
+                subject = document.querySelectorAll('.subject')
 
                 for(i = 0; i < countSearchResult; i++){
-                    subjectResult.removeChild(subject);
+                    subjectResult.removeChild(subject[i]);
                 }
+                console.log('지우기 실행 end')
             }
 
+            console.log('지우기 실행 end2')
             //검색 내용
             fetch("http://localhost:3000/search_class?key=" + searchClass)
                 //fetch("http://localhost:3000/test")
             .then((res) => res.json())
             .then((res) => {
-
                 console.log(res)
                 countSearchResult = Object.keys(res.result).length
+                console.log(countSearchResult)
+                console.log("리저트" + res.result)
 
-                    // console.log(countSearchResult)
-                    // console.log(res.result[0].name)
-                if (countSearchResult > 0){
+                const subjectDiv = doc.createElement('div');
+                const subjectP = doc.createElement('p');
+                
+
+                if (res.code == 200){
+                    console.log('예외')
+                    countSearchResult = 1;
+                    const nullName = doc.createTextNode('검색하신 내용이 없습니다.')
+
+                    subjectP.appendChild(nullName);
+                    subjectP.classList.add('name')
+
+                    subjectDiv.appendChild(subjectP);
+                    subjectDiv.classList.add('subject')   
+                    
+                }
+                else {
+                    //ondragover랑 ondrop도 추가!
+                    subjectResult.appendChild(subjectDiv);        
+
                     for(i = 0; i < countSearchResult; i++){
-                        const subjectDiv = doc.createElement('div');
-                        const subjectP = doc.createElement('p');
                         const subjectName = doc.createTextNode(res.result[i].name)
 
                         subjectP.appendChild(subjectName);
@@ -150,15 +170,18 @@
                             
                         //ondragover랑 ondrop도 추가!
                         subjectResult.appendChild(subjectDiv);        
-                    }    
+                    }
                 }
             })
-                .catch(err => {
-                    // error 처리
-                    console.log('Fetch Error', err);
-                });
+            .catch(err => {
+                // error 처리
+                console.log('Fetch Error', err);
+            });
+                doc.getElementById('search_class').value = null;  
             }    
-            doc.getElementById('search_class').value = null;  
+
+            
+            
         }
 
     </script>
