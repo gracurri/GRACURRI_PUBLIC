@@ -1,4 +1,3 @@
-const { resolve } = require("path/posix");
 const db = require("./database")
 
 var dbsearchclass = function(code) {
@@ -109,6 +108,8 @@ exports.status = function(email, classcodearr) {
         resolve([current, current_major_basic, current_major_must, curr_major_select, curr_etc_must, curr_etc_select, ethics, language, humanities, socialstudy, semester])
     });
 }
-exports.planmake = function() {
+exports.planmake = function(email) {
+    return new Promise(function() {
 
+    })
 }
