@@ -7,40 +7,7 @@ const graduation_etc_must = 14; //교양필수
 const graduation_etc_selection = 20; //교양선택
 const graduation_major_without_basic = 66; //전공기초 제외 전공 요학점
 const graduation_christ = 4;
-var storestatus = function(req) {
-    var attended = []; //들은과목 배열
-    db.query('USE gracurri_user;');
-    db.query('SELECT classcodes from users_classes_attended WHERE EMAIL=?', [req.body.id],
-        function(error, results, fields) {
-            if (error) {
-                console.log('error!');
-            } else {
-                for (var i = 0; i < results[0].classcodes.length; i += 10) {
-                    attended.push(results[0].classcodes.slice(i, i + 10));
-                }
-            }
-        })
-    let user = new userstatus(attended);
-    setTimeout(function() {
-        db.query('USE gracurri_user;')
-        db.query('UPDATE users SET unit_attended=?,major_basic=?,major_must=?,major_select=?,etc_must=?,etc_select=?,ethics=?,language=?,humanities=?,socialstudy=?,semester=?;', [user.current, user.current_major_basic, user.current_major_must, user.curr_major_select, user.curr_etc_must, user.curr_etc_select, user.ethics, user.humanities, user.socialstudy, user.semester],
-            function(error, results, fileds) {
-                if (error) {
-                    console.log('error occurred during unit pushing'); //error detecting
-                }
-            }
-        );
-        db.query('SELECT major from users where EMAIL=?', [req.body.id], function(error, results) {
-            if (results.length > 0) {
-                if (results[0].major === 'computer') {
-                    user.major = '컴퓨터';
-                } else if (results[0].major === 'globalMedia') {
-                    user.major = '글로벌미디어';
-                }
-            }
-        });
-    }, 500);
-}
+
 var subjectcompare = function(attended, searchresult) { //들을 과목을 들은과목들과 비교, 들은 과목은 제외하고 다른 과목을 듣도록함.
 
 }

@@ -1,25 +1,20 @@
 //users_classes_attended,semesters관련 함수들
 var db = require('./database');
-exports.postattendedclasses = function(body) {
-    db.query('use gracurri_user;')
-    var res = {};
-    db.query('UPDATE users_classes_attended SET classcodes=? WHERE EMAIL=?;', [body.classes, body.email], function(error, res) {
-        if (error) {
-            res = {
-                "code": 400,
-                "result": "error occurred"
+exports.storestatus = function(req, res) {
+    return new Promise(function(resolve, reject) {
+        classcoderecv(req.body).then(
+            function(result) {
+                db.query("USE gracurri_user;");
+                db.query('UPDATE users_classes_attended set classcodes=? WHERE EMAIL=?', [result, req.body.email])
             }
-        } else {
-            res = {
-                "code": 200,
-                "result": "successed"
-            }
-        }
+        )
+        resolve(req.body.classcodes);
     })
-    return res
+
 }
 exports.gettoattend = function(query, res) {
     db.query('use gracurri_user;');
+    var names = [];
     db.query('SELECT ? from semesters where EMAIL=?', [query.semester, query.email],
         function(error, results, fields) {
             if (error) {
@@ -28,7 +23,7 @@ exports.gettoattend = function(query, res) {
                     "result": "error!"
                 })
             } else {
-                let sem = body.semester;
+                let sem = query.semester;
                 let codestring;
                 if (sem === "one") {
                     codestring = results.one;
@@ -47,13 +42,17 @@ exports.gettoattend = function(query, res) {
                 } else {
                     codestring = results.eight;
                 }
-                let codes = [];
                 for (var i = 0; i < codestring.length; i += 10) {
-                    codes.push(codestring.slice(i, i + 10));
+                    var temp = codestring.slice(i, i + 10);
+                    db.query('SELECT name from subject,subject_1 where id=?', [temp],
+                        function(error, results) {
+                            names.push(results[0].name);
+                        })
                 }
+                //이름 찾아서 보내야함.
                 res.send({
                     "code": 200,
-                    "result": codes
+                    "result": names
                 })
             }
         })

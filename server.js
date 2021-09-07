@@ -8,8 +8,10 @@ app.use(express.static('views'))
 var udhandling = require('./userdb_handling')
 var cdhandling = require('./classesdbhandling')
 var sdhandling = require('./subjectdbhandling')
-var tablemake = require('./maketable');
+var tablemake = require('./tablemaker');
+var db = require('./database');
 var spawn = require('child_process').spawn;
+const { markAsUntransferable } = require('worker_threads');
 //var cors = require('cors')
 app.use(express.json());
 //app.use(cors());
@@ -66,8 +68,23 @@ app.get('/to_attend', function(req, res) { //들어야할 과목 (grade_sub.html
 //post utility handling
 
 app.post('/info_input', function(req, res) {
-    postresult = cdhandling.postattendedclasses(req.body);
-    tablemake.makeplan(req, res, postresult);
+    cdhandling.storestatus(req, res).then(
+        function(result) {
+            let statres
+            if (result) {
+                tablemake.status(req.body.email, result).then(function(returns) {
+                    statres = returns;
+                });
+            }
+            return (statres);
+        }
+    ).then(function(result) {
+        db.query('USE gracurri_user;');
+        db.query('UPDATE users SET unit_attended=?,major_basic=?,major_must=?,major_select=?,etc_must=?,etc_select=?,ethics=?,language=?,humanities=?,socialstudy=?,semester=?', [result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10], result[11], result[12]]);
+        return (req.body.email)
+    }).then(function(get) {
+        tablemake.planmake(get);
+    });
 })
 app.post('/signup', function(req, res) {
     console.log("회원가입 발생");

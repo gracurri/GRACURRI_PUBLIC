@@ -1,3 +1,4 @@
+const db = require('./database');
 var userdb = require('./database');
 var subdb = require('./subjectdbhandling');
 exports.signup2 = function(info, res) {
@@ -131,4 +132,15 @@ exports.modifypw = function(reqbody, res) {
             //res.redirect('/user/'+id);
         }
     });
+}
+
+var classcoderecv = function(body) {
+    return new Promise(function(resolve, reject) {
+        let classstring = '';
+        for (var i = 0; i < body.classcodes.length; i++) {
+            classcodestring += body.classcodes[i]
+            classcodesstring += '|'
+        }
+        resolve(classcodestring);
+    })
 }
