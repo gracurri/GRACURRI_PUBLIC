@@ -12,6 +12,30 @@ exports.storestatus = function(req, res) {
     })
 
 }
+var semeseterset = function(semester, results) {
+    return new Promise(function(resolve, reject) {
+        let sem = semester;
+        let codestring = '';
+        if (semester === "one") {
+            codestring = results.one;
+        } else if (semester === 'two') {
+            codestring = results.two;
+        } else if (semester === 'three') {
+            codestring = results.three;
+        } else if (semester === 'four') {
+            codestring = results.four;
+        } else if (semester === 'five') {
+            codestring = results.five;
+        } else if (semester === 'six') {
+            codestring = results.six;
+        } else if (semester === 'seven') {
+            codestring = results.seven;
+        } else {
+            codestring = results.eight;
+        }
+        resolve(codestring)
+    })
+}
 exports.gettoattend = function(query, res) {
     db.query('use gracurri_user;');
     var names = [];
@@ -23,33 +47,15 @@ exports.gettoattend = function(query, res) {
                     "result": "error!"
                 })
             } else {
-                let sem = query.semester;
-                let codestring;
-                if (sem === "one") {
-                    codestring = results.one;
-                } else if (sem === 'two') {
-                    codestring = results.two;
-                } else if (sem === 'three') {
-                    codestring = results.three;
-                } else if (sem === 'four') {
-                    codestring = results.four;
-                } else if (sem === 'five') {
-                    codestring = results.five;
-                } else if (sem === 'six') {
-                    codestring = results.six;
-                } else if (sem === 'seven') {
-                    codestring = results.seven;
-                } else {
-                    codestring = results.eight;
-                }
-                for (var i = 0; i < codestring.length; i += 10) {
-                    var temp = codestring.slice(i, i + 10);
-                    db.query('SELECT name from subject,subject_1 where id=?', [temp],
-                        function(error, results) {
-                            names.push(results[0].name);
-                        })
-                }
-                //이름 찾아서 보내야함.
+                semeseterset(query.semester, results).then(function(code) {
+                    for (var i = 0; i < code.length; i += 10) {
+                        var temp = code.slice(i, i + 10);
+                        db.query('SELECT name from subject,subject_1 where id=?', [temp],
+                            function(error, result) {
+                                names.push(result[0].name);
+                            });
+                    }
+                })
                 res.send({
                     "code": 200,
                     "result": names

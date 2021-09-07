@@ -109,7 +109,35 @@ exports.status = function(email, classcodearr) {
     });
 }
 exports.planmake = function(email) {
-    return new Promise(function() {
+    return new Promise(function(resolve, reject) {
+        getinfofromusers(email).then(
+            function(data) {
 
+            }
+        )
+        result = {
+            "code": 200,
+            "success": "successed"
+        }
+        resolve(result);
+    })
+}
+var getinfofromusers = function(email) {
+    return new Promise(function(resolve, reject) {
+        let returningdata = { "stats": [], "codesattended": '' }
+        db.query('USE gracurri_user;');
+        db.query('SELECT unit_attended,major_basic,major_must,major_select,etc_must,etc_select,ethics,language,humanities,socialstudy,semester FROM users WHERE EMAIL=?', [email],
+            function(error, results, fields) {
+                if (!error) {
+                    returningdata.codesattended = results[0];
+                }
+            });
+        db.query('SELECT classcodes FROM users_classes_attended WHERE EMAIL=?', [email],
+            function(error, results, fields) {
+                if (!error) {
+                    returningdata.codesattended = results[0].classcodes;
+                }
+            })
+        resolve(returningdata);
     })
 }

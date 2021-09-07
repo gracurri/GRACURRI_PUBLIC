@@ -82,9 +82,11 @@ app.post('/info_input', function(req, res) {
         db.query('USE gracurri_user;');
         db.query('UPDATE users SET unit_attended=?,major_basic=?,major_must=?,major_select=?,etc_must=?,etc_select=?,ethics=?,language=?,humanities=?,socialstudy=?,semester=?', [result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10], result[11], result[12]]);
         return (req.body.email)
-    }).then(function(get) {
-        tablemake.planmake(get);
-    });
+    }).then(tablemake.planmake(get).then(
+        function(respond) {
+            res.send(respond);
+        }
+    ));
 })
 app.post('/signup', function(req, res) {
     console.log("회원가입 발생");
