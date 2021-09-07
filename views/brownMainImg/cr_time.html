@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="./cr_timetable.js"></script>
+</head>
+<body>
+    <div style="margin-right: 150px">  
+      <form method="GET" id="sever">
+      <table class="time" width=500px style="color: #121212; border-collapse: collapse; border-radius: 10px; table-layout: fixed; height:500px;">
+        <thead>
+            <tr>
+                <th></th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>2</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>4</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="background-color: #fccd4e">운영체제</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>5</th>
+                <td></td>
+                <td></td>
+                <td style="background-color: #df80ca">데이터베이스</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>6</th>
+                <td></td>
+                <td style="background-color: #11a04d">헝식언어및오토마타</td>
+                <td style="background-color: #c5d15c">운영체제</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>7</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="background-color: #a88116">알고리즘</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>8</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>9</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>  
+        <tbody id="target"  style="margin-right: 100px; mask-repeat: no-repeat;"></tbody>        
+        </table>
+    </div>
+    <style>
+      table{
+        border-collapse: separate;
+        border-spacing: 0 1rem;
+      }
+      th{
+          height: 5px;
+          width: 10px;
+      }
+      td {
+          width: 75px;
+          height: 62.7px;
+          font-size: 10pt;
+
+          border: 4px solid rgb(254,228,171);
+          border-collapse: collapse;
+      }
+    </style> 
+</body>
+
+</html>
