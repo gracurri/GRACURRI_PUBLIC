@@ -8,8 +8,8 @@ app.use(express.static('views'))
 var udhandling = require('./userdb_handling')
 var cdhandling = require('./classesdbhandling')
 var sdhandling = require('./subjectdbhandling')
-var tablemaking = require('./maketable');
-
+var tablemake = require('./maketable');
+var spawn = require('child_process').spawn;
 //var cors = require('cors')
 app.use(express.json());
 //app.use(cors());
@@ -66,8 +66,8 @@ app.get('/to_attend', function(req, res) { //들어야할 과목 (grade_sub.html
 //post utility handling
 
 app.post('/info_input', function(req, res) {
-    cdhandling.postattendedclasses(req.body, res);
-    tablemaking.makeplan(req, res); //시간표 제작 및 계획수립
+    postresult = cdhandling.postattendedclasses(req.body);
+    tablemake.makeplan(req, res, postresult);
 })
 app.post('/signup', function(req, res) {
     console.log("회원가입 발생");
