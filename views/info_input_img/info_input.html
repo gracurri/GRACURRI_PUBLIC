@@ -40,17 +40,7 @@
                 </div>
             </div>
             <div class="listen">
-                <div class="subject" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
-                    <span class="name">들은 과목 이름 넣기 1</span>
-                </div>
-                <div class="subject" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
-                    <span class="name">들은 과목 이름 넣기 2</span>
-                </div>
-                <div class="subject" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
-                    <span class="name">들은 과목 이름 넣기 3</span>
-                </div>
-                <div class="subject" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
-                    <span class="name">들은 과목 이름 넣기 4</span>
+                <div class="listen-inner">
                 </div>
             </div>
             <div class="btnWrap">
@@ -125,10 +115,7 @@
                 for(i = 0; i < countSearchResult; i++){
                     subjectResult.removeChild(subject[i]);
                 }
-                console.log('지우기 실행 end')
             }
-
-            console.log('지우기 실행 end2')
             //검색 내용
             fetch("http://localhost:3000/search_class?key=" + searchClass)
                 //fetch("http://localhost:3000/test")
@@ -147,7 +134,7 @@
                     console.log('예외')
                     countSearchResult = 1;
 
-                    const nullName = doc.createTextNode('검색하신 내용이 없습니다.');
+                    let nullName = doc.createTextNode('검색하신 내용이 없습니다.');
                     subjectDiv = doc.createElement('div');
                     subjectP = doc.createElement('p');
 
@@ -161,22 +148,49 @@
                     subjectResult.appendChild(subjectDiv);    
                 }
                 else {
-                    //ondragover랑 ondrop도 추가!
+                    //수강한 과목들을 담는 배열
+                    let takeSubject = []
+
                     for(i = 0; i < countSearchResult; i++){
+                        takeSubject[i] = res.result[i].name;
+                    }
+
+                    console.log(takeSubject)
+
+                    for(i = 0; i < countSearchResult; i++){
+                        takeSubjectResult = doc.querySelector('.listen-inner');
+                        
                         subjectDiv = doc.createElement('div');
                         subjectP = doc.createElement('p');
-                        const subjectName = doc.createTextNode(res.result[i].name);
+                        let subjectName = doc.createTextNode(res.result[i].name);
 
                         subjectP.appendChild(subjectName);
                         subjectP.classList.add('name')
 
                         subjectDiv.appendChild(subjectP);
                         subjectDiv.classList.add('subject');        
+                        //클릭시 발생
+                        let iNum = i;
+                        
+                        subjectDiv.addEventListener('click', function(event){
+                            console.log(takeSubject)
+                            takeSubjectDiv = doc.createElement('div');
+                            takeSubjectP = doc.createElement('p');
                             
+                            takeSubjectName = doc.createTextNode(takeSubject[iNum]);
+                            takeSubjectP.appendChild(takeSubjectName);
+                            takeSubjectP.classList.add('name')
+
+                            takeSubjectDiv.appendChild(takeSubjectP);
+                            takeSubjectDiv.classList.add('subject'); 
+
+                            takeSubjectResult.appendChild(takeSubjectDiv);    
+                        });
                         //ondragover랑 ondrop도 추가!
                         subjectResult.appendChild(subjectDiv);        
                     }
                 }
+
             })
             .catch(err => {
                 // error 처리

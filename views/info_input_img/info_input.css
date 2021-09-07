@@ -7,6 +7,10 @@
     src: url('../AppleSDGothicNeoM.ttf') format('truetype');
 }
 
+style{
+    @media screen and (min-width: 1680px) and (max-width: 5000px)
+}
+
 .parent {
     width: 1920px;
     margin-left: auto;
@@ -44,10 +48,9 @@
     padding-top: 100px;
 }
 
-
-
-style{
-    @media screen and (min-width: 1680px) and (max-width: 5000px)
+.listen-inner{
+    height: 572px;
+    overflow-y: auto;
 }
 
 .hide{
@@ -106,11 +109,11 @@ style{
     color: rgb(136, 70, 0);
 }
 
-
 .listen2{
     position:absolute;
     margin-top: -60px;
 }
+
 .listen3{
     position:absolute;
     margin-left:1080px;
@@ -127,7 +130,6 @@ style{
     float: right;
     position: relative;
     top: 880px;
-
 }
 
 .nextBtn{
@@ -150,3 +152,4 @@ style{
     font-family: AppleSDGothicNeo;
     margin-top: 100px;
 }
+
