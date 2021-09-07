@@ -31,7 +31,7 @@ var onetwo = function(code) {
     })
 
 }
-exports.status = function(email, classcodearr) {
+exports.status = function(email, classcodearr) { //현재 이수상태 저장
     return new Promise(function(resolve, reject) {
         var current = 0; //현재 이수학점
         var current_major_basic = 0; //현재 이수 전공기초학점
@@ -108,10 +108,33 @@ exports.status = function(email, classcodearr) {
         resolve([current, current_major_basic, current_major_must, curr_major_select, curr_etc_must, curr_etc_select, ethics, language, humanities, socialstudy, semester])
     });
 }
+
+const graduation_unit = 133; //졸업학점
+const graduation_major_select = 51;
+const graduation_major_basic = 18; //전공기초
+const graduation_major_must = 15; //전공필수
+const graduation_etc_must = 14; //교양필수
+const graduation_etc_selection = 20; //교양선택
+const graduation_major_without_basic = 66; //전공기초 제외 전공 요학점
+const graduation_christ = 4;
 exports.planmake = function(email) {
     return new Promise(function(resolve, reject) {
         getinfofromusers(email).then(
             function(data) {
+                var needed = {
+                    "unit_needed": graduation_unit - data[stats].unit_attended,
+                    "major_must": graduation_major_must - data[stats].current_major_must,
+                    "major_basic": graduation_major_basic - data[stats].current_major_basic,
+                    "major_select": graduation_major_select - data[stats].curr_major_select,
+                    "etc_must": graduation_etc_must - data[stats].curr_etc_must,
+                    "etc_select": graduation_etc_selection - data[stats].curr_etc_select
+                };
+                data['needed'] = needed;
+                return (data);
+            }
+        ).then(
+            function(dats) {
+                let currsem = data[stats].semester;
 
             }
         )
@@ -122,14 +145,14 @@ exports.planmake = function(email) {
         resolve(result);
     })
 }
-var getinfofromusers = function(email) {
+var getinfofromusers = function(email) { //users에 저장되어있는 학점이수정보,들은 과목 정보 불러오기 =>planmake에서 씀
     return new Promise(function(resolve, reject) {
         let returningdata = { "stats": [], "codesattended": '' }
         db.query('USE gracurri_user;');
         db.query('SELECT unit_attended,major_basic,major_must,major_select,etc_must,etc_select,ethics,language,humanities,socialstudy,semester FROM users WHERE EMAIL=?', [email],
             function(error, results, fields) {
                 if (!error) {
-                    returningdata.codesattended = results[0];
+                    returningdata.stats = results[0];
                 }
             });
         db.query('SELECT classcodes FROM users_classes_attended WHERE EMAIL=?', [email],

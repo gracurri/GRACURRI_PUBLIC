@@ -50,16 +50,29 @@ exports.gettoattend = function(query, res) {
                 semeseterset(query.semester, results).then(function(code) {
                     for (var i = 0; i < code.length; i += 10) {
                         var temp = code.slice(i, i + 10);
-                        db.query('SELECT name from subject,subject_1 where id=?', [temp],
+                        db.query('USE subjects;');
+                        db.query('SELECT name from subject where id=?', [temp],
                             function(error, result) {
-                                names.push(result[0].name);
+                                if (result.length > 0) {
+                                    names.push(result[0].name);
+                                } else {
+                                    db.query('SELECT name from subject_1 where id=?', [temp],
+                                        function(error, result) {
+                                            if (!error && result.length > 0) {
+                                                names.push(result[0].name);
+                                            }
+                                        })
+                                }
                             });
                     }
-                })
-                res.send({
-                    "code": 200,
-                    "result": names
-                })
+                    return (1);
+                }).then(function(num) {
+                    res.send({
+                        "code": 200,
+                        "result": names
+                    })
+                });
+
             }
         })
 }
