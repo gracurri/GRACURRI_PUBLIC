@@ -1,5 +1,4 @@
 window.onload=function(){
-    new Swiper('.swiper-container')
 
     var doc = document;
 
@@ -15,8 +14,6 @@ window.onload=function(){
     
     let requestSem;
 
-    
-            
     var getCookie = function(name) {
         var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
         return value? value[2] : null;
@@ -57,8 +54,6 @@ window.onload=function(){
         .catch(err => {
             console.log('Fetch Error', err);
         });
-
-        
     }
 
     one1.addEventListener('click', function(){

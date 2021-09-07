@@ -1,20 +1,22 @@
 //users_classes_attended,semesters관련 함수들
 var db = require('./database');
-exports.postattendedclasses = function(body, res) {
+exports.postattendedclasses = function(body) {
     db.query('use gracurri_user;')
+    var res = {};
     db.query('UPDATE users_classes_attended SET classcodes=? WHERE EMAIL=?;', [body.classes, body.email], function(error, res) {
         if (error) {
-            res.send({
+            res = {
                 "code": 400,
                 "result": "error occurred"
-            })
+            }
         } else {
-            res.send({
+            res = {
                 "code": 200,
                 "result": "successed"
-            })
+            }
         }
     })
+    return res
 }
 exports.gettoattend = function(query, res) {
     db.query('use gracurri_user;');
