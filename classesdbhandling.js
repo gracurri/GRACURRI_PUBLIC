@@ -55,7 +55,6 @@ exports.gettoattend = function(query, res) {
                     "result": "error!"
                 })
             } else {
-                console.log("gradesub(semesters)조회 잘 이루어졌음" + query.email);
                 if (results.length > 0) {
                     semeseterset(query.semester, results[0]).then(function(code) {
                         var names = [];
