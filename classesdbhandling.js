@@ -65,10 +65,12 @@ exports.gettoattend = function(query, res) {
                                     function(error, result) {
                                         if (result.length > 0) {
                                             names.push(result[0].name);
+                                            console.log(names);
                                         } else {
                                             db.query('SELECT name from subject_1 where id=?', [temp],
                                                 function(errors, results) {
                                                     if (!errors && results.length > 0) {
+                                                        console.log(results[0].name);
                                                         names.push(results[0].name);
                                                     }
                                                 })
@@ -101,7 +103,6 @@ exports.gettoattend = function(query, res) {
                         }
                         return (name, semreturn);
                     }).then(function(name, sem) {
-                        console.log(name);
                         res.send({
                             "code": 200,
                             "result": name,
