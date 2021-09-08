@@ -47,7 +47,7 @@ var semeseterset = function(semester, results) {
 }
 exports.gettoattend = function(query, res) {
     db.query('use gracurri_user;');
-    db.query('SELECT ? from semesters where EMAIL=?', [query.semester, query.email],
+    db.query('SELECT * from semesters where EMAIL=?', [query.email],
         function(error, results, fields) {
             if (error) {
                 res.send({
@@ -56,10 +56,12 @@ exports.gettoattend = function(query, res) {
                 })
             } else {
                 if (results.length > 0) {
+                    console.log(results);
                     semeseterset(query.semester, results[0]).then(function(code) {
                             var names = [];
                             for (var i = 0; i < code.length; i += 10) {
                                 var temp = code.slice(i, i + 10);
+
                                 db.query('USE subjects;');
                                 db.query('SELECT name from subject where id=?', [temp],
                                     function(error, result) {
