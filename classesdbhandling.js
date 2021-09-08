@@ -98,6 +98,7 @@ exports.gettoattend = function(query, res) {
                         }
                         return (names, semreturn);
                     }).then(function(names, semreturn) {
+                        console.log(names);
                         res.send({
                             "code": 200,
                             "result": names,
