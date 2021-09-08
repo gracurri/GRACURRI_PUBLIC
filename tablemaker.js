@@ -1,29 +1,4 @@
 const db = require("./database")
-
-/*var dbsearchclass = function(code) {
-    return new Promise(function(resolve, reject) {
-        let result;
-        db.query('USE subjects;');
-        db.query('SELECT division,unit,etc_div,targetstudent from subject WHERE id=?;', [code],
-            function(error, results, fields) {
-                if (!error) {
-                    result = results;
-                }
-                else{
-                    if(results.length>0)
-                    {
-
-                    }
-                    else
-                    {
-
-                    }
-                }
-            });
-        resolve(result);
-    })
-}
-*/
 var onetwo = function(code) {
     return new Promise(function(resolve, reject) {
         let returning;
@@ -131,7 +106,7 @@ const graduation_christ = 4;
 exports.planmake = function(email) {
     return new Promise(function(resolve, reject) {
         getinfofromusers(email).then(
-            function(data) {
+            function(email,data) {
                 var needed = {
                     "unit_needed": graduation_unit - data[stats].unit_attended,
                     "major_must": graduation_major_must - data[stats].current_major_must,
@@ -141,14 +116,31 @@ exports.planmake = function(email) {
                     "etc_select": graduation_etc_selection - data[stats].curr_etc_select
                 };
                 data['needed'] = needed;
-                return (data);
+                return (email,data);
             }
         ).then(
             function(dats) {
-                let currsem = data[stats].semester;
+                let currsem = data[stats].semester+1;
                 while(currsem<9)
                 {
-
+                    var max = 18;
+                    var major_must = 0; //전공필수
+                    var etc_must = 0; //교양필수
+                    if (currsem / 2 <= 1) { //1학년때
+                        max = 22;
+                        major_must = 9; //1학년전기,전필
+                        etc_must; //1학년교필
+                    } 
+                    else if (currsem == 3) { //2학년 1학기
+                        etc_must = 2;
+                        major_must = 3;
+                    } 
+                    else if (currsem === 4) {
+                        major_must = 6;
+                    } 
+                    else if (currsem / 2 <= 6) { //3학년
+                        major_must = 3;
+                    }
                 }
             }
         )
@@ -172,9 +164,16 @@ var getinfofromusers = function(email) { //users에 저장되어있는 학점이
         db.query('SELECT classcodes FROM users_classes_attended WHERE EMAIL=?', [email],
             function(error, results, fields) {
                 if (!error) {
-                    returningdata[codesattended] = results[0].classcodes;
+                    let classcode=[];
+                    if(results.length>0){
+                        for(var i=0;i<results[0].classcodes.length;i+=10){
+                            var temp=results[0].classcodes.slice(i,i+10);
+                            classcode.push(temp);
+                        }
+                    }
+                    returningdata[codesattended] = classcode;
                 }
             })
-        resolve(returningdata);
+        resolve(email,returningdata);
     })
 }

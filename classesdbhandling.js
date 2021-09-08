@@ -1,4 +1,5 @@
 //users_classes_attended,semesters관련 함수들
+const { resolve } = require('path/posix');
 var db = require('./database');
 
 var classcoderecv = function(body) {
@@ -6,7 +7,6 @@ var classcoderecv = function(body) {
         let classstring = '';
         for (var i = 0; i < body.classcodes.length; i++) {
             classcodestring += body.classcodes[i]
-            classcodesstring += '|'
         }
         resolve(classcodestring);
     })
@@ -68,9 +68,9 @@ exports.gettoattend = function(query, res) {
                                     names.push(result[0].name);
                                 } else {
                                     db.query('SELECT name from subject_1 where id=?', [temp],
-                                        function(error, result) {
-                                            if (!error && result.length > 0) {
-                                                names.push(result[0].name);
+                                        function(errors, results) {
+                                            if (!errors && results.length > 0) {
+                                                names.push(results[0].name);
                                             }
                                         })
                                 }
@@ -114,6 +114,61 @@ exports.gettoattend = function(query, res) {
             }
         })
 }
-exports.tableshow=function(req,res){
+exports.tableshowsem=function(query,res){
+    return new Promise(function(resolve,reject){
+        db.query('use gracurri_user;');
+        db.query('SELECT semester from users WHERE EMAIL=?',[query.email],
+        function(error,results,fields){
+            currsem=results[0].semester;
+            resolve(currsem,query.email);
+        }); 
+    })
+   
+}
+exports.getclasses=function(currsem,email){
+    return new Promise(function(resolve,reject){
+        db.query('use gracurri_user;');
+        db.query('SELECT ? from semesters where EMAIL=?', [query.semester, query.email],
+        function(error, results, fields) {
+            if (error) {
+                res.send({
+                    "code": 400,
+                    "result": "error!"
+                })
+            } else {
+                semeseterset(query.semester, results).then(function(code) {
+                    var names = [];
+                    var timeandloc=[];
+                    for (var i = 0; i < code.length; i += 10) {
+                        var temp = code.slice(i, i + 10);
+                        db.query('USE subjects;');
+                        db.query('SELECT name,classtimeandlocation from subject where id=?', [temp],
+                            function(error, result) {
+                                if (result.length > 0) {
+                                    names.push(result[0].name);
+                                    timeandloc.push(result[0].classtimeandlocation);
+                                } else {
+                                    db.query('SELECT name,classtimeandlocation from subject_1 where id=?', [temp],
+                                        function(errors, results) {
+                                            if (!errors && results.length > 0) {
+                                                names.push(results[0].name);
+                                                timeandloc.push(results[0].classtimeandlocation);
+                                            }
+                                        })
+                                }
+                            });
+                            
+                    }
+                    return (names,timeandloc);
+                }).then(function(names,timeandloc) {
+                    res.send({
+                        "code": 200,
+                        "result": names,
+                        "timeandloc": timeandloc
+                    })
+                });
 
+            }
+        })
+    })
 }
