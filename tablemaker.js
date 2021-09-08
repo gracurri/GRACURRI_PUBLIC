@@ -1,18 +1,29 @@
 const db = require("./database")
 
-var dbsearchclass = function(code) {
+/*var dbsearchclass = function(code) {
     return new Promise(function(resolve, reject) {
         let result;
         db.query('USE subjects;');
-        db.query('SELECT division,unit,etc_div,targetstudent from subject,subject_1 WHERE id=?;', [code],
+        db.query('SELECT division,unit,etc_div,targetstudent from subject WHERE id=?;', [code],
             function(error, results, fields) {
                 if (!error) {
                     result = results;
+                }
+                else{
+                    if(results.length>0)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
                 }
             });
         resolve(result);
     })
 }
+*/
 var onetwo = function(code) {
     return new Promise(function(resolve, reject) {
         let returning;
@@ -135,7 +146,10 @@ exports.planmake = function(email) {
         ).then(
             function(dats) {
                 let currsem = data[stats].semester;
+                while(currsem<9)
+                {
 
+                }
             }
         )
         result = {
@@ -147,18 +161,18 @@ exports.planmake = function(email) {
 }
 var getinfofromusers = function(email) { //users에 저장되어있는 학점이수정보,들은 과목 정보 불러오기 =>planmake에서 씀
     return new Promise(function(resolve, reject) {
-        let returningdata = { "stats": [], "codesattended": '' }
+        let returningdata={};
         db.query('USE gracurri_user;');
         db.query('SELECT unit_attended,major_basic,major_must,major_select,etc_must,etc_select,ethics,language,humanities,socialstudy,semester FROM users WHERE EMAIL=?', [email],
             function(error, results, fields) {
                 if (!error) {
-                    returningdata.stats = results[0];
+                    returningdata[stats]= results[0];
                 }
             });
         db.query('SELECT classcodes FROM users_classes_attended WHERE EMAIL=?', [email],
             function(error, results, fields) {
                 if (!error) {
-                    returningdata.codesattended = results[0].classcodes;
+                    returningdata[codesattended] = results[0].classcodes;
                 }
             })
         resolve(returningdata);

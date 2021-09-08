@@ -49,7 +49,6 @@ var semeseterset = function(semester, results) {
 }
 exports.gettoattend = function(query, res) {
     db.query('use gracurri_user;');
-    var names = [];
     db.query('SELECT ? from semesters where EMAIL=?', [query.semester, query.email],
         function(error, results, fields) {
             if (error) {
@@ -59,6 +58,7 @@ exports.gettoattend = function(query, res) {
                 })
             } else {
                 semeseterset(query.semester, results).then(function(code) {
+                    var names = [];
                     for (var i = 0; i < code.length; i += 10) {
                         var temp = code.slice(i, i + 10);
                         db.query('USE subjects;');
@@ -75,15 +75,45 @@ exports.gettoattend = function(query, res) {
                                         })
                                 }
                             });
+                            
                     }
-                    return (1);
-                }).then(function(num) {
+                    let semreturn=''
+                            if(query.semester==='one'){
+                                semreturn='1-1';
+                            }
+                            else if(query.semester==='two'){
+                                semreturn='1-2';
+                            }
+                            else if(query.semester==='three'){
+                                semreturn='2-1';
+                            }
+                            else if(query.semester==='four'){
+                                semreturn='2-2';
+                            }
+                            else if(query.semester==='five'){
+                                semreturn='3-1';
+                            }
+                            else if(query.semester==='six'){
+                                semreturn='3-2';
+                            }
+                            else if(query.semester==='seven'){
+                                semreturn='3-1';
+                            }
+                            else if(query.semester==='eight'){
+                                semreturn='3-2';
+                            }
+                    return (names,semreturn);
+                }).then(function(names,semreturn) {
                     res.send({
                         "code": 200,
-                        "result": names
+                        "result": names,
+                        "semester": semreturn
                     })
                 });
 
             }
         })
+}
+exports.tableshow=function(req,res){
+
 }
