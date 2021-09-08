@@ -1,3 +1,4 @@
+const e = require("express");
 const db = require("./database")
 var onetwo = function(code) {
     return new Promise(function(resolve, reject) {
@@ -121,6 +122,7 @@ exports.planmake = function(email) {
         ).then(
             function(dats) {
                 let currsem = data[stats].semester+1;
+                db.query('USE subjects;');
                 while(currsem<9)
                 {
                     var max = 18;
@@ -141,6 +143,44 @@ exports.planmake = function(email) {
                     else if (currsem / 2 <= 6) { //3학년
                         major_must = 3;
                     }
+                    if(currsem%2===1){//1학기
+                        if(currsem===1)
+                        {
+                            db.query('SELECT name,id from subject_1 WHERE division=전기-?',dats[stats].major,
+                            function(error,result,fields){
+                                if(!error){
+                                    if(result.length>0){
+                                        codeconnection(result).then(
+                                            function(resultstring){
+                                                db.query('USE gracurri_user;');
+                                                db.query('UPDATE semesters SET one=?',temcodes);
+                                            }
+                                        )
+                                    }
+                                }
+                            })
+                        }
+                    }
+                    else{
+                        if(currsem===2)
+                        {
+                            db.query('SELECT name,id from subject WHERE division=전기-?',dats[stats].major,
+                            function(error,result,fields){
+                                if(!error){
+                                    if(result.length>0){
+                                        codeconnection(result).then(
+                                            function(resultstring){
+                                                db.query('USE gracurri_user;');
+                                                db.query('UPDATE semesters SET two=?',temcodes);
+                                            }
+                                        )
+                                    }
+                                }
+                            })
+                        }
+
+                    }
+                    currsem+=1;
                 }
             }
         )
@@ -155,10 +195,16 @@ var getinfofromusers = function(email) { //users에 저장되어있는 학점이
     return new Promise(function(resolve, reject) {
         let returningdata={};
         db.query('USE gracurri_user;');
-        db.query('SELECT unit_attended,major_basic,major_must,major_select,etc_must,etc_select,ethics,language,humanities,socialstudy,semester FROM users WHERE EMAIL=?', [email],
+        db.query('SELECT unit_attended,major_basic,major_must,major_select,etc_must,etc_select,ethics,language,humanities,socialstudy,semester,major FROM users WHERE EMAIL=?', [email],
             function(error, results, fields) {
                 if (!error) {
                     returningdata[stats]= results[0];
+                    if(returningdata[stats].major==='computer'){
+                        returningdata[stats].major='컴퓨터';
+                    }
+                    else{
+                        returningdata[stats].major='글로벌미디어';
+                    }
                 }
             });
         db.query('SELECT classcodes FROM users_classes_attended WHERE EMAIL=?', [email],
@@ -175,5 +221,14 @@ var getinfofromusers = function(email) { //users에 저장되어있는 학점이
                 }
             })
         resolve(email,returningdata);
+    })
+}
+var codeconnection=function(coderesults){ //과목번호들 이어붙여서 하나의 스트리으로 리턴
+    return new Promise(function(resolve,reject){
+        var temcodes='';
+        for(var i=0;i<coderesults.length;i++){
+            temcodes+=coderesults[i].id;
+        }
+        resolve(temcodes);
     })
 }
