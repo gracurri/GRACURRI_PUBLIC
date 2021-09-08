@@ -1,5 +1,16 @@
 //users_classes_attended,semesters관련 함수들
 var db = require('./database');
+
+var classcoderecv = function(body) {
+    return new Promise(function(resolve, reject) {
+        let classstring = '';
+        for (var i = 0; i < body.classcodes.length; i++) {
+            classcodestring += body.classcodes[i]
+            classcodesstring += '|'
+        }
+        resolve(classcodestring);
+    })
+}
 exports.storestatus = function(req, res) {
     return new Promise(function(resolve, reject) {
         classcoderecv(req.body).then(

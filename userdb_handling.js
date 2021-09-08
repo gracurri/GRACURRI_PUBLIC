@@ -133,14 +133,3 @@ exports.modifypw = function(reqbody, res) {
         }
     });
 }
-
-var classcoderecv = function(body) {
-    return new Promise(function(resolve, reject) {
-        let classstring = '';
-        for (var i = 0; i < body.classcodes.length; i++) {
-            classcodestring += body.classcodes[i]
-            classcodesstring += '|'
-        }
-        resolve(classcodestring);
-    })
-}
