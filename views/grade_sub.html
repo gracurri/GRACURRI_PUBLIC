@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="./timetable.js"></script>
+    
 
     <link rel="stylesheet" href="grade_sub.css">
     <!-- css 파일 참조 -->
@@ -23,6 +23,7 @@
                 <b>Gracurri</b>
             </div>
             <div class="btns">
+                <div id="loginDone"></div>
                 <a href="" id="btn1">About us </a>
                 <a href="http://localhost:3000/realmain" id="btn3">로그인</a>
                 <button type="button" onclick = "location.href='localhost:3000/signup'" class="signupbtn" id="btn4">회원가입</button>
@@ -65,40 +66,10 @@
             </div>
         </div>
     </div>
-    </div>
+    </div> 
     <script>  
     window.onload = function(){
-        //서버 맞춰서 수정해야함
-        // function test(){
-        //     var url = new URL("http://localhost:3000/semester")
-        //     var semester = document.getElementById('semester');
-        
-        //     const config = {
-        //         headers : { 
-        //             'Accept': 'application/json'
-        //         }
-        //     }
-            
-        //     var semesterAll = ["one", "two","three","four","five","six","seven","eight"]
-
-        //     fetch(url, config)
-        //     .then(res => {
-        //         // response 처리
-        //         console.log(res);
-        //         // 응답을 JSON 형태로 파싱
-        //         return res.json();
-        //         })
-        //         .then(data => {
-        //         // json 출력
-        //         console.log(data.first)
-        //         //data.*** 변경하면 학기 변경됨
-        //         semester.innerText = data.first + "의"
-        //         })
-        //         .catch(err => {
-        //         // error 처리
-        //         console.log('Fetch Error', err);
-        //     });
-        // }
+        const doc = document;
         
         let userCookieId;
             
@@ -107,50 +78,44 @@
             return value? value[2] : null;
         };        
 
+        doc.getElementById('loginDone').innerText = getCookie('userid') + "님"
+        doc.getElementById('btn3').style.display = "none"
+        doc.getElementById('btn4').style.display = "none"
 
-            function getLoginInfo(){
+        requestSem = getCookie('semester');
 
-                var url = new URL("http://localhost:3000/sign_in")
+        console.log(requestSem)
 
-                const config = {
-                    headers : { 
-                        'Accept': 'application/json'
-                    }
+        fetch("http://localhost:3000/to_attend?semester=" + requestSem + "&email=" + userCookieId)
+        .then((res) => res.json())
+        .then((res) => {
+            console.log(res)
+            if(res.code === 200){
+                let semester = doc.getElementById('semester');
+                semester.innerText = "의"
+                // // //res.result는 서버 응답 맞춰서 수정해야함
+                const countSubject = Object.keys(res.result).length
+                const bread = doc.querySelector('.bread')
+
+                for(i = 0; i < countSubject; i++){
+                    const subjectDiv = doc.createElement('div');
+                    const subjectP = doc.createElement('p');
+                //name은 나중애 서버 응답 맞춰서 수정해야함
+                    const subjectName = doc.createTextNode(res.result[i].name)
+
+                    subjectP.appendChild(subjectName)
+                    subjectP.classList.add('subject')
+
+                    subjectDiv.appendChild(subjectP)
+                    subjectDiv.classList.add('list')
+
+                    subjectResult.appendChild(bread);
                 }
-
-                fetch(url, config)
-                .then(res => {
-                    // response 처리
-                    console.log(res);
-                    // 응답을 JSON 형태로 파싱
-                    return res.json();
-                    })
-
-                .then(data => {
-                    // json 출력
-                    value = data[0].id;
-                    console.log(value);
-                    var date = new Date();
-                    date.setTime(date.getTime() + 100 * 60 * 60 * 24 * 1000);
-                    document.cookie = 'idCookie=' + value + ';expires=' + date.toUTCString() + ';path=/' + "; domain=localhost";
-                    console.log(document.cookie);
-                })
-                .then(
-                    document.getElementById('loginDone').innerText = getCookie('userid') + "님",
-                    document.getElementById('btn3').style.display = "none",
-                    document.getElementById('btn4').style.display = "none"
-                )
-                .catch(err => {
-                    // error 처리
-                    console.log('Fetch Error', err);
-                });
-                
             }
+        })
 
-            test();
-            getLoginInfo();
-
-        }
+    }
+        
     </script>
 </body>
 
