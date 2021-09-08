@@ -120,7 +120,7 @@ exports.planmake = function(email) {
                 return (email,data);
             }
         ).then(
-            function(dats) {
+            function(email,dats) {
                 let currsem = data[stats].semester+1;
                 db.query('USE subjects;');
                 while(currsem<9)
@@ -150,16 +150,51 @@ exports.planmake = function(email) {
                             function(error,result,fields){
                                 if(!error){
                                     if(result.length>0){
-                                        codeconnection(result).then(
+                                        codeconnection(result).then(function(resultstring){
+                                            db.query('SELECT one from semesters WHERE EMAIL=?',email,
+                                            function(error,results,fields){
+                                                if(!error){
+                                                    if(results.length>0){
+                                                        resultstring+=results[0].one;
+                                                    }
+                                                }
+                                                
+                                            })
+                                            return(resultstring)
+                                        }).then(
                                             function(resultstring){
                                                 db.query('USE gracurri_user;');
-                                                db.query('UPDATE semesters SET one=?',temcodes);
+                                                db.query('UPDATE semesters SET one=? WHERE EMAIL=?',[resultstring,email]);
                                             }
                                         )
                                     }
                                 }
                             })
                         }
+                        db.query('SELECT name,id from subject_1 WHERE division=전필-? and targetstudent LIKE'+db.escape("%"+String(parseInt(currsem/2))+"%"),
+                        function(error,result,fields){
+                            if(!error){
+                                if(result.length>0){
+                                    codeconnection(result).then(
+                                        function(resultstring){
+                                            db.query("USE gracurri_user;");
+                                            if(currsem===1){
+                                                SELECT
+                                            }
+                                            else if(currsem===3){
+
+                                            }
+                                            else if(currsem===5){
+
+                                            }
+                                            else if(currsem===7){
+
+                                            }
+                                        }
+                                    )
+                                }
+                            }
+                        })
                     }
                     else{
                         if(currsem===2)
