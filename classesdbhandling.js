@@ -24,39 +24,39 @@ exports.storestatus = function(req, res) {
 }
 var semeseterset = function(semester, results) {
     return new Promise(function(resolve, reject) {
-        let sem = semester;
         let codestring = '';
         if (semester === "one") {
-            codestring = results[0].one;
+            codestring = results.one;
         } else if (semester === 'two') {
-            codestring = results[0].two;
+            codestring = results.two;
         } else if (semester === 'three') {
-            codestring = results[0].three;
+            codestring = results.three;
         } else if (semester === 'four') {
-            codestring = results[0].four;
+            codestring = results.four;
         } else if (semester === 'five') {
-            codestring = results[0].five;
+            codestring = results.five;
         } else if (semester === 'six') {
-            codestring = results[0].six;
+            codestring = results.six;
         } else if (semester === 'seven') {
-            codestring = results[0].seven;
+            codestring = results.seven;
         } else {
-            codestring = results[0].eight;
+            codestring = results.eight;
         }
         resolve(codestring)
     })
 }
 exports.gettoattend = function(query, res) {
-    db.query('use gracurri_user;');
-    db.query('SELECT ? from semesters where EMAIL=?', [query.semester, query.email],
-        function(error, results, fields) {
-            if (error) {
-                res.send({
-                    "code": 400,
-                    "result": "error!"
-                })
-            } else {
-                semeseterset(query.semester, results).then(function(code) {
+db.query('use gracurri_user;');
+db.query('SELECT ? from semesters where EMAIL=?', [query.semester, query.email],
+    function(error, results, fields) {
+        if (error) {
+            res.send({
+                "code": 400,
+                "result": "error!"
+            })
+        } else {
+            if (results.length > 0) {
+                semeseterset(query.semester, results[0]).then(function(code) {
                     var names = [];
                     for (var i = 0; i < code.length; i += 10) {
                         var temp = code.slice(i, i + 10);
@@ -76,35 +76,37 @@ exports.gettoattend = function(query, res) {
                             });
 
                     }
-                    let semreturn = ''
-                    if (query.semester === 'one') {
-                        semreturn = '1-1';
-                    } else if (query.semester === 'two') {
-                        semreturn = '1-2';
-                    } else if (query.semester === 'three') {
-                        semreturn = '2-1';
-                    } else if (query.semester === 'four') {
-                        semreturn = '2-2';
-                    } else if (query.semester === 'five') {
-                        semreturn = '3-1';
-                    } else if (query.semester === 'six') {
-                        semreturn = '3-2';
-                    } else if (query.semester === 'seven') {
-                        semreturn = '3-1';
-                    } else if (query.semester === 'eight') {
-                        semreturn = '3-2';
-                    }
-                    return (names, semreturn);
-                }).then(function(names, semreturn) {
-                    res.send({
-                        "code": 200,
-                        "result": names,
-                        "semester": semreturn
-                    })
-                });
-
+                })
             }
+            let semreturn = ''
+            if (query.semester === 'one') {
+                semreturn = '1-1';
+            } else if (query.semester === 'two') {
+                semreturn = '1-2';
+            } else if (query.semester === 'three') {
+                semreturn = '2-1';
+            } else if (query.semester === 'four') {
+                semreturn = '2-2';
+            } else if (query.semester === 'five') {
+                semreturn = '3-1';
+            } else if (query.semester === 'six') {
+                semreturn = '3-2';
+            } else if (query.semester === 'seven') {
+                semreturn = '3-1';
+            } else if (query.semester === 'eight') {
+                semreturn = '3-2';
+            }
+            return (names, semreturn);
+        }).then(function(names, semreturn) {
+        res.send({
+            "code": 200,
+            "result": names,
+            "semester": semreturn
         })
+    });
+
+}
+})
 }
 exports.tableshowsem = function(query, res) {
     return new Promise(function(resolve, reject) {
