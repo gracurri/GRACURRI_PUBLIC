@@ -7,6 +7,10 @@
     src: url('../AppleSDGothicNeoM.ttf') format('truetype');
 }
 
+style{
+    @media screen and (min-width: 1680px) and (max-width: 5000px)
+}
+
 .parent {
     width: 1920px;
     margin-left: auto;
@@ -44,10 +48,9 @@
     padding-top: 100px;
 }
 
-
-
-style{
-    @media screen and (min-width: 1680px) and (max-width: 5000px)
+.listen-inner{
+    height: 572px;
+    overflow-y: auto;
 }
 
 .hide{
@@ -106,11 +109,11 @@ style{
     color: rgb(136, 70, 0);
 }
 
-
 .listen2{
     position:absolute;
     margin-top: -60px;
 }
+
 .listen3{
     position:absolute;
     margin-left:1080px;
@@ -127,7 +130,6 @@ style{
     float: right;
     position: relative;
     top: 880px;
-
 }
 
 .nextBtn{
@@ -149,4 +151,67 @@ style{
     text-align: center;
     font-family: AppleSDGothicNeo;
     margin-top: 100px;
+}
+
+/* 로딩화면 구성 */
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#loading{
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    border: 5px solid #f3f3f3;
+    border-top: 6px solid #ffd519;
+    border-radius: 100%;
+    visibility: hidden;
+    animation: spin 1s infinite linear;
+
+    top: 30%;
+    left: 50%;
+}
+
+#loading.display {
+    visibility: visible;
+}
+
+/* 계획생성 로딩 페이지 */
+
+#loadingPage{
+    position: absolute;
+    width: 500px;
+    height: 400px;
+    top: 40%;
+    left: 35%;
+    color: rgb(136, 70, 0);
+    text-align: center;
+    font-family: AppleSDGothicNeo;
+    font-size: 30px;
+    z-index: 100;
+    visibility: hidden;
+    border-radius: 1em;
+    background-color: #f8da52;
+    padding-top: 40px;
+}
+
+#loadingIcon{
+    margin: 50px auto 50px auto;
+    width: 150px;
+    height: 150px;
+    background-image: url(../images/GRACURRI_LOGO.png);
+    background-size: cover;
+    animation: spin 1s infinite linear;
+    z-index: 101;
+    
+}
+
+#loadingPage.display {
+    visibility: visible;
 }

@@ -29,32 +29,25 @@
                 <button type="button" onclick = "location.href='localhost:3000/signup'" class="signupbtn" id="btn4">회원가입</button>
             </div>
         </div>
-        
+        <div id="loadingPage">
+            <div id="loadingIcon"></div>
+            <p>계획을 생성중입니다</p>
+        </div>
         <div class="inner-box">
             <div class="created">
                 <div class="search">
                     <input type="id" class="subject_name" id="search_class" placeholder="과목 찾기" onkeypress="searchClassFunc(event);"/>
                 </div>
                 <div class="subjectResult">
-                    
+                        <div id="loading"></div>
                 </div>
             </div>
             <div class="listen">
-                <div class="subject" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
-                    <span class="name">들은 과목 이름 넣기 1</span>
-                </div>
-                <div class="subject" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
-                    <span class="name">들은 과목 이름 넣기 2</span>
-                </div>
-                <div class="subject" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
-                    <span class="name">들은 과목 이름 넣기 3</span>
-                </div>
-                <div class="subject" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
-                    <span class="name">들은 과목 이름 넣기 4</span>
+                <div class="listen-inner">
                 </div>
             </div>
             <div class="btnWrap">
-                <input type="button" class="nextBtn">
+                <input type="button" class="nextBtn" onclick="nextBtnFunc()">
             </div>
         </div>
 
@@ -76,37 +69,13 @@
     </script>
 
     <script>
-        
-
-        //드래그 엔 드롭
-        allowDrop = function() {
-            event.preventDefault();
-        };
-        
-        dropItem = function() {
-            var _targetEle = event.target;
-            var _id = event.dataTransfer.getData('text');
-            var _moveEle = document.getElementById(_id );
-            _targetEle.appendChild(_moveEle);
-        };
-        
-        dragStart = function() {
-            var _thisEle = event.target;
-            var _thisId = _thisEle.id;
-            _thisEle.classList.add('is-dragging');
-            event.dataTransfer.setData('text/plain', _thisId);
-        };
-        
-        dragEnd = function() {
-            var _thisEle = event.target;
-            _thisEle.classList.remove('is-dragging');
-        };
-
         //검색 기능
         let searchClass = doc.getElementById('search_class').value;
         let countSearchResult = 0;
         let subjectResult = doc.querySelector('.subjectResult');
         let subject;
+        let selectedSubjectNum = [];
+        const nextBtn = doc.querySelector('.nextBtn');
 
         const searchClassFunc = async()=>{
             if (window.event.keyCode == 13) {
@@ -125,15 +94,30 @@
                 for(i = 0; i < countSearchResult; i++){
                     subjectResult.removeChild(subject[i]);
                 }
-                console.log('지우기 실행 end')
             }
 
-            console.log('지우기 실행 end2')
+            const loader = doc.querySelector('#loading')
+
+            const displayLoading=()=>{
+                loader.classList.add("display");
+                // to stop loading after some time
+                setTimeout(() => {
+                    loader.classList.remove("display");
+                }, 5000);
+            }
+
+            const hideLoading=()=>{
+                loader.classList.remove("display");
+            }
+
+            displayLoading();
             //검색 내용
             fetch("http://localhost:3000/search_class?key=" + searchClass)
+            
                 //fetch("http://localhost:3000/test")
             .then((res) => res.json())
             .then((res) => {
+                hideLoading();
                 console.log(res)
                 countSearchResult = Object.keys(res.result).length
                 console.log(countSearchResult)
@@ -147,7 +131,7 @@
                     console.log('예외')
                     countSearchResult = 1;
 
-                    const nullName = doc.createTextNode('검색하신 내용이 없습니다.');
+                    let nullName = doc.createTextNode('검색하신 내용이 없습니다.');
                     subjectDiv = doc.createElement('div');
                     subjectP = doc.createElement('p');
 
@@ -161,22 +145,58 @@
                     subjectResult.appendChild(subjectDiv);    
                 }
                 else {
-                    //ondragover랑 ondrop도 추가!
+                    //수강한 과목들을 담는 배열
+                    let takeSubject = []
+                    let takeSubjectNum = []
+                    
+
                     for(i = 0; i < countSearchResult; i++){
+                        takeSubject[i] = res.result[i].name;
+                    }
+
+                    for(i = 0; i < countSearchResult; i++){
+                        takeSubjectNum[i] = res.result[i].id;
+                    }
+                    
+                    console.log(takeSubject)
+
+                    for(i = 0; i < countSearchResult; i++){
+                        takeSubjectResult = doc.querySelector('.listen-inner');
+                        
                         subjectDiv = doc.createElement('div');
                         subjectP = doc.createElement('p');
-                        const subjectName = doc.createTextNode(res.result[i].name);
+                        let subjectName = doc.createTextNode(res.result[i].name);
+                        
 
                         subjectP.appendChild(subjectName);
                         subjectP.classList.add('name')
 
                         subjectDiv.appendChild(subjectP);
                         subjectDiv.classList.add('subject');        
+                        //클릭시 발생
+                        let iNum = i;
+
+                        subjectDiv.addEventListener('click', function(event){
+                            console.log(takeSubject)
+                            takeSubjectDiv = doc.createElement('div');
+                            takeSubjectP = doc.createElement('p');
                             
+                            takeSubjectName = doc.createTextNode(takeSubject[iNum]);
+                            takeSubjectP.appendChild(takeSubjectName);
+                            takeSubjectP.classList.add('name')
+
+                            takeSubjectDiv.appendChild(takeSubjectP);
+                            takeSubjectDiv.classList.add('subject'); 
+
+                            takeSubjectResult.appendChild(takeSubjectDiv);    
+                            
+                            selectedSubjectNum.push(takeSubjectNum[iNum]);
+                        });
                         //ondragover랑 ondrop도 추가!
                         subjectResult.appendChild(subjectDiv);        
                     }
                 }
+
             })
             .catch(err => {
                 // error 처리
@@ -185,8 +205,49 @@
                 doc.getElementById('search_class').value = null;  
             }    
 
+            console.log(selectedSubjectNum);
             
-            
+        }
+
+        const pageLoader = doc.querySelector('#loadingPage')
+
+        const displayLoadingPage=()=>{
+            pageLoader.classList.add("display");
+            // to stop loading after some time
+            setTimeout(() => {
+                pageLoader.classList.remove("display");
+            }, 5000);
+        }
+
+        const hideLoadingPage=()=>{
+            pageLoader.classList.remove("display");
+        }
+
+        const nextBtnFunc=()=>{
+            displayLoadingPage();
+
+            fetch("http://localhost:3000/info_input", {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                        classcodes: selectedSubjectNum,
+                        email: getCookie('userid')
+                    }),
+            })
+            .then((res) => res.json())
+            .then((res) => {
+                hideLoadingPage();
+                if(res.code === 200){
+                    location.assign('http://localhost:3000/timetable')
+                }
+            })
+            .catch(err => {
+                // error 처리
+                console.log('Fetch Error', err);
+                location.assign('http://localhost:3000/signup')
+            });
         }
 
     </script>

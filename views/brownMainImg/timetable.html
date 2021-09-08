@@ -15,7 +15,7 @@
     <title>GRACURRI</title>
 </head>
 
-<body>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+<body onload = "new Swiper('.swiper-container');">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
     <div class="parent">
 
         <div class="topbar">
@@ -61,22 +61,19 @@
                             <div class="grade">
                                 <p id="42" value="42" button type="button" onclick = "location.href='localhost:3000/grade_sub'" class="textgrade">4-2</p>
                             </div>
-                        </div>  
-                    
-                    
-                        <div button type="button" onclick = "new Swiper('.swiper-container');" class="sauce">
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="inner-box">
+                        </div> 
                         <div class="sauce">
                             <button class="make" value="show" id="maketable" onclick="javascript:show()" style="margin-left: 50px;">
                                 <b>이번 학기</b><br>
                                 시간표<br>
                                 만들기
                             </button>
-                        </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="inner-box">
+                        <div class="sauce2"></div>
                         <div class="cheese" id="headers"></div>
                     </div>
                 </div>
