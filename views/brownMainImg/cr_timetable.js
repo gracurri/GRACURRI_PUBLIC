@@ -4,10 +4,6 @@ window.onload = function(){
     var doc = document;
     const make = doc.getElementById('maketable');
 
-    var name;
-    var time;
-    var day;
-
     var getCookie = function(name) {
         var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
         return value? value[2] : null;
@@ -35,7 +31,7 @@ window.onload = function(){
         .then((res) => {
             console.log(res)
             if(res.code === 200){
-                location.assign('http://localhost:3000/grade_sub');
+                location.assign('http://localhost:3000/cr_timetable');
                 const countSubject = Object.keys(res.result).length;
                 const time = doc.querySelector('.time');
 
@@ -43,10 +39,33 @@ window.onload = function(){
                     const subjectTr = doc.createElement('tr');
                     const subjectTd = doc.createElement('td');
                     const subjectTh = doc.createElement('th');
-                for(t = 1; t <= 9; t++){     // 9교시까지 존재해서
-    
-                        subjectTh.appendChild(t);
+                    var day;
+                    switch(day){
+                        case "월":
+                            subjectTd.appendChild(res.result[i].name);
+                            subjectTd.appendChild("<td></td><td></td><td></td><td></td>");
+                            break;
+                        case "화":
+                            subjectTd.appendChild("<td></td>");
+                            subjectTd.appendChild(res.result[i].name);
+                            subjectTd.appendChild("<td></td><td></td><td></td>");
+                            break;
+                        case "수":
+                            subjectTd.appendChild("<td></td><td></td>");
+                            subjectTd.appendChild(res.result[i].name);
+                            subjectTd.appendChild("<td></td><td></td>");
+                            break;
+                        case "목":
+                            subjectTd.appendChild("<td></td><td></td><td></td>");
+                            subjectTd.appendChild(res.result[i].name);
+                            subjectTd.appendChild("<td></td>");
+                            break;
+                        case "금":
+                            subjectTd.appendChild("<td></td><td></td><td></td><td></td>");
+                            subjectTd.appendChild(res.result[i].name);
+                            break;
                     }
+
                 }
 
             }
