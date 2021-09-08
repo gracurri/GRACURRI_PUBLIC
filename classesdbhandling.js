@@ -1,5 +1,4 @@
 //users_classes_attended,semesters관련 함수들
-const { resolve } = require('path/posix');
 var db = require('./database');
 
 var classcoderecv = function(body) {
