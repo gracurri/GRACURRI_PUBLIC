@@ -62,6 +62,7 @@ app.get('/search_class', function(req, res) { //과목검색
 })
 app.get('/to_attend', function(req, res) { //들어야할 과목 (grade_sub.html)
     console.log("학기조회")
+    console.log(req.query.email);
     cdhandling.gettoattend(req.query, res);
 })
 
