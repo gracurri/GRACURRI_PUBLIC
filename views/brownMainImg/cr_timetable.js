@@ -46,6 +46,7 @@ window.onload = function(){
     function daytime(arr){
         if(arr[1] == "월" || arr[1] == "화" || arr[1] == "수" || arr[1] == "목" || arr[1] == "금"){     // 일주일에 2번인 수업
             arr[2] = timetonum(arr[2]);
+            arr.push('two');
         }
         else{   // 바로 숫자 나오면 일주일에 한번인 수업, str = 시간
             arr[1] = timetonum(arr[1]);  // 교시로 바꿔주기
@@ -130,6 +131,10 @@ window.onload = function(){
                             MonDiv.style.height = '60px';
                             MonDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
+                        if(arr.indexOf('two') != -1){
+                            MonDiv.style.height = '60px';
+                            MonDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
+                        }
 
                         MonDiv.style.width = '78px';
                         MonDiv.style.zIndex = 10;
@@ -158,6 +163,11 @@ window.onload = function(){
                             TueDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                             TueDiv.style.height = '60px';
                         }
+                        if(arr.indexOf('two') != -1){
+                            TueDiv.style.height = '60px';
+                            TueDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
+                        }
+
                         TueDiv.style.width = '78px';
                         TueDiv.style.zIndex = 10;
                         TueDiv.style.backgroundColor = selectedColor;
@@ -183,6 +193,11 @@ window.onload = function(){
                             WedDiv.style.height = '60px';
                             WedDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
+                        if(arr.indexOf('two') != -1){
+                            WedDiv.style.height = '60px';
+                            WedDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
+                        }
+
                         WedDiv.style.width = '78px';
                         WedDiv.style.zIndex = 10;
                         WedDiv.style.backgroundColor = selectedColor;
@@ -208,6 +223,11 @@ window.onload = function(){
                             ThuDiv.style.height = '60px';
                             ThuDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
+                        if(arr.indexOf('two') != -1){
+                            ThuDiv.style.height = '60px';
+                            ThuDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
+                        }
+
                         ThuDiv.style.width = '78px';
                         ThuDiv.style.zIndex = 10;
                         ThuDiv.style.backgroundColor = selectedColor;
@@ -233,6 +253,11 @@ window.onload = function(){
                             FriDiv.style.height = '60px';
                             FriDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
+                        if(arr.indexOf('two') != -1){
+                            FriDiv.style.height = '60px';
+                            FriDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
+                        }
+
 
                         FriDiv.style.width = '78px';
                         FriDiv.style.zIndex = 10;
