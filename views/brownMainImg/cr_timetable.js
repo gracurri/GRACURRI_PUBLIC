@@ -76,10 +76,11 @@ window.onload = function(){
         return arr;
     }
 
-    console.log(userCookieId)
+    
     
 
     const sem = async()=>{
+        console.log(userCookieId)
         // GET
         fetch("http://localhost:3000/time_set?email=" + userCookieId)
         .then((res) => res.json())
@@ -185,7 +186,8 @@ window.onload = function(){
         });
     }
 
-    make.addEventListener('click', sem);
+    // make.addEventListener('click', sem);
+    sem();
 }
 
 
