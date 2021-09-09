@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     
     <script src="./cr_timetable.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>   
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="cr_timetable.css">
     <link rel="stylesheet" href="timetable.css">
     <link rel="stylesheet" href="../topbar.css">
@@ -36,7 +36,6 @@
                         <div class="text"></div>
                         
                         <div class="bread-bm">
-                            <form method="GET" id="sever">
                             <div class="grade grade1">
                                 <!-- onclick = "location.assign = ('localhost:3000/grade_sub')" -->
                                 <p id="11" value="11" button type="button" class="textgrade">1-1</p>
@@ -65,6 +64,7 @@
                         </div> 
                         <div class="sauce">
                             <button class="make" value="show" id="maketable" onclick="javascript:show()" style="margin-left: 50px;">
+                                <!-- onclick="javascript:show()" -->
                                 <b>이번 학기</b><br>
                                 시간표<br>
                                 만들기
@@ -83,6 +83,7 @@
             </div>
         </div>
     </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"  type="text/javascript" ></script>
     <script src="./timetable.js"></script>
     <script>
         const doc = document;
@@ -99,41 +100,17 @@
         doc.getElementById('btn3').style.display = "none"
         doc.getElementById('btn4').style.display = "none"
     </script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"  type="text/javascript" >
-    // jquery
-
-    // 출처: https://araikuma.tistory.com/640 [프로그램 개발 지식 공유]
-        $.ajax({ 
-            url: "/rest/1/pages/245", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소
-            data: { name: "1-1" }, // HTTP 요청과 함께 서버로 보낼 데이터
-            method: "GET", // HTTP 요청 메소드(GET, POST 등) 
-            dataType: "json" // 서버에서 보내줄 데이터의 타입 
-        }) 
-        // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. 
-        .done(function(json) { 
-            $("<h1>").text(json.title).appendTo("body"); 
-            $("<div class=\"content\">").html(json.html).appendTo("body"); 
-        }) 
-        // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
-        .fail(function(xhr, status, errorThrown) { 
-            $("#text").html("오류가 발생했다.<br>") 
-            .append("오류명: " + errorThrown + "<br>") 
-            .append("상태: " + status); 
-        }) 
-        // 
-        .always(function(xhr, status) { 
-            $("#text").html("요청이 완료되었습니다!"); 
-        });
-    </script>
+    
     <script type="text/javascript">
     // 버튼 클릭시
+    
     function show(){
         // 시간표 띄우기
-        $("#headers").load("cr_timetable");
+        $("#headers").load("cr_timetable.html");
     }
-    </script>
-    <button name="ok" value="<?=$groupMemberManageIDX?>;o">승인</button>
 
+    
+    </script>
 </body>
 
 </html>

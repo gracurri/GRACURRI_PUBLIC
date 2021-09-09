@@ -75,6 +75,8 @@ window.onload = function(){
         }
         return arr;
     }
+
+    console.log(userCookieId)
     
 
     const sem = async()=>{
@@ -185,7 +187,7 @@ window.onload = function(){
 
     make.addEventListener('click', sem);
 }
-}
-}
+
+
 
     
