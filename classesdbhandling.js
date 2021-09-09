@@ -24,70 +24,22 @@ exports.storestatus = function(req, res) {
     })
 
 }
-var namesearchandsem = function(codeandquery) {
-    return new Promise(function(resolve, reject) {
-        let namelist = [];
-        for (var i = 0; i < codeandquery[0].length; i += 10) {
-            var temp = codeandquery[0].slice(i, i + 10);
-            db.query('USE subjects;')
-            db.query('SELECT name from subject where id=?', [temp],
-                function(error, result) {
-                    if (result.length > 0) {
-                        namelist.push(result[0].name);
-                    } else {
-                        db.query('SELECT name from subject_1 where id=?', temp,
-                            function(errors, results) {
-                                if (results.length > 0) {
-                                    namelist.push(results[0].name);
-                                }
-                            });
-                    }
-                }
-            );
-        }
-        let semreturn = '';
-        if (codeandquery[1] === 'one') {
-            semreturn = '1-1';
-        } else if (codeandquery[1] === 'two') {
-            semreturn = '1-2';
-        } else if (codeandquery[1] === 'three') {
-            semreturn = '2-1';
-        } else if (codeandquery[1] === 'four') {
-            semreturn = '2-2';
-        } else if (codeandquery[1] === 'five') {
-            semreturn = '3-1';
-        } else if (codeandquery[1] === 'six') {
-            semreturn = '3-2';
-        } else if (codeandquery[1] === 'seven') {
-            semreturn = '3-1';
-        } else if (codeandquery[1] === 'eight') {
-            semreturn = '3-2';
-        }
-        resolve([namelist, semreturn]);
-    })
+exports.getname = function(req, res) {
+    db.query('USE subjects');
+    db.query('SELECT name from subject_1 WHERE id=? ; SELECT name from subject WHERE id=?', [req.code, req.code],
+        function(error, result) {
+            if (error) {
+                res.send({
+                    "code": 400,
+                    "result": "error"
+                });
+            } else {
+                console.log(result);
+                res.send(result);
+            }
+        })
 }
-var semeseterset = function(semester, results) {
-    return new Promise(function(resolve, reject) {
-        if (semester === "one") {
-            console.log(results.one);
-            resolve(results.one);
-        } else if (semester === 'two') {
-            resolve(results.two);
-        } else if (semester === 'three') {
-            resolve(results.three);
-        } else if (semester === 'four') {
-            resolve(results.four);
-        } else if (semester === 'five') {
-            resolve(results.five);
-        } else if (semester === 'six') {
-            resolve(results.six);
-        } else if (semester === 'seven') {
-            resolve(results.seven);
-        } else {
-            resolve(results.eight);
-        }
-    })
-}
+
 exports.gettoattend = function(req, res, email, semester) {
     let semreturn = '';
     if (semester === 'one') {

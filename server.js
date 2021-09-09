@@ -54,9 +54,9 @@ app.get('/grade_sub', function(req, res) {
     app.use(express.static('views'));
     res.sendFile(__dirname + '/views/grade_sub.html');
 })
-app.get('/cr_timetable', function(req, res) {
+app.get('/new_timetable', function(req, res) {
     app.use(express.static('./views/brownMainImg'));
-    res.sendFile(__dirname + '/views/brownMainImg/cr_timetable.html');
+    res.sendFile(__dirname + '/views/brownMainImg/new_timetable.html');
 })
 
 //routing ends
@@ -65,18 +65,22 @@ app.get('/search_class', function(req, res) { //과목검색
     console.log(req.query);
     sdhandling.search(req.query.key, res);
 })
-app.get('/to_attend', function(req, res) {
+app.get('/to_attend', function(req, res) { //gradesub
     cdhandling.gettoattend(req, res, req.query.email, req.query.semester);
 })
-app.get('/time_set', function(req, res) {
-        //cdhandling.getclasses(req.query, res);
-        res.send({
-            "code": 200,
-            "result": ["테스트"],
-            "timeandloc": ["월 09:00-10:15 (-)"]
-        })
+app.get('/name', function(req, res) {
+    cdhandling.getname(req, res);
+})
+app.get('/time_set', function(req, res) { //시간표
+    //cdhandling.getclasses(req.query, res);
+    res.send({
+        "code": 200,
+        "result": ["테스트"],
+        "timeandloc": ["월 09:00-10:15 (-)"]
     })
-    //post utility handling
+})
+
+//post utility handling
 
 app.post('/info_input', function(req, res) {
     cdhandling.storestatus(req, res).then(
