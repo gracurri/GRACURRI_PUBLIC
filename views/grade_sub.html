@@ -43,7 +43,7 @@
     </div>
     </div> 
     <script>  
-    window.onload = function(){
+    
         const doc = document;
         let userCookieId;
         let requestSem;
@@ -71,31 +71,31 @@
         console.log(userCookieId)
         console.log(requestSem)
 
-        subjectShowFunc=()=>{
-            fetch("http://localhost:3000/to_attend?email=sallybig@naver.com" + "&semester=" + requestSem)
-            .then((res) => res.json())
-            .then((res) => {
-                const bread = doc.querySelector('.bread');                
-                console.log('test')
-                for(i = 0; i < countSubject; i++){
-                    const subjectDiv = doc.createElement('div');
-                    const subjectP = doc.createElement('p');
-                            //name은 나중애 서버 응답 맞춰서 수정해야함
-                    const subjectName = doc.createTextNode(res.result[i])
-                                    
-                    subjectP.appendChild(subjectName)
-                    subjectP.classList.add('subject')
+        subjectShowFunc=(subjects)=>{
+            countSubject = subjects.length;
+            
+            const bread = doc.querySelector('.bread');                
+            console.log('test')
 
-                    subjectDiv.appendChild(subjectP)
-                    subjectDiv.classList.add('list')
+            for (const i = 0; i < countSubject; i++){
+                const subjectDiv = doc.createElement('div');
+                const subjectP = doc.createElement('p');
+                const subjectName = doc.createTextNode(subjects[i]) //수정
+                                        
+                subjectP.appendChild(subjectName)
+                subjectP.classList.add('subject')
 
-                    if (i == 0){
-                        subjectDiv.classList.add('list1')
-                    }        
+                subjectDiv.appendChild(subjectP)
+                subjectDiv.classList.add('list')
 
-                    bread.appendChild(subjectDiv);
-                }
-            }) 
+                if (i == 0){ //수정해야함
+                    subjectDiv.classList.add('list1')
+                }  
+                            
+                bread.appendChild(subjectDiv);
+            }    
+        
+                
         }  
 
         subjectInfoFunc=()=>{
@@ -110,40 +110,31 @@
                     codeNumFull = res.result;
                     codeNumFullLen = codeNumFull.length;
                     console.log(codeNumFullLen)
-                    
-                    for(let i=0; i < codeNumFullLen; i+=10){
-                        let temp = codeNumFull.slice(i,i+10);
-                        console.log(temp)
-                        fetch("http://localhost:3000/name?code=" + temp)
-                        .then((res) => res.json())
-                        .then((res) => {
-                            console.log(res.result)
-                            subjectNameArr.push(res.result);
-                            console.log(subjectNameArr)
-                        })
-                        .then(()=>{
-                            countSubject = subjectNameArr.length;
-                            console.log(countSubject);
-                        });
-                    }
+                }
+            })
+            .then(()=>{
+                for(let i=0; i < codeNumFullLen; i+=10){
+                    let temp = codeNumFull.slice(i,i+10);
+                    console.log(temp)
+                    fetch("http://localhost:3000/name?code=" + temp)
+                    .then((res) => res.json())
+                    .then((res) => {
+                        console.log(res.result)
+                        subjectNameArr.push(res.result);
+                        console.log(subjectNameArr)
+                    })
                 }
             })
             .catch(err => {
                 // error 처리
                 console.log('Fetch Error', err);    
             });    
+
+            return subjectNameArr
         }
 
-        async function subjectFunc(callbackF, callbackS){
-            setTimeout(()=>{
-                callbackF;
-            }, 10000000000);
-            await callbackS;
-        }
-
-        subjectFunc(subjectInfoFunc(), subjectShowFunc());
-
-    }
+        subjectShowFunc(subjectInfoFunc())
+    
         
     </script>
 </body>
