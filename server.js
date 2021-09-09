@@ -69,7 +69,7 @@ app.get('/to_attend', function(req, res) {
     //cdhandling.gettoattend(req, res);
     res.send({
         "code": 200,
-        "result": ["3code"],
+        "result": ["3code", "프로그래밍1", "확률및통계"],
         "semester": "1-1"
     });
 })
