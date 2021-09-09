@@ -9,20 +9,6 @@ window.onload = function(){
         return value? value[2] : null;
     };  
 
-    
-
-    // function mTalbe(data){
-    //     var table = doc.getElementById('target');
-
-    //     for(var i = 0; i < data.length; i++){
-    //         var row = '<tr> <td>'
-    //         row += i;
-    //         row += '<td>';
-    //         row += '<td>$(data[i].name</td> </tr>'
-
-    //         table.innerHTML += row;
-    //     }
-    // }
 
     function timetonum(str){    // 시간 교시로 바꾸는 함수
         switch(str){
@@ -79,22 +65,23 @@ window.onload = function(){
     
     
 
-    const sem = async()=>{
+    const sem =()=>{
         let userCookieId = getCookie('userid');
         console.log(userCookieId)
+        
         // GET
         fetch("http://localhost:3000/time_set?email=" + userCookieId)
         .then((res) => res.json())
         .then((res) => {
             console.log(res)
             if(res.code === 200){
-                location.assign('http://localhost:3000/cr_timetable');
                 const countSubject = Object.keys(res.result).length;
                 var talarr = res.timeandloc;
 
                 let Montd = doc.createElement('td');
                 let MonDiv = doc.createElement('div');
                 let MonP = doc.createElement('p');
+                let monTh = doc.querySelector('.monTh');
 
                 let Tuetd = doc.createElement('td');
                 let TueDiv = doc.createElement('div');
@@ -112,65 +99,71 @@ window.onload = function(){
                 let FriDiv = doc.createElement('div');
                 let FriP = doc.createElement('p');
 
-                Montd = doc.createElement('td');
-
                 for(i = 0; i < countSubject; i++){
-
+                    let resultI = doc.createTextNode(res.result[i]);
                     var arr = talarr[i].split(' ');
                     arr = daytime(arr); 
-
+                    console.log(arr)
                     // 일주일에 한번, 1교시
-                    if(arr.indexof('one1') != -1){
-                        if(arr.indexof('월') != -1){
+                    if(arr.indexOf('one1') != -1){
+                        if(arr.indexOf('월') != -1){
+                            
                             MonDiv = doc.createElement('div');
                             MonP = doc.createElement('p');
-                            
-                            MonP.appendChild(res.result[i]);
-                            MonDiv.style.position = absolute;
-                            MonDiv.style.top = (110 + 60*(arr[1] - 1))+'px';
+                            //화수목금도 수정해야됨!!
+                            MonP.appendChild(resultI);
+                            MonP.style.lineHeight = '60px';
+                            MonP.style.marginBlockStart = '0';
+                            MonP.style.marginBlockEnd = '0';
+                            MonDiv.style.position = 'absolute';
+                            MonDiv.style.height = '60px';
+                            MonDiv.style.width = '83px';
+                            MonDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                             MonDiv.style.zIndex = 10;
-
+                            MonDiv.style.backgroundColor = 'yellow';
                             MonDiv.appendChild(MonP);
+                            monTh.appendChild(MonDiv);
+
                         }
-                        if(arr.indexof('화') != -1){
+                        if(arr.indexOf('화') != -1){
                             TueDiv = doc.createElement('div');
                             TueP = doc.createElement('p');
                             
-                            TueP.appendChild(res.result[i]);
-                            TueDiv.style.position = absolute;
+                            TueP.appendChild(resultI);
+                            TueDiv.style.position = 'absolute';
                             TueDiv.style.top = (110 + 60*(arr[1] - 1))+'px';
                             TueDiv.style.zIndex = 10;
 
-                            TueDiv.appendChild(Tue);
+                            TueDiv.appendChild(TueP);
                         }
-                        if(arr.indexof('수') != -1){
+                        if(arr.indexOf('수') != -1){
                             WedDiv = doc.createElement('div');
                             WedP = doc.createElement('p');
                             
-                            WedP.appendChild(res.result[i]);
+                            WedP.appendChild(resultI);
                             WedDiv.style.position = absolute;
                             WedDiv.style.top = (110 + 60*(arr[1] - 1))+'px';
                             WedDiv.style.zIndex = 10;
 
                             WedDiv.appendChild(WedP);
                         }
-                        if(arr.indexof('목') != -1){
+                        if(arr.indexOf('목') != -1){
                             ThuDiv = doc.createElement('div');
                             ThuP = doc.createElement('p');
                             
-                            ThuP.appendChild(res.result[i]);
-                            ThuDiv.style.position = absolute;
+                            ThuP.appendChild(resultI);
+                            ThuDiv.style.position = 'absolute';
                             ThuDiv.style.top = (110 + 60*(arr[1] - 1))+'px';
                             ThuDiv.style.zIndex = 10;
 
                             ThuDiv.appendChild(ThuP);
                         }
-                        if(arr.indexof('금') != -1){
+                        if(arr.indexOf('금') != -1){
                             FriDiv = doc.createElement('div');
                             FriP = doc.createElement('p');
                             
-                            FriP.appendChild(res.result[i]);
-                            FriDiv.style.position = absolute;
+                            FriP.appendChild(resultI);
+                            FriDiv.style.position = 'absolute';
                             FriDiv.style.top = (110 + 60*(arr[1] - 1))+'px';
                             FriDiv.style.zIndex = 10;
 
