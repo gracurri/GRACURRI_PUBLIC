@@ -44,7 +44,6 @@ window.onload = function(){
     }
     
     function daytime(arr){
-        var day1 = arr[0];
         if(arr[1] == "월" || arr[1] == "화" || arr[1] == "수" || arr[1] == "목" || arr[1] == "금"){     // 일주일에 2번인 수업
             arr[2] = timetonum(arr[2]);
             arr.push('two');
@@ -62,10 +61,7 @@ window.onload = function(){
         return arr;
     }
 
-    
-    
-
-    const sem =()=>{
+    const sem = async()=>{
         let userCookieId = getCookie('userid');
         console.log(userCookieId)
         
@@ -78,7 +74,7 @@ window.onload = function(){
                 const countSubject = Object.keys(res.result).length;
                 var talarr = res.timeandloc;
 
-                let Montd = doc.createElement('td');
+                let Montd = doc.createElement('TD');
                 let MonDiv = doc.createElement('div');
                 let MonP = doc.createElement('p');
                 let monTh = doc.querySelector('.monTh');
@@ -98,6 +94,8 @@ window.onload = function(){
                 let Fritd = doc.createElement('td');
                 let FriDiv = doc.createElement('div');
                 let FriP = doc.createElement('p');
+
+                Montd = doc.createElement('TD');
 
                 for(i = 0; i < countSubject; i++){
                     let resultI = doc.createTextNode(res.result[i]);
@@ -169,9 +167,26 @@ window.onload = function(){
 
                             FriDiv.appendChild(FriP);
                         }
-                    }
+                        ThuDiv.style.zIndex = 10;
 
-                }
+                        ThuDiv.appendChild(ThuP);
+                    }
+                    if(arr.indexOf('금') != -1){
+                        FriDiv = doc.createElement('div');
+                        FriP = doc.createElement('p');
+                        
+                        FriP.appendChild(res.result[i]);
+                        FriDiv.style.position = absolute;
+                        FriDiv.style.top = (110 + 60*(arr[1] - 1))+'px';
+
+                        if(arr.indexOf('one2') != -1){  // 2교시 이면
+                            FriDiv.style.height = 100 + 'px';
+                        }
+                        FriDiv.style.zIndex = 10;
+
+                        FriDiv.appendChild(FriP);
+                    }
+            }
 
             }
         })
