@@ -30,7 +30,7 @@ window.onload=function(){
         document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
     };
 
-    const sem = async()=>{
+    const semFunc = async()=>{
         localStorage.setItem('semester', requestSem);
         console.log(doc.cookie);
         location.href = 'http://localhost:3000/grade_sub'
@@ -38,35 +38,35 @@ window.onload=function(){
 
     one1.addEventListener('click', function(){
         requestSem = 'one';
-        sem();
+        semFunc();
     });
     one2.addEventListener('click', function(){
         requestSem = 'two';
-        sem();
+        semFunc();
     });
     two1.addEventListener('click', function(){
         requestSem = 'three';
-        sem();
+        semFunc();
     });
     two2.addEventListener('click', function(){
         requestSem = 'four';
-        sem();
+        semFunc();
     });
     three1.addEventListener('click', function(){
         requestSem = 'five';
-        sem();
+        semFunc();
     });
     three2.addEventListener('click', function(){
         requestSem = 'six';
-        sem();
+        semFunc();
     });
     four1.addEventListener('click', function(){
         requestSem = 'seven';
-        sem();
+        semFunc();
     });
     four2.addEventListener('click', function(){
         requestSem = 'eight';
-        sem();
+        semFunc();
     });
 };
 

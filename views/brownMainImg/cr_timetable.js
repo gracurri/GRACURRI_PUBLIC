@@ -1,5 +1,5 @@
-//회원가입 함수
 window.onload = function(){
+    console.log('온로드')
 
     var doc = document;
     const make = doc.getElementById('maketable');
@@ -9,7 +9,7 @@ window.onload = function(){
         return value? value[2] : null;
     };  
 
-    let userCookieId = getCookie('userid');
+    
 
     // function mTalbe(data){
     //     var table = doc.getElementById('target');
@@ -60,11 +60,11 @@ window.onload = function(){
     function daytime(arr){
         var day1 = arr[0];
         if(arr[1] == "월" || arr[1] == "화" || arr[1] == "수" || arr[1] == "목" || arr[1] == "금"){     // 일주일에 2번인 수업
-            timetonum(arr[2]);
+            arr[2] = timetonum(arr[2]);
             arr.push('two');
         }
         else{   // 바로 숫자 나오면 일주일에 한번인 수업, str = 시간
-            timetonum(arr[1]);  // 교시로 바꿔주기
+            arr[1] = timetonum(arr[1]);  // 교시로 바꿔주기
             if(arr[3] == arr[0]){     // 1교시 이상인 수업
                 arr[3] = arr[1] + 1;
                 arr.push('one2');
@@ -75,9 +75,13 @@ window.onload = function(){
         }
         return arr;
     }
+
+    
     
 
     const sem = async()=>{
+        let userCookieId = getCookie('userid');
+        console.log(userCookieId)
         // GET
         fetch("http://localhost:3000/time_set?email=" + userCookieId)
         .then((res) => res.json())
@@ -183,9 +187,10 @@ window.onload = function(){
         });
     }
 
-    make.addEventListener('click', sem);
+    // make.addEventListener('click', sem);
+    sem();
 }
-}
-}
+
+
 
     

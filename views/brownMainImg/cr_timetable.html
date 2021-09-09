@@ -2,63 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="./cr_timetable.js"></script>
-    <script>
-      var num = 1;
-      var day = 1;
-
-      $(function(){
-        var target = $('#target');
-        $.getJSON('subject.json', function(subjects){
-          var add_data = '';
-          $.each(subjects, function(i, subject){
-            if(day % 5 == 1){
-              add_data += '<tr>';
-              add_data += '<th>';
-              add_data += num;
-              add_data += '</th>';
-            }
-            
-            if(day < 6){
-              add_data += '<td>';
-              add_data += num;
-              add_data += '<br>';
-              add_data += subject.name;
-              add_data += '<br>';
-              add_data += subject.professor;
-              add_data += '<br>';
-              add_data += day;
-              add_data += '</td>';
-              // for(i=day; i<5;i++){
-              //   add_data += '<td>';
-              //     add_data += '</td>';
-              //   }
-              day = day + 1;
-
-            }
-            else{
-              add_data += '<tr>';
-                add_data += '<th>';
-                add_data += "else";
-                add_data += num;
-                add_data += '</th>';
-                add_data += '<td>';
-                add_data += subject.name;
-                add_data += '<br>';
-                add_data += subject.professor;
-                add_data += '</td>';
-              num = num + 1;
-              if(day % 5 == 0){
-                add_data += '</tr>';
-              }
-            }
-
-            target.append(add_data);
-          });
-        });
-      });
-    </script>
 </head>
 <body>
     <div style="margin-right: 150px">  
@@ -87,23 +31,6 @@
                       <div style="height: 60px; top: 1260px; line-height: 60px;">9</div>
                   </div>
               </th>
-              <!-- <td>
-                  <div id="Mon" class="cols" style="width: 70px;"></div>
-              </td>
-              <td> 
-                  <div id="Tue" class="cols" style="width: 70px; height: 60px; top: 900px; background-color: rgb(88, 163, 88);">
-                      형식언어및오토마타
-                  </div>
-              </td>
-              <td>
-                  <div id="Wed" class="cols" style="width: 70px;"></div>
-              </td>
-              <td> 
-                  <div id="Thu" class="cols" style="width: 70px;"></div>
-              </td>
-              <td> 
-                  <div id="Fri" class="cols" style="width: 70px;"></div>
-              </td> -->
           </tr>
 
       </thead>  
@@ -127,11 +54,10 @@
           border-collapse: collapse;
       }
     </style>
+  
     <script>
       function btn(sample){ alert(sample); }
     </script>
-    
-
 </body>
 
 </html>
