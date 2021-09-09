@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     
     <script src="./cr_timetable.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="cr_timetable.css">
     <link rel="stylesheet" href="timetable.css">
     <link rel="stylesheet" href="../topbar.css">
@@ -63,7 +62,7 @@
                             </div>
                         </div> 
                         <div class="sauce">
-                            <button class="make" value="show" id="maketable" onclick="javascript:show()" style="margin-left: 50px;">
+                            <button class="make" value="show" id="maketable" style="margin-left: 50px;">
                                 <!-- onclick="javascript:show()" -->
                                 <b>이번 학기</b><br>
                                 시간표<br>
@@ -75,7 +74,9 @@
                 <div class="swiper-slide">
                     <div class="inner-box">
                         <div class="sauce2"></div>
-                        <div class="cheese" id="headers"></div>
+                        <div class="cheese" id="headers">
+                            <div class="cheeseIn" data-include-path="cr_timetable.html"></div>
+                        </div>
                     </div>
                 </div>
                 </div>
@@ -109,7 +110,24 @@
         $("#headers").load("cr_timetable.html");
     }
 
-    
+    const cheese = document.querySelector('.make');
+
+    cheese.addEventListener('click', function() {
+            var allElements = document.getElementsByTagName('*');
+            Array.prototype.forEach.call(allElements, function(el) {
+                var includePath = el.dataset.includePath;
+                if (includePath) {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            el.outerHTML = this.responseText;
+                        }
+                    };
+                    xhttp.open('GET', includePath, true);
+                    xhttp.send();
+                }
+            });
+        });
     </script>
 </body>
 

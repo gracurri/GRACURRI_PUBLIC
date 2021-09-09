@@ -1,5 +1,5 @@
-//회원가입 함수
 window.onload = function(){
+    console.log('온로드')
 
     var doc = document;
     const make = doc.getElementById('maketable');
