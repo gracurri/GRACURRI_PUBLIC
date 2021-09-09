@@ -29,9 +29,74 @@
             </div>
         </div>
         <div class="inner-box" >  
-            <div class="cheese"></div>
+            <div class="cheese">
+                <div style="margin-right: 100px">  
+                    <table class="time" width="500px" style="color: #121212; border-collapse: collapse; border-radius: 10px; table-layout: fixed; height:500px; margin-left: 42px; margin-top: 75px;">
+                      <thead>
+                        <tr class="days">
+                            <th></th>
+                            <th>월</th>
+                            <th>화</th>
+                            <th>수</th>
+                            <th>목</th>
+                            <th>금</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="hours">
+                                    <div style="height: 60px; top: 480px; line-height: 60px;">1</div>
+                                    <div style="height: 60px; top: 540px; line-height: 60px;">2</div>
+                                    <div style="height: 60px; top: 630px; line-height: 60px;">3</div>
+                                    <div style="height: 60px; top: 720px; line-height: 60px;">4</div>
+                                    <div style="height: 60px; top: 810px; line-height: 60px;">5</div>
+                                    <div style="height: 60px; top: 900px; line-height: 60px;">6</div>
+                                    <div style="height: 60px; top: 1080px; line-height: 60px;">7</div>
+                                    <div style="height: 60px; top: 1170px; line-height: 60px;">8</div>
+                                    <div style="height: 60px; top: 1260px; line-height: 60px;">9</div>
+                                </div>
+                            </th>
+                            <th class="monTh">
+                            </th>
+                            <th class="tueTh">
+                            </th>
+                            <th class="wedTh">
+                            </th>
+                            <th class="thuTh">
+                            </th>
+                            <th class="friTh">
+                            </th>
+                        </tr>
+              
+                    </thead>  
+                    </table>
+                  </div>                
+            </div>
+            
         </div>
     </div>
+    <style>
+        table{
+          border-collapse: separate;
+          border-spacing: 0 1rem;
+        }
+        th{
+            height: 5px;
+        }
+        td {
+            height: 62.7px;
+            font-size: 10pt;
+  
+            border: 4px solid rgb(254,228,171);
+            border-collapse: collapse;
+        }
+        .hours{
+            text-align: center;
+        }
+        .days{
+            text-align: center;
+        }
+      </style>
+
     <script>
         const doc = document;
         //쿠키
