@@ -9,7 +9,7 @@ window.onload = function(){
         return value? value[2] : null;
     };  
 
-    let userCookieId = getCookie('userid');
+    
 
     // function mTalbe(data){
     //     var table = doc.getElementById('target');
@@ -80,6 +80,7 @@ window.onload = function(){
     
 
     const sem = async()=>{
+        let userCookieId = getCookie('userid');
         console.log(userCookieId)
         // GET
         fetch("http://localhost:3000/time_set?email=" + userCookieId)
