@@ -63,7 +63,8 @@ window.onload = function(){
     const sem =()=>{
         let userCookieId = getCookie('userid');
         console.log(userCookieId)
-        
+        const color = ['rgb(167, 90, 86)', 'rgb(86, 133, 89)', 'rgb(139, 88, 33)', 'rgb(255, 170, 0)', 'rgb(217, 103, 85)']
+        const selectedColor = color[Math.floor(Math.random() * color.length)]
         // GET
         fetch("http://localhost:3000/time_set?email=" + userCookieId)
         .then((res) => res.json())
@@ -117,17 +118,22 @@ window.onload = function(){
                         MonP.style.marginBlockStart = '0';
                         MonP.style.marginBlockEnd = '0';
                         MonDiv.style.position = 'absolute';
+
                         if(arr.indexOf('one2') != -1){  // 2교시 이면
                             MonDiv.style.height = '100px';
                             MonDiv.style.top = (30+ 60*(arr[2] - 1))+'px';
                         }
+
                         if(arr.indexOf('one1') != -1){
                             MonDiv.style.height = '60px';
                             MonDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
+
                         MonDiv.style.width = '78px';
                         MonDiv.style.zIndex = 10;
-                        MonDiv.style.backgroundColor = 'yellow';
+                        MonDiv.style.backgroundColor = selectedColor;
+                        MonDiv.style.textAlign = 'center';
+
                         MonDiv.appendChild(MonP);
                         monTh.appendChild(MonDiv);
 
