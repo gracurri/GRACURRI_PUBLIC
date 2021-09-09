@@ -28,7 +28,7 @@ var db = require('./database');
 exports.classcodeadd = function(req) {
     let classcodestring = '';
     for (var i = 0; i < req.body.classcodes.length; i++) {
-        classcodestring += body.classcodes[i]
+        classcodestring += req.body.classcodes[i]
     }
     return classcodestring
 }
