@@ -52,6 +52,10 @@ app.get('/grade_sub', function(req, res) {
     app.use(express.static('views'));
     res.sendFile(__dirname + '/views/grade_sub.html');
 })
+app.get('cr_timetable', function(req, res) {
+    app.use(express.static('./views/brownMainImg'));
+    res.sendFile(__dirname + '/views/brownMainImg/cr_time.html');
+})
 
 //routing ends
 app.get('/search_class', function(req, res) { //과목검색
