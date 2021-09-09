@@ -149,6 +149,18 @@ const graduation_etc_must = 14; //교양필수
 const graduation_etc_selection = 20; //교양선택
 const graduation_major_without_basic = 66; //전공기초 제외 전공 요학점
 const graduation_christ = 4;
+var filter_same_class(result) {
+    let list = []
+    let newresult = []
+    for (var i = 0; i < result.length; i++) {
+        if (list.indexOf(result[i].name.slice(0, 9)) == -1) {
+            list.push(result[i].name.slice(0, 9));
+            newresult.push(result[i]);
+        }
+
+    }
+    return newresult;
+}
 exports.planmake = function(info, email) {
     var needed = {
         "unit_needed": graduation_unit - info.unit_attended,
@@ -188,7 +200,7 @@ exports.planmake = function(info, email) {
                     function(error, result, fields) {
                         if (!error) {
                             if (result.length > 0) {
-                                codestring = codeconnection(codestring, result);
+                                codestring = codeconnection(codestring, filter_same_class(result));
                             }
                         }
                     })
@@ -196,7 +208,7 @@ exports.planmake = function(info, email) {
                 db.query('SELECT name,id from subject_1 WHERE division=전선-' + info.major, function(error, results) {
                     if (!error) {
                         if (results.length > 0) {
-                            codestring = codeconnection(codestring, results);
+                            codestring = codeconnection(codestring, filter_same_class(results));
                         }
                     }
                 })
@@ -205,27 +217,38 @@ exports.planmake = function(info, email) {
                 function(error, result, fields) {
                     if (!error) {
                         if (result.length > 0) {
-                            codestring = codeconnection(codestring, result)
+                            codestring = codeconnection(codestring, filter_same_class(result))
                         }
                     }
                 })
 
         } else {
             if (currsem === 2) {
-                db.query('SELECT name,id from subject WHERE division=전기-?', dats[stats].major,
+                db.query('SELECT name,id from subject WHERE division=전기-?', info.major,
                     function(error, result, fields) {
                         if (!error) {
                             if (result.length > 0) {
-                                codeconnection(result).then(
-                                    function(resultstring) {
-                                        db.query('USE gracurri_user;');
-                                        db.query('UPDATE semesters SET two=?', temcodes);
-                                    }
-                                )
+                                codestring = codeconnection(codestring, filter_same_class(result));
                             }
                         }
                     })
+            } else {
+                db.query('SELECT name,id from subject WHERE division=전선-' + info.major, function(error, results) {
+                    if (!error) {
+                        if (results.length > 0) {
+                            codestring = codeconnection(codestring, filter_same_class(results));
+                        }
+                    }
+                })
             }
+            db.query('SELECT name,id from subject WHERE division=전필-? and targetstudent LIKE' + db.escape("%" + String(parseInt(currsem / 2)) + "%"),
+                function(error, result, fields) {
+                    if (!error) {
+                        if (result.length > 0) {
+                            codestring = codeconnection(codestring, filter_same_class(result))
+                        }
+                    }
+                })
 
         }
         if (currsem === 1) {
@@ -236,18 +259,60 @@ exports.planmake = function(info, email) {
                     }
                 })
         } else if (currsem === 2) {
+            db.query('UPDATE semesters SET two=? WHERE EMAIL=?', [codestring, email],
+                function(error, result) {
+                    if (!error) {
+                        return (true);
+                    }
+                })
 
         } else if (currsem === 3) {
+            db.query('UPDATE semesters SET three=? WHERE EMAIL=?', [codestring, email],
+                function(error, result) {
+                    if (!error) {
+                        return (true);
+                    }
+                })
 
         } else if (currsem === 4) {
+            db.query('UPDATE semesters SET four=? WHERE EMAIL=?', [codestring, email],
+                function(error, result) {
+                    if (!error) {
+                        return (true);
+                    }
+                })
 
         } else if (currsem === 5) {
+            db.query('UPDATE semesters SET five=? WHERE EMAIL=?', [codestring, email],
+                function(error, result) {
+                    if (!error) {
+                        return (true);
+                    }
+                })
 
         } else if (currsem === 6) {
+            db.query('UPDATE semesters SET six=? WHERE EMAIL=?', [codestring, email],
+                function(error, result) {
+                    if (!error) {
+                        return (true);
+                    }
+                })
 
         } else if (currsem === 7) {
+            db.query('UPDATE semesters SET seven=? WHERE EMAIL=?', [codestring, email],
+                function(error, result) {
+                    if (!error) {
+                        return (true);
+                    }
+                })
 
         } else {
+            db.query('UPDATE semesters SET eight=? WHERE EMAIL=?', [codestring, email],
+                function(error, result) {
+                    if (!error) {
+                        return (true);
+                    }
+                })
 
         }
         currsem += 1;
