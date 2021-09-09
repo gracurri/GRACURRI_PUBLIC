@@ -103,7 +103,7 @@ window.onload = function(){
                 for(i = 0; i < countSubject; i++){
                     const color = ['rgb(167, 90, 86)', 'rgb(86, 133, 89)', 'rgb(139, 88, 33)', 'rgb(255, 170, 0)', 'rgb(217, 103, 85)']
                     const selectedColor = color[Math.floor(Math.random() * color.length)]
-                    
+
                     let resultI = doc.createTextNode(res.result[i]);
                     var arr = talarr[i].split(' ');
                     arr = daytime(arr); 
@@ -111,15 +111,15 @@ window.onload = function(){
 
                     // indexOf(" ")로 하면 일주일에 2번인것도 포함됨.
                     if(arr.indexOf('월') != -1){
-                            
+                        console.log('월요일 시작')     
                         MonDiv = doc.createElement('div');
                         MonP = doc.createElement('p');
-                        //화수목금도 수정해야됨!!
                         MonP.appendChild(resultI);
                         MonP.style.lineHeight = '60px';
                         MonP.style.marginBlockStart = '0';
                         MonP.style.marginBlockEnd = '0';
                         MonDiv.style.position = 'absolute';
+                        MonDiv.style.height = '60px';
 
                         if(arr.indexOf('one2') != -1){  // 2교시 이면
                             MonDiv.style.height = '100px';
@@ -138,7 +138,8 @@ window.onload = function(){
 
                         MonDiv.appendChild(MonP);
                         monTh.appendChild(MonDiv);
-
+                        
+                        console.log(resultI)     
                     }
                     if(arr.indexOf('화') != -1){
                         TueDiv = doc.createElement('div');

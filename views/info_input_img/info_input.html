@@ -239,7 +239,6 @@
             })
             .then((res) => res.json())
             .then((res) => {
-                hideLoadingPage();
                 if(res.code === 200){
                     const ok = true;
                 }
@@ -247,7 +246,6 @@
             .catch(err => {
                 // error 처리
                 console.log('Fetch Error', err);
-                location.assign('http://localhost:3000/signup')
             });
 
             //email fetch
@@ -263,6 +261,7 @@
             .then((res) => res.json)
             .then((res) => {
                 if(res.code === 200){
+                    hideLoadingPage();
                     if(ok == true)
                         location.assign('http://localhost:3000/timetable')
                 }
