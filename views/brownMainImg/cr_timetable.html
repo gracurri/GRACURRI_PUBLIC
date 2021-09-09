@@ -66,16 +66,48 @@
       <table class="time" width=500px style="color: #121212; border-collapse: collapse; border-radius: 10px; table-layout: fixed; height:500px;">
         <thead>
           <tr>
-            <th></th>
-            <th>월</th>
-            <th>화</th>
-            <th>수</th>
-            <th>목</th>
-            <th>금</th>
+              <th></th>
+              <th>월</th>
+              <th>화</th>
+              <th>수</th>
+              <th>목</th>
+              <th>금</th>
           </tr>
-        </thead>  
-        <tbody id="target"  style="margin-right: 100px; mask-repeat: no-repeat;"></tbody>        
-        </table>
+          <tr>
+              <th>
+                  <div class="hours">
+                      <div style="height: 60px; top: 480px; line-height: 60px;">1</div>
+                      <div style="height: 60px; top: 540px; line-height: 60px;">2</div>
+                      <div style="height: 60px; top: 630px; line-height: 60px;">3</div>
+                      <div style="height: 60px; top: 7200px; line-height: 60px;">4</div>
+                      <div style="height: 60px; top: 810px; line-height: 60px;">5</div>
+                      <div style="height: 60px; top: 900px; line-height: 60px;">6</div>
+                      <div style="height: 60px; top: 1080px; line-height: 60px;">7</div>
+                      <div style="height: 60px; top: 1170px; line-height: 60px;">8</div>
+                      <div style="height: 60px; top: 1260px; line-height: 60px;">9</div>
+                  </div>
+              </th>
+              <td> <!-- 월 -->
+                  <div id="Mon" class="cols" style="width: 70px;"></div>
+              </td>
+              <td> <!-- 화 -->
+                  <div id="Tue" class="cols" style="width: 70px; height: 60px; top: 900px; background-color: rgb(88, 163, 88);">
+                      형식언어및오토마타
+                  </div>
+              </td>
+              <td> <!-- 수 -->
+                  <div id="Wed" class="cols" style="width: 70px;"></div>
+              </td>
+              <td> <!-- 목 -->
+                  <div id="Thu" class="cols" style="width: 70px;"></div>
+              </td>
+              <td> <!-- 금 -->
+                  <div id="Fri" class="cols" style="width: 70px;"></div>
+              </td>
+          </tr>
+
+      </thead>  
+      </table>
     </div>
     <style>
       table{
