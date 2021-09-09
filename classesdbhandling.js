@@ -26,7 +26,7 @@ exports.storestatus = function(req, res) {
 }
 exports.getname = function(req, res) {
     db.query('USE subjects');
-    db.query('SELECT name from subject_1 WHERE id=? ; SELECT name from subject WHERE id=?', [req.code, req.code],
+    db.query('SELECT name from subject_1 WHERE id=?;', [req.query.code],
         function(error, result) {
             if (error) {
                 res.send({
@@ -34,8 +34,34 @@ exports.getname = function(req, res) {
                     "result": "error"
                 });
             } else {
-                console.log(result);
-                res.send(result);
+                if (result.length > 0) {
+                    res.send({
+                        "code": 200,
+                        "result": result[0].name
+                    });
+                } else {
+                    db.query('SELECT name from subject WHERE id=?;', [req.query.code],
+                        function(error, result2) {
+                            if (error) {
+                                res.send({
+                                    "code": 400,
+                                    "result": error.message
+                                })
+                            } else {
+                                if (result2.length > 0) {
+                                    res.send({
+                                        "code": 200,
+                                        "result": result2[0].name
+                                    })
+                                } else {
+                                    res.send({
+                                        "code": 200,
+                                        "result": "doesn't exist"
+                                    })
+                                }
+                            }
+                        })
+                }
             }
         })
 }
