@@ -65,13 +65,10 @@ app.get('/search_class', function(req, res) { //과목검색
     console.log(req.query);
     sdhandling.search(req.query.key, res);
 })
-app.get('/to_attend', function(req, res) {
-    //cdhandling.gettoattend(req, res);
-    res.send({
-        "code": 200,
-        "result": ["3code", "프로그래밍1", "확률및통계"],
-        "semester": "1-1"
-    });
+app.get('/to_attend', function(req, res) { <<
+
+    cdhandling.gettoattend(req, res, req.query.email, req.query.semester); >>>
+
 })
 app.get('/time_set', function(req, res) {
         //cdhandling.getclasses(req.query, res);
