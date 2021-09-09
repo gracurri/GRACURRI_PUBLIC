@@ -15,13 +15,6 @@ var sql = require('mysql');
 var dbconfig = require('./sqlconfig.json')
     //var cors = require('cors')
 app.use(express.json());
-const cdb = sql.createPool({
-    host: dbconfig.host,
-    port: 3306,
-    user: dbconfig.user,
-    password: dbconfig.password
-});
-let performQuery = util.promisify(cdb.query).bind(cdb);
 //app.use(cors());
 //routing
 
@@ -72,69 +65,13 @@ app.get('/search_class', function(req, res) { //과목검색
     console.log(req.query);
     sdhandling.search(req.query.key, res);
 })
-app.get('/to_attend', async(query, res, next) => {
-    let stringcode = ''
-    let semreturn = '';
-    if (query.semester === 'one') {
-        semreturn = '1-1';
-    } else if (query.semester === 'two') {
-        semreturn = '1-2';
-    } else if (query.semester === 'three') {
-        semreturn = '2-1';
-    } else if (query.semester === 'four') {
-        semreturn = '2-2';
-    } else if (query.semester === 'five') {
-        semreturn = '3-1';
-    } else if (query.semester === 'six') {
-        semreturn = '3-2';
-    } else if (query.semester === 'seven') {
-        semreturn = '3-1';
-    } else if (query.semester === 'eight') {
-        semreturn = '3-2';
-    }
-    const names = [];
-    performQuery('USE gracurri_user;');
-    const codestringquery = 'SELECT * FROM semesters WHERE EMAIL=sallybig@naver.com;';
-    try {
-        let getResult = await performQuery(codestringquery)
-        getResult.forEach((codes) => {
-            /*if (query.semester === "one") {
-                stringcode = codes.one;
-            } else if (query.semester === "two") {
-                stringcode = codes.two;
-            } else if (query.semester === "three") {
-                stringcode = codes.three;
-            } else if (query.semester === "four") {
-                stringcode = codes.four;
-            } else if (query.semester === "five") {
-                stringcode = codes.five;
-            } else if (query.semester === "six") {
-                stringcode = codes.six;
-            } else if (query.semester === "seven") {
-                stringcode = codes.seven;
-            } else {
-                stringcode = codes.eight;
-            }*/
-            console.log(codes);
-            /*for (var i = 0; i < stringcode.length; i += 10) {
-                var temp = stringcode.slice(i, i + 10);
-                const mynamequery = "SELECT name from subject_1 WHERE id=" + temp;
-                let getname = performQuery(mynamequery);
-                names.push(getname[0].name);
-                if (i >= stringcode.length - 1) {
-                    res.send({
-                        "code": 200,
-                        "result": names,
-                        "semester": semreturn
-                    });
-                }
-            }*/
-
-        });
-        res.send('SHIT');
-    } catch (err) {
-        res.send('ERROR');
-    }
+app.get('/to_attend', function(req, res) {
+    //cdhandling.gettoattend(req, res);
+    res.send({
+        "code": 200,
+        "result": ["3code"],
+        "semester": "1-1"
+    });
 })
 app.get('/time_set', function(req, res) {
         //cdhandling.getclasses(req.query, res);

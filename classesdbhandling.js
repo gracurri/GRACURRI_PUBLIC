@@ -1,14 +1,6 @@
 //users_classes_attended,semesters관련 함수들
 const util = require('util');
 var sql = require('mysql');
-var dbconfig = require('./sqlconfig.json')
-const cdb = sql.createPool({
-    host: dbconfig.host,
-    port: 3306,
-    user: dbconfig.user,
-    password: dbconfig.password
-});
-let performQuery = util.promisify(cdb.query).bind(cdb);
 var db = require('./database');
 var classcoderecv = function(body) {
     return new Promise(function(resolve, reject) {
