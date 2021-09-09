@@ -11,8 +11,17 @@ var sdhandling = require('./subjectdbhandling')
 var tablemake = require('./tablemaker');
 var db = require('./database');
 const util = require('util');
-//var cors = require('cors')
+var sql = require('mysql');
+var dbconfig = require('./sqlconfig.json')
+    //var cors = require('cors')
 app.use(express.json());
+const cdb = sql.createPool({
+    host: dbconfig.host,
+    port: 3306,
+    user: dbconfig.user,
+    password: dbconfig.password
+});
+let performQuery = util.promisify(cdb.query).bind(cdb);
 //app.use(cors());
 //routing
 
@@ -52,7 +61,7 @@ app.get('/grade_sub', function(req, res) {
     app.use(express.static('views'));
     res.sendFile(__dirname + '/views/grade_sub.html');
 })
-app.get('cr_timetable', function(req, res) {
+app.get('/cr_timetable', function(req, res) {
     app.use(express.static('./views/brownMainImg'));
     res.sendFile(__dirname + '/views/brownMainImg/cr_timetable.html');
 })
@@ -84,7 +93,8 @@ app.get('/to_attend', async(query, res, next) => {
         semreturn = '3-2';
     }
     const names = [];
-    const codestringquery = 'SELECT *from semesters WHERE EMAIL=sallybig@naver.com';
+    performQuery('USE gracurri_user;');
+    const codestringquery = 'SELECT * FROM semesters WHERE EMAIL=sallybig@naver.com;';
     try {
         let getResult = await performQuery(codestringquery)
         getResult.forEach((codes) => {
@@ -105,7 +115,7 @@ app.get('/to_attend', async(query, res, next) => {
             } else {
                 stringcode = codes.eight;
             }*/
-            res.send(codes);
+            console.log(codes);
             /*for (var i = 0; i < stringcode.length; i += 10) {
                 var temp = stringcode.slice(i, i + 10);
                 const mynamequery = "SELECT name from subject_1 WHERE id=" + temp;
@@ -120,7 +130,8 @@ app.get('/to_attend', async(query, res, next) => {
                 }
             }*/
 
-        })
+        });
+        res.send('SHIT');
     } catch (err) {
         res.send('ERROR');
     }
