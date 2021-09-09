@@ -2,17 +2,17 @@
 const util = require('util');
 var sql = require('mysql');
 var db = require('./database');
-var classcoderecv = function(body) {
+/*var classcoderecv = function(body) {
     return new Promise(function(resolve, reject) {
-        let classstring = '';
+        let classcodestring = '';
         for (var i = 0; i < body.classcodes.length; i++) {
             classcodestring += body.classcodes[i]
         }
         resolve(classcodestring);
     })
-}
+}*/
 
-exports.storestatus = function(req, res) {
+/*exports.storestatus = function(req, res) {
     return new Promise(function(resolve, reject) {
         classcoderecv(req.body).then(
             function(result) {
@@ -23,6 +23,14 @@ exports.storestatus = function(req, res) {
         resolve(req.body.classcodes);
     })
 
+}
+*/
+exports.classcodeadd = function(req) {
+    let classcodestring = '';
+    for (var i = 0; i < req.body.classcodes.length; i++) {
+        classcodestring += body.classcodes[i]
+    }
+    return classcodestring
 }
 exports.getname = function(req, res) {
     db.query('USE subjects');

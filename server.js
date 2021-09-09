@@ -82,27 +82,20 @@ app.get('/time_set', function(req, res) { //시간표
 
 //post utility handling
 
-app.post('/info_input', function(req, res) {
-    cdhandling.storestatus(req, res).then(
-        function(result) {
-            let statres
-            if (result) {
-                tablemake.status(req.body.email, result).then(function(returns) {
-                    statres = returns;
-                });
-            }
-            return (statres);
-        }
-    ).then(function(result) {
-        db.query('USE gracurri_user;');
-        db.query('UPDATE users SET unit_attended=?,major_basic=?,major_must=?,major_select=?,etc_must=?,etc_select=?,ethics=?,language=?,humanities=?,socialstudy=?,semester=?', [result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10], result[11], result[12]]);
-        return (req.body.email)
-    }).then(tablemake.planmake(get).then(
-        function(respond) {
-            res.send(respond);
-        }
-    ));
-})
+app.post('/info_input', function(req, res, next) {
+    db.query('USE gracurri_user;');
+    db.query('UPDATE users_classes_attended SET classcodes=? WHERE EMAIL=?', [cdhandling.classcodeadd(req), req.body.email]);
+    db.query('UPDATE user SET unit_attended=?,major_basic=?,major_must=?,major_select=?,etc_must=?,etc_select=?,ethics=?,language=?,humanities=?,socialstudy=?,semester=?', tablemake.status(req.body.email, req.body.classcodes))
+    next();
+}, function(req, res) {
+    res.send({
+        "code": 200
+    })
+    res.end();
+});
+app.post('/makeplan', function(req, res, next)) {
+
+}
 app.post('/signup', function(req, res) {
     console.log("회원가입 발생");
     udhandling.signup(req.body, res);
