@@ -149,7 +149,7 @@ const graduation_etc_must = 14; //교양필수
 const graduation_etc_selection = 20; //교양선택
 const graduation_major_without_basic = 66; //전공기초 제외 전공 요학점
 const graduation_christ = 4;
-var filter_same_class(result) {
+var filter_same_class = function(result) {
     let list = []
     let newresult = []
     for (var i = 0; i < result.length; i++) {
