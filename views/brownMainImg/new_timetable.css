@@ -37,3 +37,7 @@
 .tableWrap{
     position: relative;
 }
+
+p{
+    font-size: 5px;
+}

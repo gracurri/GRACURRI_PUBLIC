@@ -116,7 +116,7 @@ window.onload = function(){
                         MonDiv = doc.createElement('div');
                         MonP = doc.createElement('p');
                         MonP.appendChild(resultI);
-                        MonP.style.lineHeight = '60px';
+                        MonP.style.lineHeight = '20px';
                         MonP.style.marginBlockStart = '0';
                         MonP.style.marginBlockEnd = '0';
                         MonDiv.style.position = 'absolute';
@@ -151,7 +151,7 @@ window.onload = function(){
                         TueP = doc.createElement('p');
                         
                         TueP.appendChild(resultI);
-                        TueP.style.lineHeight = '60px';
+                        TueP.style.lineHeight = '20px';
                         TueP.style.marginBlockStart = '0';
                         TueP.style.marginBlockEnd = '0';
                         TueDiv.style.position = 'absolute';
@@ -181,7 +181,7 @@ window.onload = function(){
                         WedP = doc.createElement('p');
                         
                         WedP.appendChild(resultI);
-                        WedP.style.lineHeight = '60px';
+                        WedP.style.lineHeight = '20px';
                         WedP.style.marginBlockStart = '0';
                         WedP.style.marginBlockEnd = '0';
                         WedDiv.style.position = 'absolute';
@@ -211,7 +211,7 @@ window.onload = function(){
                         ThuP = doc.createElement('p');
                         
                         ThuP.appendChild(resultI);
-                        ThuP.style.lineHeight = '60px';
+                        ThuP.style.lineHeight = '20px';
                         ThuP.style.marginBlockStart = '0';
                         ThuP.style.marginBlockEnd = '0';
                         ThuDiv.style.position = 'absolute';
@@ -241,7 +241,7 @@ window.onload = function(){
                         FriP = doc.createElement('p');
                         
                         FriP.appendChild(resultI);
-                        FriP.style.lineHeight = '60px';
+                        FriP.style.lineHeight = '20px';
                         FriP.style.marginBlockStart = '0';
                         FriP.style.marginBlockEnd = '0';
                         FriDiv.style.position = 'absolute';
