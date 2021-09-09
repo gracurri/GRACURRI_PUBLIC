@@ -185,4 +185,7 @@ window.onload = function(){
 
     make.addEventListener('click', sem);
 }
+}
+}
 
+    
