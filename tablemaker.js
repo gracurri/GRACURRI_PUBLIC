@@ -192,6 +192,14 @@ exports.planmake = function(info, email) {
                             }
                         }
                     })
+            } else {
+                db.query('SELECT name,id from subject_1 WHERE division=전선-' + info.major, function(error, results) {
+                    if (!error) {
+                        if (results.length > 0) {
+                            codestring = codeconnection(codestring, results);
+                        }
+                    }
+                })
             }
             db.query('SELECT name,id from subject_1 WHERE division=전필-? and targetstudent LIKE' + db.escape("%" + String(parseInt(currsem / 2)) + "%"),
                 function(error, result, fields) {
@@ -201,6 +209,7 @@ exports.planmake = function(info, email) {
                         }
                     }
                 })
+
         } else {
             if (currsem === 2) {
                 db.query('SELECT name,id from subject WHERE division=전기-?', dats[stats].major,
@@ -217,6 +226,28 @@ exports.planmake = function(info, email) {
                         }
                     })
             }
+
+        }
+        if (currsem === 1) {
+            db.query('UPDATE semesters SET one=? WHERE EMAIL=?', [codestring, email],
+                function(error, result) {
+                    if (!error) {
+                        return (true);
+                    }
+                })
+        } else if (currsem === 2) {
+
+        } else if (currsem === 3) {
+
+        } else if (currsem === 4) {
+
+        } else if (currsem === 5) {
+
+        } else if (currsem === 6) {
+
+        } else if (currsem === 7) {
+
+        } else {
 
         }
         currsem += 1;

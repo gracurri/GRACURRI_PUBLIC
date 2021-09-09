@@ -76,7 +76,7 @@ app.get('/time_set', function(req, res) { //시간표
     res.send({
         "code": 200,
         "result": ["테스트", "테스트2"],
-        "timeandloc": ["월 수 09:00-10:15 (-)", "목 12:00-13:15(-)"]
+        "timeandloc": ["월 수 09:00-10:15 (-)", "목 12:00-13:15 (-)"]
     })
 })
 
