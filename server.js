@@ -67,7 +67,7 @@ app.get('/search_class', function(req, res) { //과목검색
 })
 app.get('/to_attend', function(req, res) { <<
 
-    cdhandling.gettoattend(req, res, req.query.email, req.query.semester); >>>
+    cdhandling.gettoattend(req, res, req.query.email, req.query.semester);
 
 })
 app.get('/time_set', function(req, res) {
