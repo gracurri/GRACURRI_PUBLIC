@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="topbar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="icon" href="./images/GRACURRI_LOGO.png">
-    <link rel="js" href="grade_sub.js">
-    <link rel="js" href="cookie.js">
 </head>
 <title>GRACURRI</title>
 
@@ -43,15 +41,10 @@
     </div>
     </div> 
     <script>  
-    
         const doc = document;
         let userCookieId;
         let requestSem;
-        let codeNumFull;
-        let codeNumFullLen;
-        let subjectNameArr = [];
-        let countSubject;
-            
+        
         var getCookie = function(name) {
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
             return value? value[2] : null;
@@ -71,7 +64,9 @@
         console.log(userCookieId)
         console.log(requestSem)
 
-        subjectShowFunc=(subjects)=>{
+        //함수들
+        subjectShowFunc = (subjectsfunc) => {
+            subjects = subjectsfunc()
             countSubject = subjects.length;
             
             const bread = doc.querySelector('.bread');                
@@ -80,7 +75,7 @@
             for (const i = 0; i < countSubject; i++){
                 const subjectDiv = doc.createElement('div');
                 const subjectP = doc.createElement('p');
-                const subjectName = doc.createTextNode(subjects[i]) //수정
+                const subjectName = doc.createTextNode(subjects[i]) 
                                         
                 subjectP.appendChild(subjectName)
                 subjectP.classList.add('subject')
@@ -88,18 +83,21 @@
                 subjectDiv.appendChild(subjectP)
                 subjectDiv.classList.add('list')
 
-                if (i == 0){ //수정해야함
+                if (i == 0){ 
                     subjectDiv.classList.add('list1')
                 }  
                             
                 bread.appendChild(subjectDiv);
             }    
-        
-                
         }  
 
         subjectInfoFunc=()=>{
-            fetch("http://localhost:3000/to_attend?email=sallybig@naver.com" + "&semester=" + requestSem)
+            let subjectNameArr = [];
+            let codeNumFull;
+            let codeNumFullLen;
+            const bread = doc.querySelector('.bread');  
+
+            fetch("http://localhost:3000/to_attend?email=" + userCookieId + "&semester=" + requestSem)
             .then((res) => res.json())
             .then((res) => {
                 console.log(res)
@@ -121,7 +119,22 @@
                     .then((res) => {
                         console.log(res.result)
                         subjectNameArr.push(res.result);
-                        console.log(subjectNameArr)
+
+                        const subjectDiv = doc.createElement('div');
+                        const subjectP = doc.createElement('p');
+                        const subjectName = doc.createTextNode(res.result) 
+                                                
+                        subjectP.appendChild(subjectName)
+                        subjectP.classList.add('subject')
+
+                        subjectDiv.appendChild(subjectP)
+                        subjectDiv.classList.add('list')
+
+                        if (subjectNameArr.length == 1){ 
+                            subjectDiv.classList.add('list1')
+                        }  
+                                    
+                        bread.appendChild(subjectDiv);
                     })
                 }
             })
@@ -133,7 +146,7 @@
             return subjectNameArr
         }
 
-        subjectShowFunc(subjectInfoFunc())
+        subjectShowFunc(subjectInfoFunc)
     
         
     </script>

@@ -191,6 +191,7 @@
                             takeSubjectResult.appendChild(takeSubjectDiv);    
                             
                             selectedSubjectNum.push(takeSubjectNum[iNum]);
+                            console.log(selectedSubjectNum);
                         });
                         //ondragover랑 ondrop도 추가!
                         subjectResult.appendChild(subjectDiv);        
@@ -205,7 +206,7 @@
                 doc.getElementById('search_class').value = null;  
             }    
 
-            console.log(selectedSubjectNum);
+            
             
         }
 
@@ -240,7 +241,7 @@
             .then((res) => {
                 hideLoadingPage();
                 if(res.code === 200){
-                    location.assign('http://localhost:3000/timetable')
+                    const ok = true;
                 }
             })
             .catch(err => {
@@ -248,7 +249,26 @@
                 console.log('Fetch Error', err);
                 location.assign('http://localhost:3000/signup')
             });
+
+            //email fetch
+            fetch("http://localhost:3000/makeplan", {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                        email: getCookie('userid')
+                }),
+            })
+            .then((res) => res.json)
+            .then((res) => {
+                if(res.code === 200){
+                    if(ok == true)
+                        location.assign('http://localhost:3000/timetable')
+                }
+            })
         }
+
 
     </script>
     
