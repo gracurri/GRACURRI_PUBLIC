@@ -50,14 +50,23 @@
         });
         
     </script>
-    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'>
-        $(function() {
-            $("body").mousewheel(function(event, delta) {
-            this.scrollLeft -= (delta * 100);
-            event.preventDefault();         
-            });
+    <script>
+        $(function(){
+            $("body").on('mousewheel',function(e){
+                var wheelDelta = e.originalEvent.wheelDelta;
+                if(wheelDelta > 0){
+                    console.log("up");
+                    $(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
+                }
+                else{
+                console.log("down");
+                    $(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
+                }
         });
-    </script>
+
+        });
+    
+        </script>
     
     
 </body>
