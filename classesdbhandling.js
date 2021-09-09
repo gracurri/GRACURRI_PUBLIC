@@ -90,21 +90,21 @@ var semeseterset = function(semester, results) {
 }
 exports.gettoattend = function(req, res, email, semester) {
     let semreturn = '';
-    if (query.semester === 'one') {
+    if (semester === 'one') {
         semreturn = '1-1';
-    } else if (query.semester === 'two') {
+    } else if (semester === 'two') {
         semreturn = '1-2';
-    } else if (query.semester === 'three') {
+    } else if (semester === 'three') {
         semreturn = '2-1';
-    } else if (query.semester === 'four') {
+    } else if (semester === 'four') {
         semreturn = '2-2';
-    } else if (query.semester === 'five') {
+    } else if (semester === 'five') {
         semreturn = '3-1';
-    } else if (query.semester === 'six') {
+    } else if (semester === 'six') {
         semreturn = '3-2';
-    } else if (query.semester === 'seven') {
+    } else if (semester === 'seven') {
         semreturn = '3-1';
-    } else if (query.semester === 'eight') {
+    } else if (semester === 'eight') {
         semreturn = '3-2';
     }
     db.query('USE gracurri_user;');
