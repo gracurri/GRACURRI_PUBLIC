@@ -81,6 +81,7 @@
 }
 
 .make{
+    text-decoration: none;
     margin-left: 220px;
     margin-top: 280px;
     text-align: center;
