@@ -121,7 +121,7 @@ window.onload = function(){
                             MonDiv.style.height = '100px';
                             MonDiv.style.top = (30+ 60*(arr[2] - 1))+'px';
                         }
-                        if(arr.indexof('one1') != -1){
+                        if(arr.indexOf('one1') != -1){
                             MonDiv.style.height = '60px';
                             MonDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
@@ -145,7 +145,7 @@ window.onload = function(){
                             TueDiv.style.height = '100px';
                             TueDiv.style.top = (30+ 60*(arr[2] - 1))+'px';
                         }
-                        if(arr.indexof('one1') != -1){
+                        if(arr.indexOf('one1') != -1){
                             TueDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                             TueDiv.style.height = '60px';
                         }
@@ -169,7 +169,7 @@ window.onload = function(){
                             WedDiv.style.height = '100px';
                             WedDiv.style.top = (30+ 60*(arr[2] - 1))+'px';
                         }
-                        if(arr.indexof('one1') != -1){
+                        if(arr.indexOf('one1') != -1){
                             WedDiv.style.height = '60px';
                             WedDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
@@ -193,7 +193,7 @@ window.onload = function(){
                             ThuDiv.style.height = '100px';
                             ThuDiv.style.top = (30+ 60*(arr[2] - 1))+'px';
                         }
-                        if(arr.indexof('one1') != -1){
+                        if(arr.indexOf('one1') != -1){
                             ThuDiv.style.height = '60px';
                             ThuDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
@@ -217,7 +217,7 @@ window.onload = function(){
                             FriDiv.style.height = '100px';
                             FriDiv.style.top = (30+ 60*(arr[2] - 1))+'px';
                         }
-                        if(arr.indexof('one1') != -1){
+                        if(arr.indexOf('one1') != -1){
                             FriDiv.style.height = '60px';
                             FriDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
