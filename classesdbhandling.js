@@ -1,4 +1,5 @@
 //users_classes_attended,semesters관련 함수들
+const { response } = require('express');
 var db = require('./database');
 
 var classcoderecv = function(body) {
@@ -22,27 +23,67 @@ exports.storestatus = function(req, res) {
     })
 
 }
+var namesearchandsem = function(codeandquery) {
+    return new Promise(function(resolve, reject) {
+        let namelist = [];
+        for (var i = 0; i < codeandquery[0].length; i += 10) {
+            var temp = codeandquery[0].slice(i, i + 10);
+            db.query('USE subjects;')
+            db.query('SELECT name from subject where id=?', [temp],
+                function(error, result) {
+                    if (result.length > 0) {
+                        namelist.push(result[0].name);
+                    } else {
+                        db.query('SELECT name from subject_1 where id=?', temp,
+                            function(errors, results) {
+                                if (results.length > 0) {
+                                    namelist.push(results[0].name);
+                                }
+                            });
+                    }
+                }
+            );
+        }
+        let semreturn = '';
+        if (codeandquery[1] === 'one') {
+            semreturn = '1-1';
+        } else if (codeandquery[1] === 'two') {
+            semreturn = '1-2';
+        } else if (codeandquery[1] === 'three') {
+            semreturn = '2-1';
+        } else if (codeandquery[1] === 'four') {
+            semreturn = '2-2';
+        } else if (codeandquery[1] === 'five') {
+            semreturn = '3-1';
+        } else if (codeandquery[1] === 'six') {
+            semreturn = '3-2';
+        } else if (codeandquery[1] === 'seven') {
+            semreturn = '3-1';
+        } else if (codeandquery[1] === 'eight') {
+            semreturn = '3-2';
+        }
+        resolve([namelist, semreturn]);
+    })
+}
 var semeseterset = function(semester, results) {
     return new Promise(function(resolve, reject) {
-        let codestring = '';
         if (semester === "one") {
-            codestring = results.one;
+            resolve(results.one);
         } else if (semester === 'two') {
-            codestring = results.two;
+            resolve(results.two);
         } else if (semester === 'three') {
-            codestring = results.three;
+            resolve(results.three);
         } else if (semester === 'four') {
-            codestring = results.four;
+            resolve(results.four);
         } else if (semester === 'five') {
-            codestring = results.five;
+            resolve(results.five);
         } else if (semester === 'six') {
-            codestring = results.six;
+            resolve(results.six);
         } else if (semester === 'seven') {
-            codestring = results.seven;
+            resolve(results.seven);
         } else {
-            codestring = results.eight;
+            resolve(results.eight);
         }
-        resolve(codestring)
     })
 }
 exports.gettoattend = function(query, res) {
@@ -56,36 +97,37 @@ exports.gettoattend = function(query, res) {
                 })
             } else {
                 if (results.length > 0) {
-                    console.log(results);
-                    semeseterset(query.semester, results[0]).then(function(code) {
-                            var names = [];
-                            for (var i = 0; i < code.length; i += 10) {
-                                var temp = code.slice(i, i + 10);
+                    let codestring = ''
+                    semeseterset(query, results).then(function(string) {
+                        codestring = string;
+                    });
+                    let namelist = [];
+                    setTimeout(() => {
+                        console.log(codestring);
+                        for (var i = 0; i < codestring.length; i += 10) {
+                            var temp = codestring.slice(i, i + 10);
 
-                                db.query('USE subjects;');
-                                db.query('SELECT name from subject where id=?', [temp],
-                                    function(error, result) {
-                                        if (result.length > 0) {
-                                            names.push(result[0].name);
-                                            console.log(names);
-                                        } else {
-                                            db.query('SELECT name from subject_1 where id=?', [temp],
-                                                function(errors, results) {
-                                                    if (!errors && results.length > 0) {
-                                                        console.log(results[0].name);
-                                                        names.push(results[0].name);
-                                                    }
-                                                })
-                                            ''
-                                        }
+                            db.query('USE subjects;')
+                            db.query('SELECT name from subject where id=?', [temp]).then(
+                                results => {
+                                    if (results.length > 0) {
+                                        namelist.push(results[0].name);
                                     }
-                                );
-                            }
-                            return names;
-                        }
 
-                    ).then(function(name) {
-                        let semreturn = '';
+                                }
+                            )
+                            db.query('SELECT name from subject_1 where id=?', temp).then(
+                                results => {
+                                    if (results.length > 0) {
+                                        namelist.push(results[0].name);
+
+                                    }
+                                }
+                            )
+                        }
+                    })
+                    let semreturn = '';
+                    setTimeout(() => {
                         if (query.semester === 'one') {
                             semreturn = '1-1';
                         } else if (query.semester === 'two') {
@@ -103,17 +145,18 @@ exports.gettoattend = function(query, res) {
                         } else if (query.semester === 'eight') {
                             semreturn = '3-2';
                         }
-                        return (name, semreturn);
-                    }).then(function(name, sem) {
-                        res.send({
-                            "code": 200,
-                            "result": name,
-                            "semester": sem
-                        });
+                    })
+                    res.send({
+                        "code": 200,
+                        "result": namelist,
+                        "semester": semreturn
                     });
+
                 }
+
             }
         }
+
     );
 
 }
