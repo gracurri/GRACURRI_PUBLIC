@@ -63,8 +63,7 @@ window.onload = function(){
     const sem =()=>{
         let userCookieId = getCookie('userid');
         console.log(userCookieId)
-        const color = ['rgb(167, 90, 86)', 'rgb(86, 133, 89)', 'rgb(139, 88, 33)', 'rgb(255, 170, 0)', 'rgb(217, 103, 85)']
-        const selectedColor = color[Math.floor(Math.random() * color.length)]
+        
         // GET
         fetch("http://localhost:3000/time_set?email=" + userCookieId)
         .then((res) => res.json())
@@ -102,6 +101,9 @@ window.onload = function(){
                 Montd = doc.createElement('TD');
 
                 for(i = 0; i < countSubject; i++){
+                    const color = ['rgb(167, 90, 86)', 'rgb(86, 133, 89)', 'rgb(139, 88, 33)', 'rgb(255, 170, 0)', 'rgb(217, 103, 85)']
+                    const selectedColor = color[Math.floor(Math.random() * color.length)]
+                    
                     let resultI = doc.createTextNode(res.result[i]);
                     var arr = talarr[i].split(' ');
                     arr = daytime(arr); 
@@ -157,7 +159,8 @@ window.onload = function(){
                         }
                         TueDiv.style.width = '78px';
                         TueDiv.style.zIndex = 10;
-                        TueDiv.style.backgroundColor = 'green';
+                        TueDiv.style.backgroundColor = selectedColor;
+                        TueDiv.style.textAlign = 'center';
                 
                         TueDiv.appendChild(TueP);
                         tueTh.appendChild(TueDiv);
@@ -181,7 +184,8 @@ window.onload = function(){
                         }
                         WedDiv.style.width = '78px';
                         WedDiv.style.zIndex = 10;
-                        WedDiv.style.backgroundColor = 'blue';
+                        WedDiv.style.backgroundColor = selectedColor;
+                        WedDiv.style.textAlign = 'center';
                 
                         WedDiv.appendChild(WedP);
                         wedTh.appendChild(WedDiv);
@@ -205,7 +209,8 @@ window.onload = function(){
                         }
                         ThuDiv.style.width = '78px';
                         ThuDiv.style.zIndex = 10;
-                        ThuDiv.style.backgroundColor = 'white';
+                        ThuDiv.style.backgroundColor = selectedColor;
+                        ThuDiv.style.textAlign = 'center';
                 
                         ThuDiv.appendChild(ThuP);
                         thuTh.appendChild(ThuDiv);
@@ -230,7 +235,8 @@ window.onload = function(){
 
                         FriDiv.style.width = '78px';
                         FriDiv.style.zIndex = 10;
-                        FriDiv.style.backgroundColor = 'pink';
+                        FriDiv.style.backgroundColor = selectedColor;
+                        FriDiv.style.textAlign = 'center';
                 
                         FriDiv.appendChild(FriP);
                         friTh.appendChild(FriDiv);
