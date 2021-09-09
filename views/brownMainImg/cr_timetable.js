@@ -82,18 +82,22 @@ window.onload = function(){
                 let Tuetd = doc.createElement('td');
                 let TueDiv = doc.createElement('div');
                 let TueP = doc.createElement('p');
+                let tueTh = doc.querySelector('.tueTh');
 
                 let Wedtd = doc.createElement('td');
                 let WedDiv = doc.createElement('div');
                 let WedP = doc.createElement('p');
+                let wedTh = doc.querySelector('.wedTh');
 
                 let Thutd = doc.createElement('td');
                 let ThuDiv = doc.createElement('div');
                 let ThuP = doc.createElement('p');
+                let thuTh = doc.querySelector('.thuTh');
 
                 let Fritd = doc.createElement('td');
                 let FriDiv = doc.createElement('div');
                 let FriP = doc.createElement('p');
+                let friTh = doc.querySelector('.friTh');
 
                 Montd = doc.createElement('TD');
 
@@ -101,92 +105,132 @@ window.onload = function(){
                     let resultI = doc.createTextNode(res.result[i]);
                     var arr = talarr[i].split(' ');
                     arr = daytime(arr); 
-                    console.log(arr)
-                    // 일주일에 한번, 1교시
-                    if(arr.indexOf('one1') != -1){
-                        if(arr.indexOf('월') != -1){
+                    console.log(arr);
+
+                    // indexOf(" ")로 하면 일주일에 2번인것도 포함됨.
+                    if(arr.indexOf('월') != -1){
                             
-                            MonDiv = doc.createElement('div');
-                            MonP = doc.createElement('p');
-                            //화수목금도 수정해야됨!!
-                            MonP.appendChild(resultI);
-                            MonP.style.lineHeight = '60px';
-                            MonP.style.marginBlockStart = '0';
-                            MonP.style.marginBlockEnd = '0';
-                            MonDiv.style.position = 'absolute';
+                        MonDiv = doc.createElement('div');
+                        MonP = doc.createElement('p');
+                        //화수목금도 수정해야됨!!
+                        MonP.appendChild(resultI);
+                        MonP.style.lineHeight = '60px';
+                        MonP.style.marginBlockStart = '0';
+                        MonP.style.marginBlockEnd = '0';
+                        MonDiv.style.position = 'absolute';
+                        if(arr.indexOf('one2') != -1){  // 2교시 이면
+                            MonDiv.style.height = '100px';
+                            MonDiv.style.top = (30+ 60*(arr[2] - 1))+'px';
+                        }
+                        else{
                             MonDiv.style.height = '60px';
-                            MonDiv.style.width = '83px';
                             MonDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
-                            MonDiv.style.zIndex = 10;
-                            MonDiv.style.backgroundColor = 'yellow';
-                            MonDiv.appendChild(MonP);
-                            monTh.appendChild(MonDiv);
-
                         }
-                        if(arr.indexOf('화') != -1){
-                            TueDiv = doc.createElement('div');
-                            TueP = doc.createElement('p');
-                            
-                            TueP.appendChild(resultI);
-                            TueDiv.style.position = 'absolute';
-                            TueDiv.style.top = (110 + 60*(arr[1] - 1))+'px';
-                            TueDiv.style.zIndex = 10;
+                        MonDiv.style.width = '83px';
+                        MonDiv.style.zIndex = 10;
+                        MonDiv.style.backgroundColor = 'yellow';
+                        MonDiv.appendChild(MonP);
+                        monTh.appendChild(MonDiv);
 
-                            TueDiv.appendChild(TueP);
+                    }
+                    if(arr.indexOf('화') != -1){
+                        TueDiv = doc.createElement('div');
+                        TueP = doc.createElement('p');
+                        
+                        TueP.appendChild(resultI);
+                        TueP.style.lineHeight = '60px';
+                        TueP.style.marginBlockStart = '0';
+                        TueP.style.marginBlockEnd = '0';
+                        TueDiv.style.position = 'absolute';
+                        if(arr.indexOf('one2') != -1){  // 2교시 이면
+                            TueDiv.style.height = '100px';
+                            TueDiv.style.top = (30+ 60*(arr[2] - 1))+'px';
                         }
-                        if(arr.indexOf('수') != -1){
-                            WedDiv = doc.createElement('div');
-                            WedP = doc.createElement('p');
-                            
-                            WedP.appendChild(resultI);
-                            WedDiv.style.position = absolute;
-                            WedDiv.style.top = (110 + 60*(arr[1] - 1))+'px';
-                            WedDiv.style.zIndex = 10;
-
-                            WedDiv.appendChild(WedP);
+                        else{
+                            TueDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
+                            TueDiv.style.height = '60px';
                         }
-                        if(arr.indexOf('목') != -1){
-                            ThuDiv = doc.createElement('div');
-                            ThuP = doc.createElement('p');
-                            
-                            ThuP.appendChild(resultI);
-                            ThuDiv.style.position = 'absolute';
-                            ThuDiv.style.top = (110 + 60*(arr[1] - 1))+'px';
-                            ThuDiv.style.zIndex = 10;
-
-                            ThuDiv.appendChild(ThuP);
+                        TueDiv.style.width = '83px';
+                        TueDiv.style.zIndex = 10;
+                        TueDiv.style.backgroundColor = 'green';
+                
+                        TueDiv.appendChild(TueP);
+                        tueTh.appendChild(TueDiv);
+                    }
+                    if(arr.indexOf('수') != -1){
+                        WedDiv = doc.createElement('div');
+                        WedP = doc.createElement('p');
+                        
+                        WedP.appendChild(resultI);
+                        WedP.style.lineHeight = '60px';
+                        WedP.style.marginBlockStart = '0';
+                        WedP.style.marginBlockEnd = '0';
+                        WedDiv.style.position = 'absolute';
+                        if(arr.indexOf('one2') != -1){  // 2교시 이면
+                            WedDiv.style.height = '100px';
+                            WedDiv.style.top = (30+ 60*(arr[2] - 1))+'px';
                         }
-                        if(arr.indexOf('금') != -1){
-                            FriDiv = doc.createElement('div');
-                            FriP = doc.createElement('p');
-                            
-                            FriP.appendChild(resultI);
-                            FriDiv.style.position = 'absolute';
-                            FriDiv.style.top = (110 + 60*(arr[1] - 1))+'px';
-                            FriDiv.style.zIndex = 10;
-
-                            FriDiv.appendChild(FriP);
+                        else{
+                            WedDiv.style.height = '60px';
+                            WedDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
+                        WedDiv.style.width = '83px';
+                        WedDiv.style.zIndex = 10;
+                        WedDiv.style.backgroundColor = 'green';
+                
+                        WedDiv.appendChild(WedP);
+                        wedTh.appendChild(WedDiv);
+                    }
+                    if(arr.indexOf('목') != -1){
+                        ThuDiv = doc.createElement('div');
+                        ThuP = doc.createElement('p');
+                        
+                        ThuP.appendChild(resultI);
+                        ThuP.style.lineHeight = '60px';
+                        ThuP.style.marginBlockStart = '0';
+                        ThuP.style.marginBlockEnd = '0';
+                        ThuDiv.style.position = 'absolute';
+                        if(arr.indexOf('one2') != -1){  // 2교시 이면
+                            ThuDiv.style.height = '100px';
+                            ThuDiv.style.top = (30+ 60*(arr[2] - 1))+'px';
+                        }
+                        else{
+                            ThuDiv.style.height = '60px';
+                            ThuDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
+                        }
+                        ThuDiv.style.width = '83px';
                         ThuDiv.style.zIndex = 10;
-
+                        ThuDiv.style.backgroundColor = 'green';
+                
                         ThuDiv.appendChild(ThuP);
+                        thuTh.appendChild(ThuDiv);
                     }
                     if(arr.indexOf('금') != -1){
                         FriDiv = doc.createElement('div');
                         FriP = doc.createElement('p');
                         
-                        FriP.appendChild(res.result[i]);
-                        FriDiv.style.position = absolute;
-                        FriDiv.style.top = (110 + 60*(arr[1] - 1))+'px';
-
+                        FriP.appendChild(resultI);
+                        FriP.style.lineHeight = '60px';
+                        FriP.style.marginBlockStart = '0';
+                        FriP.style.marginBlockEnd = '0';
+                        FriDiv.style.position = 'absolute';
                         if(arr.indexOf('one2') != -1){  // 2교시 이면
-                            FriDiv.style.height = 100 + 'px';
+                            FriDiv.style.height = '100px';
+                            FriDiv.style.top = (30+ 60*(arr[2] - 1))+'px';
                         }
-                        FriDiv.style.zIndex = 10;
+                        else{
+                            FriDiv.style.height = '60px';
+                            FriDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
+                        }
 
+                        FriDiv.style.width = '83px';
+                        FriDiv.style.zIndex = 10;
+                        FriDiv.style.backgroundColor = 'green';
+                
                         FriDiv.appendChild(FriP);
+                        friTh.appendChild(FriDiv);
                     }
-            }
+                }
 
             }
         })
