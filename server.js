@@ -10,8 +10,7 @@ var cdhandling = require('./classesdbhandling')
 var sdhandling = require('./subjectdbhandling')
 var tablemake = require('./tablemaker');
 var db = require('./database');
-var spawn = require('child_process').spawn;
-const { markAsUntransferable } = require('worker_threads');
+const util=require('util');
 //var cors = require('cors')
 app.use(express.json());
 //app.use(cors());
