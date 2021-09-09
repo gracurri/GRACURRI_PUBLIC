@@ -24,12 +24,13 @@
 }
 
 .text {    
-    background-image: url('./text_bm.png');
-    background-repeat: no-repeat;
-    width: 500px;
+    width: 300px;
     height: 138px;
     margin-left: 100px;
     margin-top: 350px;
+    font-family: "AppleSDGothicNeo";
+    color: white;
+    font-size: 30pt;
 }
 
 .bread-bm {
@@ -45,29 +46,11 @@
     background-image: url('./sauce_bm.png');
     /*?��?�� �? 짤린걸로 ?���?*/
     background-repeat: no-repeat;
-    width: 316px;
-    height: 763px;
-    margin-left: 300px;
-    margin-top: 100px;
-
-}
-.sauce2{
-    background-image: url('./sauce_bm.png');
-    background-repeat: no-repeat;
-    background-position-x: right;
-    width: 316px;
-    height: 763px;
-    margin-top: 100px;
-    margin-right: 184px;
-}
-
-.cheese{
-    background-image: url('./cheese_bm.png');
-    background-repeat: no-repeat;
     width: 633px;
-    height: 766px;
+    height: 763px;
+    margin-left: 130px;
     margin-top: 100px;
-    margin-left: 320px;
+
 }
 
 .grade{
@@ -98,8 +81,9 @@
 }
 
 .make{
+    margin-left: 220px;
     margin-top: 280px;
-    text-align: right;
+    text-align: center;
     font-size: 30pt;
     font-family: "AppleSDGothicNeo";
     color: white;
