@@ -103,7 +103,17 @@ app.post('/makeplan', function(req, res, next) {
                 })
             } else {
                 if (result.length > 0) {
-                    tablemake.planmake(result[0], req.body.email);
+                    if (tablemake.planmake(result[0], req.body.email)) {
+                        res.send({
+                            "code": 200,
+                            "result": "success"
+                        })
+                    } else {
+                        res.send({
+                            "code": 400,
+                            "result": "fail"
+                        })
+                    }
                 }
             }
         })
