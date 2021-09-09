@@ -66,12 +66,12 @@ app.get('/search_class', function(req, res) { //과목검색
     sdhandling.search(req.query.key, res);
 })
 app.get('/to_attend', function(req, res) {
-    //cdhandling.gettoattend(req, res);
-    res.send({
+    cdhandling.gettoattend(req, res);
+    /*res.send({
         "code": 200,
         "result": ["3code"],
         "semester": "1-1"
-    });
+    });*/
 })
 app.get('/time_set', function(req, res) {
         //cdhandling.getclasses(req.query, res);
