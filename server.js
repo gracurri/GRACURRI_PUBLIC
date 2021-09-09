@@ -10,7 +10,7 @@ var cdhandling = require('./classesdbhandling')
 var sdhandling = require('./subjectdbhandling')
 var tablemake = require('./tablemaker');
 var db = require('./database');
-const util=require('util');
+const util = require('util');
 //var cors = require('cors')
 app.use(express.json());
 //app.use(cors());
@@ -64,8 +64,15 @@ app.get('/to_attend', function(req, res) { //들어야할 과목 (grade_sub.html
     console.log(req.query.email);
     cdhandling.gettoattend(req.query, res);
 })
-
-//post utility handling
+app.get('/time_set', function(req, res) {
+        //cdhandling.getclasses(req.query, res);
+        res.send({
+            "code": 200,
+            "result": ["테스트"],
+            "timeandloc": ["월 09:00-10:15 (-)"]
+        })
+    })
+    //post utility handling
 
 app.post('/info_input', function(req, res) {
     cdhandling.storestatus(req, res).then(

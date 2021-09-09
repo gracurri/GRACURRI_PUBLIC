@@ -87,95 +87,95 @@ var semeseterset = function(semester, results) {
         }
     })
 }
-exports.gettoattend = async(req, res,next) =>{
+exports.gettoattend = async(req, res, next) => {
     db.query('use gracurri_user;');
-    const result= await db.query('SELECT * from semesters where EMAIL=?', [query.email]);
-    if(result.length>0){
-        let codestring='';
-                    if (query.semester === "one") {
-                        codestring=results.one;
-                    } else if (query.semester === 'two') {
-                        codestring=results.two;
-                    } else if (query.semester === 'three') {
-                        codestring=results.three;
-                    } else if (query.semester === 'four') {
-                       codestring=results.four;
-                    } else if (query.semester === 'five') {
-                        codestring=results.five
-                    } else if (query.semester === 'six') {
-                        codestring=results.six
-                    } else if (query.semester === 'seven') {
-                        codestring=results.seven
-                    } else {
-                        codestring=results.eight;
-                    }
-    }
-    else{
+    const result = await db.query('SELECT * from semesters where EMAIL=?', [query.email]);
+    if (result.length > 0) {
+        let codestring = '';
+        if (query.semester === "one") {
+            codestring = results.one;
+        } else if (query.semester === 'two') {
+            codestring = results.two;
+        } else if (query.semester === 'three') {
+            codestring = results.three;
+        } else if (query.semester === 'four') {
+            codestring = results.four;
+        } else if (query.semester === 'five') {
+            codestring = results.five
+        } else if (query.semester === 'six') {
+            codestring = results.six
+        } else if (query.semester === 'seven') {
+            codestring = results.seven
+        } else {
+            codestring = results.eight;
+        }
+    } else {
         res.send({
             "code": 400,
             "result": "error!"
         })
     }
-    let namelist=[];
-    for(var i=0;i<codestring.length;i+=10){
-        var temp=codestring.slice(i,i+10);
+    let namelist = [];
+    for (var i = 0; i < codestring.length; i += 10) {
+        var temp = codestring.slice(i, i + 10);
         db.query('USE subjects;');
-        const result=await db.query('SELECT name from subject where id=?',[temp]);
+        const result = await db.query('SELECT name from subject where id=?', [temp]);
     }
-       /*
-                            db.query('USE subjects;')
-                            db.query('SELECT name from subject where id=?', [temp]).then(
-                                results => {
-                                    if (results.length > 0) {
-                                        namelist.push(results[0].name);
-                                    }
+    /*
+                         db.query('USE subjects;')
+                         db.query('SELECT name from subject where id=?', [temp]).then(
+                             results => {
+                                 if (results.length > 0) {
+                                     namelist.push(results[0].name);
+                                 }
 
-                                }
-                            )
-                            db.query('SELECT name from subject_1 where id=?', temp).then(
-                                results => {
-                                    if (results.length > 0) {
-                                        namelist.push(results[0].name);
+                             }
+                         )
+                         db.query('SELECT name from subject_1 where id=?', temp).then(
+                             results => {
+                                 if (results.length > 0) {
+                                     namelist.push(results[0].name);
 
-                                    }
-                                }
-                            )
-                        }
-                    })
-                    let semreturn = '';
-                    setTimeout(() => {
-                        if (query.semester === 'one') {
-                            semreturn = '1-1';
-                        } else if (query.semester === 'two') {
-                            semreturn = '1-2';
-                        } else if (query.semester === 'three') {
-                            semreturn = '2-1';
-                        } else if (query.semester === 'four') {
-                            semreturn = '2-2';
-                        } else if (query.semester === 'five') {
-                            semreturn = '3-1';
-                        } else if (query.semester === 'six') {
-                            semreturn = '3-2';
-                        } else if (query.semester === 'seven') {
-                            semreturn = '3-1';
-                        } else if (query.semester === 'eight') {
-                            semreturn = '3-2';
-                        }
-                    })
-                    res.send({
-                        "code": 200,
-                        "result": namelist,
-                        "semester": semreturn
-                    });*/
+                                 }
+                             }
+                         )
+                     }
+                 })
+                 let semreturn = '';
+                 setTimeout(() => {
+                     if (query.semester === 'one') {
+                         semreturn = '1-1';
+                     } else if (query.semester === 'two') {
+                         semreturn = '1-2';
+                     } else if (query.semester === 'three') {
+                         semreturn = '2-1';
+                     } else if (query.semester === 'four') {
+                         semreturn = '2-2';
+                     } else if (query.semester === 'five') {
+                         semreturn = '3-1';
+                     } else if (query.semester === 'six') {
+                         semreturn = '3-2';
+                     } else if (query.semester === 'seven') {
+                         semreturn = '3-1';
+                     } else if (query.semester === 'eight') {
+                         semreturn = '3-2';
+                     }
+                 })
+                 res.send({
+                     "code": 200,
+                     "result": namelist,
+                     "semester": semreturn
+                 });
 
-                }
+    }
 
-            }
-        }
+    }
+    }
 
     );
-
+    */
 }
+
 exports.tableshowsem = function(query, res) {
     return new Promise(function(resolve, reject) {
         db.query('use gracurri_user;');
@@ -187,7 +187,7 @@ exports.tableshowsem = function(query, res) {
     })
 
 }
-exports.getclasses = function(currsem, email) {
+exports.getclasses = function(query, email) {
     return new Promise(function(resolve, reject) {
         db.query('use gracurri_user;');
         db.query('SELECT ? from semesters where EMAIL=?', [query.semester, query.email],
