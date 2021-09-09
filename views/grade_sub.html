@@ -70,8 +70,8 @@
     <script>  
     window.onload = function(){
         const doc = document;
-        
         let userCookieId;
+        let requestSem;
             
         var getCookie = function(name) {
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
@@ -82,8 +82,14 @@
         doc.getElementById('btn3').style.display = "none"
         doc.getElementById('btn4').style.display = "none"
 
-        requestSem = getCookie('semester');
+        if(localStorage.getItem('semester')){ 
+            requestSem = localStorage.getItem('semester') 
+        }
 
+        userCookieId = getCookie('userid');
+    
+        console.log(doc.cookie)
+        console.log(userCookieId)
         console.log(requestSem)
 
         fetch("http://localhost:3000/to_attend?semester=" + requestSem + "&email=" + userCookieId)
@@ -113,7 +119,10 @@
                 }
             }
         })
-
+        .catch(err => {
+            // error 처리
+            console.log('Fetch Error', err);    
+        });    
     }
         
     </script>

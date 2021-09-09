@@ -20,10 +20,19 @@ window.onload=function(){
         return value? value[2] : null;
     };  
 
-    let userCookieId = getCookie('userid');
+    var deleteCookie = function(name) {
+        document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+    }
+
+    var setCookie = function(name, value, exp) {
+        var date = new Date();
+        date.setTime(date.getTime() + exp*24*60*60*1000);
+        document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+    };
 
     const sem = async()=>{
-        doc.cookie = doc.cookie + ";semester=" + requestSem;
+        localStorage.setItem('semester', requestSem);
+        console.log(doc.cookie);
         location.href = 'http://localhost:3000/grade_sub'
     }
 
