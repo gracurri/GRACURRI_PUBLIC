@@ -60,7 +60,7 @@ window.onload = function(){
         return arr;
     }
 
-    const sem = async()=>{
+    const sem =()=>{
         let userCookieId = getCookie('userid');
         console.log(userCookieId)
         
@@ -125,7 +125,7 @@ window.onload = function(){
                             MonDiv.style.height = '60px';
                             MonDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
-                        MonDiv.style.width = '83px';
+                        MonDiv.style.width = '78px';
                         MonDiv.style.zIndex = 10;
                         MonDiv.style.backgroundColor = 'yellow';
                         MonDiv.appendChild(MonP);
@@ -149,7 +149,7 @@ window.onload = function(){
                             TueDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                             TueDiv.style.height = '60px';
                         }
-                        TueDiv.style.width = '83px';
+                        TueDiv.style.width = '78px';
                         TueDiv.style.zIndex = 10;
                         TueDiv.style.backgroundColor = 'green';
                 
@@ -173,9 +173,9 @@ window.onload = function(){
                             WedDiv.style.height = '60px';
                             WedDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
-                        WedDiv.style.width = '83px';
+                        WedDiv.style.width = '78px';
                         WedDiv.style.zIndex = 10;
-                        WedDiv.style.backgroundColor = 'green';
+                        WedDiv.style.backgroundColor = 'blue';
                 
                         WedDiv.appendChild(WedP);
                         wedTh.appendChild(WedDiv);
@@ -197,9 +197,9 @@ window.onload = function(){
                             ThuDiv.style.height = '60px';
                             ThuDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
-                        ThuDiv.style.width = '83px';
+                        ThuDiv.style.width = '78px';
                         ThuDiv.style.zIndex = 10;
-                        ThuDiv.style.backgroundColor = 'green';
+                        ThuDiv.style.backgroundColor = 'white';
                 
                         ThuDiv.appendChild(ThuP);
                         thuTh.appendChild(ThuDiv);
@@ -222,9 +222,9 @@ window.onload = function(){
                             FriDiv.style.top = (30+ 60*(arr[1] - 1))+'px';
                         }
 
-                        FriDiv.style.width = '83px';
+                        FriDiv.style.width = '78px';
                         FriDiv.style.zIndex = 10;
-                        FriDiv.style.backgroundColor = 'green';
+                        FriDiv.style.backgroundColor = 'pink';
                 
                         FriDiv.appendChild(FriP);
                         friTh.appendChild(FriDiv);
