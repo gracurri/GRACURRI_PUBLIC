@@ -95,7 +95,7 @@ var semeseterset = function(semester, results) {
         }
     })
 }
-exports.gettoattend = async function(query, res) {
+exports.gettoattend = async function(query, res, next) {
     let stringcode = ''
     let semreturn = '';
     if (query.semester === 'one') {
