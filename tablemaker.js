@@ -201,7 +201,6 @@ exports.planmake = function(info, email) {
                         }
                     }
                 })
-
         } else {
             if (currsem === 2) {
                 db.query('SELECT name,id from subject WHERE division=전기-?', dats[stats].major,
@@ -223,7 +222,7 @@ exports.planmake = function(info, email) {
         currsem += 1;
     }
 }
-}
+
 /*exports.planmake = function(info, email) {
 
 
