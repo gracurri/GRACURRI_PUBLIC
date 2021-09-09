@@ -75,8 +75,8 @@ app.get('/time_set', function(req, res) { //시간표
     //cdhandling.getclasses(req.query, res);
     res.send({
         "code": 200,
-        "result": ["테스트"],
-        "timeandloc": ["월 09:00-10:15 (-)"]
+        "result": ["테스트", "테스트2"],
+        "timeandloc": ["월 수 09:00-10:15 (-)", "목 12:00-13:15(-)"]
     })
 })
 
@@ -93,9 +93,21 @@ app.post('/info_input', function(req, res, next) {
     })
     res.end();
 });
-app.post('/makeplan', function(req, res, next)) {
-
-}
+app.post('/makeplan', function(req, res, next) {
+    db.query('SELECT unit_attended,major_basic,major_must,major_select,etc_must,etc_select,ethics,language,humanities,socialstudy,semester,major from user where EMAIL=?', [req.body.email],
+        function(error, result) {
+            if (error) {
+                res.send({
+                    "code": 400,
+                    "result": error.message
+                })
+            } else {
+                if (result.length > 0) {
+                    tablemake.planmake(result[0], req.body.email);
+                }
+            }
+        })
+})
 app.post('/signup', function(req, res) {
     console.log("회원가입 발생");
     udhandling.signup(req.body, res);
