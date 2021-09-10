@@ -240,7 +240,23 @@
             .then((res) => res.json())
             .then((res) => {
                 if(res.code === 200){
-                    const ok = true;
+                    //email fetch
+                    fetch("http://localhost:3000/makeplan", {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                                email: getCookie('userid')
+                        }),
+                    })
+                    .then((res) => res.json)
+                    .then((res) => {
+                        if(res.code === 200){
+                            hideLoadingPage();
+                            location.assign('http://localhost:3000/timetable')
+                        }
+                    })
                 }
             })
             .catch(err => {
@@ -248,24 +264,7 @@
                 console.log('Fetch Error', err);
             });
 
-            //email fetch
-            fetch("http://localhost:3000/makeplan", {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                        email: getCookie('userid')
-                }),
-            })
-            .then((res) => res.json)
-            .then((res) => {
-                if(res.code === 200){
-                    hideLoadingPage();
-                    if(ok == true)
-                        location.assign('http://localhost:3000/timetable')
-                }
-            })
+            
         }
 
 
