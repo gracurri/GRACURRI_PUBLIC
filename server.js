@@ -72,12 +72,7 @@ app.get('/name', function(req, res) {
     cdhandling.getname(req, res);
 })
 app.get('/time_set', function(req, res) { //시간표
-    //cdhandling.getclasses(req.query, res);
-    res.send({
-        "code": 200,
-        "result": ["데이터베이스(가)(대면+사전녹화) (온&오프)", "운영체제(컴퓨터)(다)(대면+사전녹화) (온&오프)", "모바일네트워크(대면+사전녹화) (영어) (온&오프)", "정보보안(대면+사전녹화) (영어) (온&오프)", "컴퓨터수학2(사전녹화) (온라인)"],
-        "timeandloc": ["화 12:00-13:15 (정보과학관 21204 김선행강의실-박동주)", "수 12:00-13:15 (정보과학관 21201-양승민)", "목 10:30-11:45 (정보과학관 21204 김선행강의실-최봉준)", "목 13:30-14:45 (정보과학관 21204 김선행강의실-최봉준)", "화 18:00-19:15 (정보과학관 21201-)"]
-    })
+    cdhandling.getclasses(req.query, res);
 })
 
 //post utility handling
@@ -85,7 +80,7 @@ app.get('/time_set', function(req, res) { //시간표
 app.post('/info_input', function(req, res, next) {
     db.query('USE gracurri_user;');
     db.query('UPDATE users_classes_attended SET classcodes=? WHERE EMAIL=?', [cdhandling.classcodeadd(req), req.body.email]);
-    db.query('UPDATE user SET unit_attended=?,major_basic=?,major_must=?,major_select=?,etc_must=?,etc_select=?,ethics=?,language=?,humanities=?,socialstudy=?,semester=?', tablemake.status(req.body.email, req.body.classcodes))
+    db.query('UPDATE users SET unit_attended=?,major_basic=?,major_must=?,major_select=?,etc_must=?,etc_select=?,ethics=?,language=?,humanities=?,socialstudy=?,semester=?', tablemake.status(req.body.email, req.body.classcodes))
     next();
 }, function(req, res) {
     res.send({
@@ -94,7 +89,7 @@ app.post('/info_input', function(req, res, next) {
     res.end();
 });
 app.post('/makeplan', function(req, res, next) {
-    db.query('SELECT unit_attended,major_basic,major_must,major_select,etc_must,etc_select,ethics,language,humanities,socialstudy,semester,major from user where EMAIL=?', [req.body.email],
+    db.query('SELECT unit_attended,major_basic,major_must,major_select,etc_must,etc_select,ethics,language,humanities,socialstudy,semester,major from users where EMAIL=?', [req.body.email],
         function(error, result) {
             if (error) {
                 res.send({
@@ -103,17 +98,11 @@ app.post('/makeplan', function(req, res, next) {
                 })
             } else {
                 if (result.length > 0) {
-                    if (tablemake.planmake(result[0], req.body.email)) {
-                        res.send({
-                            "code": 200,
-                            "result": "success"
-                        })
-                    } else {
-                        res.send({
-                            "code": 400,
-                            "result": "fail"
-                        })
-                    }
+                    tablemake.planmake(result[0], req.body.email)
+                    res.send({
+                        "code": 200,
+                        "result": "success"
+                    })
                 }
             }
         })

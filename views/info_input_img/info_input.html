@@ -4,12 +4,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <link href="info_small.css" media="screen and (max-width: 1680px) rel="stylesheet">
-    <link href="info_in.css" media="screen and (min-width: 1680px) rel="stylesheet">
+    <link href="info_small.css" media="screen and (max-width: 1680px) rel=" stylesheet ">
+    <link href="info_in.css " media="screen and (min-width: 1680px) rel="stylesheet">
     <link rel="stylesheet" href="../topbar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="icon" href="./GRACURRI_LOGO.png">
-    <style> 
+    <style>
         @import url(info_input.css) screen and (min-width: 1680px);
         @import url(info_small.css) screen and (max-width: 1680px);
     </style>
@@ -26,7 +26,7 @@
                 <a href="" id="btn1">About us </a>
                 <a href="http://localhost:3000/realmain" id="btn3">로그인</a>
                 <div id="loginDone"></div>
-                <button type="button" onclick = "location.href='localhost:3000/signup'" class="signupbtn" id="btn4">회원가입</button>
+                <button type="button" onclick="location.href='localhost:3000/signup'" class="signupbtn" id="btn4">회원가입</button>
             </div>
         </div>
         <div id="loadingPage">
@@ -36,10 +36,10 @@
         <div class="inner-box">
             <div class="created">
                 <div class="search">
-                    <input type="id" class="subject_name" id="search_class" placeholder="과목 찾기" onkeypress="searchClassFunc(event);"/>
+                    <input type="id" class="subject_name" id="search_class" placeholder="과목 찾기" onkeypress="searchClassFunc(event);" />
                 </div>
                 <div class="subjectResult">
-                        <div id="loading"></div>
+                    <div id="loading"></div>
                 </div>
             </div>
             <div class="listen">
@@ -57,8 +57,8 @@
         //쿠키
         function getCookie(name) {
             let matches = document.cookie.match(new RegExp(
-                            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-                        ));
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
             return matches ? decodeURIComponent(matches[1]) : undefined;
         }
 
@@ -77,142 +77,141 @@
         let selectedSubjectNum = [];
         const nextBtn = doc.querySelector('.nextBtn');
 
-        const searchClassFunc = async()=>{
+        const searchClassFunc = async() => {
             if (window.event.keyCode == 13) {
                 console.log('길이' + countSearchResult)
                 subjectResult = doc.querySelector('.subjectResult')
                 searchClass = doc.getElementById('search_class').value;
                 //서버 맞춰서 수정해야함
                 console.log(searchClass)
-            
-            //기존 내용 삭제하는 코드
-            if (countSearchResult > 0){
-                console.log('지우기 실행')
-                subjectResult = document.querySelector('.subjectResult')
-                subject = document.querySelectorAll('.subject')
 
-                for(i = 0; i < countSearchResult; i++){
-                    subjectResult.removeChild(subject[i]);
+                //기존 내용 삭제하는 코드
+                if (countSearchResult > 0) {
+                    console.log('지우기 실행')
+                    subjectResult = document.querySelector('.subjectResult')
+                    subject = document.querySelectorAll('.subject')
+
+                    for (i = 0; i < countSearchResult; i++) {
+                        subjectResult.removeChild(subject[i]);
+                    }
                 }
-            }
 
-            const loader = doc.querySelector('#loading')
+                const loader = doc.querySelector('#loading')
 
-            const displayLoading=()=>{
-                loader.classList.add("display");
-                // to stop loading after some time
-                setTimeout(() => {
+                const displayLoading = () => {
+                    loader.classList.add("display");
+                    // to stop loading after some time
+                    setTimeout(() => {
+                        loader.classList.remove("display");
+                    }, 5000);
+                }
+
+                const hideLoading = () => {
                     loader.classList.remove("display");
-                }, 5000);
-            }
+                }
 
-            const hideLoading=()=>{
-                loader.classList.remove("display");
-            }
+                displayLoading();
+                //검색 내용
+                fetch("http://localhost:3000/search_class?key=" + searchClass)
 
-            displayLoading();
-            //검색 내용
-            fetch("http://localhost:3000/search_class?key=" + searchClass)
-            
                 //fetch("http://localhost:3000/test")
-            .then((res) => res.json())
-            .then((res) => {
-                hideLoading();
-                console.log(res)
-                countSearchResult = Object.keys(res.result).length
-                console.log(countSearchResult)
-                console.log("리저트" + res.result)
+                .then((res) => res.json())
+                    .then((res) => {
+                        hideLoading();
+                        console.log(res)
+                        countSearchResult = Object.keys(res.result).length
+                        console.log(countSearchResult)
+                        console.log("리저트" + res.result)
 
-                let subjectDiv = doc.createElement('div');
-                let subjectP = doc.createElement('p');
-                
+                        let subjectDiv = doc.createElement('div');
+                        let subjectP = doc.createElement('p');
 
-                if (res.result == 'notfound'){
-                    console.log('예외')
-                    countSearchResult = 1;
 
-                    let nullName = doc.createTextNode('검색하신 내용이 없습니다.');
-                    subjectDiv = doc.createElement('div');
-                    subjectP = doc.createElement('p');
+                        if (res.result == 'notfound') {
+                            console.log('예외')
+                            countSearchResult = 1;
 
-                    subjectP.appendChild(nullName);
-                    subjectP.classList.add('name')
+                            let nullName = doc.createTextNode('검색하신 내용이 없습니다.');
+                            subjectDiv = doc.createElement('div');
+                            subjectP = doc.createElement('p');
 
-                    subjectDiv.appendChild(subjectP);
-                    subjectDiv.classList.add('subject');        
-                            
-                    //ondragover랑 ondrop도 추가!
-                    subjectResult.appendChild(subjectDiv);    
-                }
-                else {
-                    //수강한 과목들을 담는 배열
-                    let takeSubject = []
-                    let takeSubjectNum = []
-                    
+                            subjectP.appendChild(nullName);
+                            subjectP.classList.add('name')
 
-                    for(i = 0; i < countSearchResult; i++){
-                        takeSubject[i] = res.result[i].name;
-                    }
+                            subjectDiv.appendChild(subjectP);
+                            subjectDiv.classList.add('subject');
 
-                    for(i = 0; i < countSearchResult; i++){
-                        takeSubjectNum[i] = res.result[i].id;
-                    }
-                    
-                    console.log(takeSubject)
+                            //ondragover랑 ondrop도 추가!
+                            subjectResult.appendChild(subjectDiv);
+                        } else {
+                            //수강한 과목들을 담는 배열
+                            let takeSubject = []
+                            let takeSubjectNum = []
 
-                    for(i = 0; i < countSearchResult; i++){
-                        takeSubjectResult = doc.querySelector('.listen-inner');
-                        
-                        subjectDiv = doc.createElement('div');
-                        subjectP = doc.createElement('p');
-                        let subjectName = doc.createTextNode(res.result[i].name);
-                        
 
-                        subjectP.appendChild(subjectName);
-                        subjectP.classList.add('name')
+                            for (i = 0; i < countSearchResult; i++) {
+                                takeSubject[i] = res.result[i].name;
+                            }
 
-                        subjectDiv.appendChild(subjectP);
-                        subjectDiv.classList.add('subject');        
-                        //클릭시 발생
-                        let iNum = i;
+                            for (i = 0; i < countSearchResult; i++) {
+                                takeSubjectNum[i] = res.result[i].id;
+                            }
 
-                        subjectDiv.addEventListener('click', function(event){
                             console.log(takeSubject)
-                            takeSubjectDiv = doc.createElement('div');
-                            takeSubjectP = doc.createElement('p');
-                            
-                            takeSubjectName = doc.createTextNode(takeSubject[iNum]);
-                            takeSubjectP.appendChild(takeSubjectName);
-                            takeSubjectP.classList.add('name')
 
-                            takeSubjectDiv.appendChild(takeSubjectP);
-                            takeSubjectDiv.classList.add('subject'); 
+                            for (i = 0; i < countSearchResult; i++) {
+                                takeSubjectResult = doc.querySelector('.listen-inner');
 
-                            takeSubjectResult.appendChild(takeSubjectDiv);    
-                            
-                            selectedSubjectNum.push(takeSubjectNum[iNum]);
-                            console.log(selectedSubjectNum);
-                        });
-                        //ondragover랑 ondrop도 추가!
-                        subjectResult.appendChild(subjectDiv);        
-                    }
-                }
+                                subjectDiv = doc.createElement('div');
+                                subjectP = doc.createElement('p');
+                                let subjectName = doc.createTextNode(res.result[i].name);
 
-            })
-            .catch(err => {
-                // error 처리
-                console.log('Fetch Error', err);
-            });
-                doc.getElementById('search_class').value = null;  
-            }    
 
-            
-            
+                                subjectP.appendChild(subjectName);
+                                subjectP.classList.add('name')
+
+                                subjectDiv.appendChild(subjectP);
+                                subjectDiv.classList.add('subject');
+                                //클릭시 발생
+                                let iNum = i;
+
+                                subjectDiv.addEventListener('click', function(event) {
+                                    console.log(takeSubject)
+                                    takeSubjectDiv = doc.createElement('div');
+                                    takeSubjectP = doc.createElement('p');
+
+                                    takeSubjectName = doc.createTextNode(takeSubject[iNum]);
+                                    takeSubjectP.appendChild(takeSubjectName);
+                                    takeSubjectP.classList.add('name')
+
+                                    takeSubjectDiv.appendChild(takeSubjectP);
+                                    takeSubjectDiv.classList.add('subject');
+
+                                    takeSubjectResult.appendChild(takeSubjectDiv);
+
+                                    selectedSubjectNum.push(takeSubjectNum[iNum]);
+                                    console.log(selectedSubjectNum);
+                                });
+                                //ondragover랑 ondrop도 추가!
+                                subjectResult.appendChild(subjectDiv);
+                            }
+                        }
+
+                    })
+                    .catch(err => {
+                        // error 처리
+                        console.log('Fetch Error', err);
+                    });
+                doc.getElementById('search_class').value = null;
+            }
+
+
+
         }
 
         const pageLoader = doc.querySelector('#loadingPage')
 
-        const displayLoadingPage=()=>{
+        const displayLoadingPage = () => {
             pageLoader.classList.add("display");
             // to stop loading after some time
             setTimeout(() => {
@@ -220,57 +219,55 @@
             }, 5000);
         }
 
-        const hideLoadingPage=()=>{
+        const hideLoadingPage = () => {
             pageLoader.classList.remove("display");
         }
 
-        const nextBtnFunc=()=>{
+        const nextBtnFunc = () => {
             displayLoadingPage();
 
             fetch("http://localhost:3000/info_input", {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
                         classcodes: selectedSubjectNum,
                         email: getCookie('userid')
                     }),
-            })
-            .then((res) => res.json())
-            .then((res) => {
-                if(res.code === 200){
-                    const ok = true;
-                }
-            })
-            .catch(err => {
-                // error 처리
-                console.log('Fetch Error', err);
-            });
+                })
+                .then((res) => res.json())
+                .then((res) => {
+                    if (res.code === 200) {
+                        const ok = true;
+                    }
+                })
+                .catch(err => {
+                    // error 처리
+                    console.log('Fetch Error', err);
+                });
 
             //email fetch
             fetch("http://localhost:3000/makeplan", {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
                         email: getCookie('userid')
-                }),
-            })
-            .then((res) => res.json)
-            .then((res) => {
-                if(res.code === 200){
-                    hideLoadingPage();
-                    if(ok == true)
-                        location.assign('http://localhost:3000/timetable')
-                }
-            })
+                    }),
+                })
+                .then((res) => res.json)
+                .then((res) => {
+                    if (res.code === 200) {
+                        hideLoadingPage();
+                    }
+                }).then(() => {
+                    location.assign('http://localhost:3000/timetable')
+                })
         }
-
-
     </script>
-    
+
 </body>
 
 
