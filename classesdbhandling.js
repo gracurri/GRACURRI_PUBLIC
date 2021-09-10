@@ -188,7 +188,7 @@ exports.getclasses = function(query, email) {
 
                                     if (sem === "one") {
                                         sem = "two";
-                                        var codestring = results_1[0].one;
+                                        var codestring = results_1[0].two;
                                         for (var i = 0; i < codestring.length; i += 10) {
                                             codes.push(codestring.slice(i, i + 10));
                                             if (i > 0) {
@@ -217,7 +217,7 @@ exports.getclasses = function(query, email) {
                                             })
                                     } else if (sem === "two") {
                                         sem = "three";
-                                        var codestring = results_1[0].two;
+                                        var codestring = results_1[0].three;
                                         for (var i = 0; i < codestring.length; i += 10) {
                                             codes.push(codestring.slice(i, i + 10));
                                             if (i > 0) {
@@ -246,7 +246,7 @@ exports.getclasses = function(query, email) {
                                             })
                                     } else if (sem === "three") {
                                         sem = "four";
-                                        var codestring = results_1[0].three;
+                                        var codestring = results_1[0].four;
                                         for (var i = 0; i < codestring.length; i += 10) {
                                             codes.push(codestring.slice(i, i + 10));
                                             if (i > 0) {
@@ -275,7 +275,7 @@ exports.getclasses = function(query, email) {
                                             })
                                     } else if (sem === "four") {
                                         sem = "five";
-                                        var codestring = results_1[0].four;
+                                        var codestring = results_1[0].five;
                                         for (var i = 0; i < codestring.length; i += 10) {
                                             codes.push(codestring.slice(i, i + 10));
                                             if (i > 0) {
@@ -304,7 +304,7 @@ exports.getclasses = function(query, email) {
                                             })
                                     } else if (sem === "five") {
                                         sem = "six";
-                                        var codestring = results_1[0].five;
+                                        var codestring = results_1[0].six;
                                         for (var i = 0; i < codestring.length; i += 10) {
                                             codes.push(codestring.slice(i, i + 10));
                                             if (i > 0) {
@@ -333,7 +333,7 @@ exports.getclasses = function(query, email) {
                                             })
                                     } else if (sem === "six") {
                                         sem = "seven";
-                                        var codestring = results_1[0].six;
+                                        var codestring = results_1[0].seven;
                                         for (var i = 0; i < codestring.length; i += 10) {
                                             codes.push(codestring.slice(i, i + 10));
                                             if (i > 0) {
@@ -362,7 +362,7 @@ exports.getclasses = function(query, email) {
                                             })
                                     } else if (sem === "seven") {
                                         sem = "eight";
-                                        var codestring = results_1[0].seven;
+                                        var codestring = results_1[0].eight;
                                         for (var i = 0; i < codestring.length; i += 10) {
                                             codes.push(codestring.slice(i, i + 10));
                                             if (i > 0) {
