@@ -50,13 +50,15 @@ exports.status = function(email, classcodearr) { //현재 이수상태 저장
                         } else if (result[0].division.includes("교선")) {
                             //교선 분야 확인
                             if (result[0].etc_div.includes('사회과학')) {
-                                socialstudy = 1
+                                socialstudy += 1
                             } else if (result[0].etc_div.includes('국제어문')) {
-                                language = 1;
+                                language += 1;
                             } else if (result[0].etc_iv.includes('인문학')) {
-                                humanities = 1;
-                            } else if (result[0].etc_idv.includes('숭실품성')) {
-                                ethics = 1;
+                                humanities += 1;
+                            } else if (result[0].etc_div.includes('숭실품성')) {
+                                ethics += 1;
+                            } else if (result[0].etc_div.includes('기독교')) {
+                                christian += 1;
                             }
                             curr_etc_select += result[0].unit;
                         }
@@ -97,13 +99,15 @@ exports.status = function(email, classcodearr) { //현재 이수상태 저장
                                         } else if (result_2[0].division.includes("교선")) {
                                             //교선 분야 확인
                                             if (result_2[0].etc_div.includes('사회과학')) {
-                                                socialstudy = 1
+                                                socialstudy += 1
                                             } else if (result_2[0].etc_div.includes('국제어문')) {
-                                                language = 1;
-                                            } else if (result_2[0].etc_iv.includes('인문학')) {
-                                                humanities = 1;
-                                            } else if (result_2[0].etc_idv.includes('숭실품성')) {
-                                                ethics = 1;
+                                                language += 1;
+                                            } else if (result_2[0].etc_div.includes('인문학')) {
+                                                humanities += 1;
+                                            } else if (result_2[0].etc_div.includes('숭실품성')) {
+                                                ethics += 1;
+                                            } else if (result_2[0].etc_div.includes('기독교')) {
+                                                christian += 1;
                                             }
                                             curr_etc_select += result_2[0].unit;
                                         }
@@ -141,12 +145,12 @@ exports.status = function(email, classcodearr) { //현재 이수상태 저장
 }
 
 
-const graduation_unit = 133; //졸업학점
+const graduation_unit = 130; //졸업학점,채플제외
 const graduation_major_select = 51;
 const graduation_major_basic = 18; //전공기초
 const graduation_major_must = 15; //전공필수
 const graduation_etc_must = 14; //교양필수
-const graduation_etc_selection = 20; //교양선택
+const graduation_etc_selection = 23; //교양선택
 const graduation_major_without_basic = 66; //전공기초 제외 전공 요학점
 const graduation_christ = 4;
 var filter_same_class = function(result) {
@@ -177,15 +181,37 @@ exports.planmake = function(info, email) {
     }
     let currsem = info.semester + 1;
     db.query('USE subjects;');
+    var majormustandsel = [0, 0, 15, 15, 15, 15, 9, 6];
+    var current = 0;
+    for (var i = info.semester + 1; i < 9; i++) {
+        current += majormustandsel[i];
+    }
+    if (needed['major_select'] + needed['major_select'] > current) {
+        var left = needed['major_select'] + needed['major_select'] - current;
+        for (var i = info.semester + 1; i < 9; i++) {
+            if (i >= 3 && i <= 6) {
+                majormustandsel[i] += 3;
+                left -= 3;
+            } else if (i == 7) {
+                majormustandsel[i] += parseInt(left / 2);
+                left -= parseInt(left / 2);
+            } else if (i == 8) {
+                majormustandsel[i] += left;
+            }
+        }
+    }
     while (currsem < 9) {
         let codestring = '';
-        var max = 18;
+        var max = 19;
         var major_must = 0; //전공필수
         var etc_must = 0; //교양필수
-        if (currsem / 2 <= 1) { //1학년때
+
+        if (currsem == 1) { //1학년때
             max = 22;
-            major_must = 9; //1학년전기,전필
-            etc_must; //1학년교필
+            etc_must = 8; //1학년교필
+        } else if (currsem == 2) {
+            max = 22;
+            etc_must = 7;
         } else if (currsem == 3) { //2학년 1학기
             etc_must = 2;
             major_must = 3;
