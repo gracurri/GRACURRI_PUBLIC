@@ -2,6 +2,7 @@
 const util = require('util');
 var sql = require('mysql');
 var db = require('./database');
+const e = require('express');
 /*var classcoderecv = function(body) {
     return new Promise(function(resolve, reject) {
         let classcodestring = '';
@@ -168,49 +169,276 @@ exports.tableshowsem = function(query, res) {
 
 }
 exports.getclasses = function(query, email) {
-    return new Promise(function(resolve, reject) {
-        db.query('use gracurri_user;');
-        db.query('SELECT ? from semesters where EMAIL=?', [query.semester, query.email],
-            function(error, results, fields) {
+    db.query('use gracurri_user;');
+    db.query('SELECT *from semesters where EMAIL=?', [query.email],
+            function(error, results_1, fields) {
                 if (error) {
-                    res.send({
-                        "code": 400,
-                        "result": "error!"
-                    })
+                    return { "code": 400 }
                 } else {
-                    semeseterset(query.semester, results).then(function(code) {
-                        var names = [];
-                        var timeandloc = [];
-                        for (var i = 0; i < code.length; i += 10) {
-                            var temp = code.slice(i, i + 10);
-                            db.query('USE subjects;');
-                            db.query('SELECT name,classtimeandlocation from subject where id=?', [temp],
-                                function(error, result) {
-                                    if (result.length > 0) {
-                                        names.push(result[0].name);
-                                        timeandloc.push(result[0].classtimeandlocation);
-                                    } else {
-                                        db.query('SELECT name,classtimeandlocation from subject_1 where id=?', [temp],
-                                            function(errors, results) {
-                                                if (!errors && results.length > 0) {
-                                                    names.push(results[0].name);
-                                                    timeandloc.push(results[0].classtimeandlocation);
+                    var codes = [];
+                    var queries = "or id=?"
+                    var quer = ''
+                    db.query('SELECT semester from users WHERE EMAIL=?', query.email,
+                        function(error, results) {
+                            if (error) {
+                                return { "code": 400 }
+                            } else {
+                                if (results.length) {
+                                    var sem = results[0].semester;
+
+                                    if (sem === "one") {
+                                        sem = "two";
+                                        var codestring = results_1[0].one;
+                                        for (var i = 0; i < codestring.length; i += 10) {
+                                            codes.push(codestring.slice(i, i + 10));
+                                            if (i > 0) {
+                                                quer += queries;
+                                            }
+                                        }
+                                        db.query('SELECT name,classtimeandlocation from subject_1 where id=?' + quer, codes,
+                                            function(error, results_2) {
+                                                if (error) {
+                                                    res.send({ "code": 400 });
+                                                } else {
+                                                    var names = [];
+                                                    var timeandloc = [];
+                                                    if (results_2.length > 0) {
+                                                        for (var j = 0; j < results_2.length; j++) {
+                                                            names.push(results_2[j].name);
+                                                            timeandloc.push(results_2[j].classtimeandlocation);
+                                                        }
+                                                        res.send({
+                                                            "code": 200,
+                                                            "result": names,
+                                                            "timeandloc": timeandloc
+                                                        })
+                                                    }
+                                                }
+                                            })
+                                    } else if (sem === "two") {
+                                        sem = "three";
+                                        var codestring = results_1[0].two;
+                                        for (var i = 0; i < codestring.length; i += 10) {
+                                            codes.push(codestring.slice(i, i + 10));
+                                            if (i > 0) {
+                                                quer += queries;
+                                            }
+                                        }
+                                        db.query('SELECT name,classtimeandlocation from subject_1 where id=?' + quer, codes,
+                                            function(error, results_2) {
+                                                if (error) {
+                                                    res.send({ "code": 400 });
+                                                } else {
+                                                    var names = [];
+                                                    var timeandloc = [];
+                                                    if (results_2.length > 0) {
+                                                        for (var j = 0; j < results_2.length; j++) {
+                                                            names.push(results_2[j].name);
+                                                            timeandloc.push(results_2[j].classtimeandlocation);
+                                                        }
+                                                        res.send({
+                                                            "code": 200,
+                                                            "result": names,
+                                                            "timeandloc": timeandloc
+                                                        })
+                                                    }
+                                                }
+                                            })
+                                    } else if (sem === "three") {
+                                        sem = "four";
+                                        var codestring = results_1[0].three;
+                                        for (var i = 0; i < codestring.length; i += 10) {
+                                            codes.push(codestring.slice(i, i + 10));
+                                            if (i > 0) {
+                                                quer += queries;
+                                            }
+                                        }
+                                        db.query('SELECT name,classtimeandlocation from subject_1 where id=?' + quer, codes,
+                                            function(error, results_2) {
+                                                if (error) {
+                                                    res.send({ "code": 400 });
+                                                } else {
+                                                    var names = [];
+                                                    var timeandloc = [];
+                                                    if (results_2.length > 0) {
+                                                        for (var j = 0; j < results_2.length; j++) {
+                                                            names.push(results_2[j].name);
+                                                            timeandloc.push(results_2[j].classtimeandlocation);
+                                                        }
+                                                        res.send({
+                                                            "code": 200,
+                                                            "result": names,
+                                                            "timeandloc": timeandloc
+                                                        })
+                                                    }
+                                                }
+                                            })
+                                    } else if (sem === "four") {
+                                        sem = "five";
+                                        var codestring = results_1[0].four;
+                                        for (var i = 0; i < codestring.length; i += 10) {
+                                            codes.push(codestring.slice(i, i + 10));
+                                            if (i > 0) {
+                                                quer += queries;
+                                            }
+                                        }
+                                        db.query('SELECT name,classtimeandlocation from subject_1 where id=?' + quer, codes,
+                                            function(error, results_2) {
+                                                if (error) {
+                                                    res.send({ "code": 400 });
+                                                } else {
+                                                    var names = [];
+                                                    var timeandloc = [];
+                                                    if (results_2.length > 0) {
+                                                        for (var j = 0; j < results_2.length; j++) {
+                                                            names.push(results_2[j].name);
+                                                            timeandloc.push(results_2[j].classtimeandlocation);
+                                                        }
+                                                        res.send({
+                                                            "code": 200,
+                                                            "result": names,
+                                                            "timeandloc": timeandloc
+                                                        })
+                                                    }
+                                                }
+                                            })
+                                    } else if (sem === "five") {
+                                        sem = "six";
+                                        var codestring = results_1[0].five;
+                                        for (var i = 0; i < codestring.length; i += 10) {
+                                            codes.push(codestring.slice(i, i + 10));
+                                            if (i > 0) {
+                                                quer += queries;
+                                            }
+                                        }
+                                        db.query('SELECT name,classtimeandlocation from subject_1 where id=?' + quer, codes,
+                                            function(error, results_2) {
+                                                if (error) {
+                                                    res.send({ "code": 400 });
+                                                } else {
+                                                    var names = [];
+                                                    var timeandloc = [];
+                                                    if (results_2.length > 0) {
+                                                        for (var j = 0; j < results_2.length; j++) {
+                                                            names.push(results_2[j].name);
+                                                            timeandloc.push(results_2[j].classtimeandlocation);
+                                                        }
+                                                        res.send({
+                                                            "code": 200,
+                                                            "result": names,
+                                                            "timeandloc": timeandloc
+                                                        })
+                                                    }
+                                                }
+                                            })
+                                    } else if (sem === "six") {
+                                        sem = "seven";
+                                        var codestring = results_1[0].six;
+                                        for (var i = 0; i < codestring.length; i += 10) {
+                                            codes.push(codestring.slice(i, i + 10));
+                                            if (i > 0) {
+                                                quer += queries;
+                                            }
+                                        }
+                                        db.query('SELECT name,classtimeandlocation from subject_1 where id=?' + quer, codes,
+                                            function(error, results_2) {
+                                                if (error) {
+                                                    res.send({ "code": 400 });
+                                                } else {
+                                                    var names = [];
+                                                    var timeandloc = [];
+                                                    if (results_2.length > 0) {
+                                                        for (var j = 0; j < results_2.length; j++) {
+                                                            names.push(results_2[j].name);
+                                                            timeandloc.push(results_2[j].classtimeandlocation);
+                                                        }
+                                                        res.send({
+                                                            "code": 200,
+                                                            "result": names,
+                                                            "timeandloc": timeandloc
+                                                        })
+                                                    }
+                                                }
+                                            })
+                                    } else if (sem === "seven") {
+                                        sem = "eight";
+                                        var codestring = results_1[0].seven;
+                                        for (var i = 0; i < codestring.length; i += 10) {
+                                            codes.push(codestring.slice(i, i + 10));
+                                            if (i > 0) {
+                                                quer += queries;
+                                            }
+                                        }
+                                        db.query('SELECT name,classtimeandlocation from subject_1 where id=?' + quer, codes,
+                                            function(error, results_2) {
+                                                if (error) {
+                                                    res.send({ "code": 400 });
+                                                } else {
+                                                    var names = [];
+                                                    var timeandloc = [];
+                                                    if (results_2.length > 0) {
+                                                        for (var j = 0; j < results_2.length; j++) {
+                                                            names.push(results_2[j].name);
+                                                            timeandloc.push(results_2[j].classtimeandlocation);
+                                                        }
+                                                        res.send({
+                                                            "code": 200,
+                                                            "result": names,
+                                                            "timeandloc": timeandloc
+                                                        })
+                                                    }
                                                 }
                                             })
                                     }
-                                });
-
-                        }
-                        return (names, timeandloc);
-                    }).then(function(names, timeandloc) {
-                        res.send({
-                            "code": 200,
-                            "result": names,
-                            "timeandloc": timeandloc
+                                }
+                            }
                         })
-                    });
 
                 }
             })
-    })
+        /*return new Promise(function(resolve, reject) {
+            db.query('use gracurri_user;');
+            db.query('SELECT ? from semesters where EMAIL=?', [query.semester, query.email],
+                function(error, results, fields) {
+                    if (error) {
+                        res.send({
+                            "code": 400,
+                            "result": "error!"
+                        })
+                    } else {
+                        semeseterset(query.semester, results).then(function(code) {
+                            var names = [];
+                            var timeandloc = [];
+                            for (var i = 0; i < code.length; i += 10) {
+                                var temp = code.slice(i, i + 10);
+                                db.query('USE subjects;');
+                                db.query('SELECT name,classtimeandlocation from subject where id=?', [temp],
+                                    function(error, result) {
+                                        if (result.length > 0) {
+                                            names.push(result[0].name);
+                                            timeandloc.push(result[0].classtimeandlocation);
+                                        } else {
+                                            db.query('SELECT name,classtimeandlocation from subject_1 where id=?', [temp],
+                                                function(errors, results) {
+                                                    if (!errors && results.length > 0) {
+                                                        names.push(results[0].name);
+                                                        timeandloc.push(results[0].classtimeandlocation);
+                                                    }
+                                                })
+                                        }
+                                    });
+
+                            }
+                            return (names, timeandloc);
+                        }).then(function(names, timeandloc) {
+                            res.send({
+                                "code": 200,
+                                "result": names,
+                                "timeandloc": timeandloc
+                            })
+                        });
+
+                    }
+                })
+        })*/
 }
