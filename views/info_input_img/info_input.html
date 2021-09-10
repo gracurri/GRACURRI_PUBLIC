@@ -216,7 +216,7 @@
             // to stop loading after some time
             setTimeout(() => {
                 pageLoader.classList.remove("display");
-            }, 5000);
+            }, 10000);
         }
 
         const hideLoadingPage = () => {
@@ -238,6 +238,7 @@
             })
             .then((res) => res.json())
             .then((res) => {
+                console.log(res)
                 if(res.code === 200){
                     //email fetch
                     fetch("http://localhost:3000/makeplan", {
@@ -252,10 +253,16 @@
                     .then((res) => res.json)
                     .then((res) => {
                         if(res.code === 200){
-                            hideLoadingPage();
-                            location.assign('http://localhost:3000/timetable')
+                            hideLoadingPage(); 
                         }
                     })
+                    .then(()=>{
+                        location.assign('http://localhost:3000/timetable')
+                    })
+                    .catch(err => {
+                        // error 처리
+                        
+                    });
                 }
             })
             .catch(err => {
