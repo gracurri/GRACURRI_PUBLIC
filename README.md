@@ -1,4 +1,4 @@
-<h1>GRACURRI 컴퓨터학부 소프트웨어공모전 제출용 </h1><br>
+<h1>GRACURRI </h1><br>
 <br>
 <h2>그래커리란?</h2><br>
 <br>
