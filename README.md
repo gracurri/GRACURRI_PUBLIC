@@ -1,4 +1,17 @@
 <h1>GRACURRI 컴퓨터학부 소프트웨어공모전 제출용 </h1><br>
-서버를 돌리기 전에 npm 이용하여 node,express,mysql 모듈 다운받아야함(ex. npm install node)<br>
-console상에서 node server.js를 입력 시 서버 시작. PM2를 사용하여도 무방
-npm version 7.22.0
+<br>
+<h2>그래커리란?</h2><br>
+<br>
+<br>
+<h2>페이지별 기능</h2>
+<br>
+<h2>이용방법</h2>
+<br>
+<br>
+<h2>기능별 구현 방법 설명</h2><br>
+<h3>메인화면</h3><br><br>
+<h3>회원가입</h3><br><br>
+<h3>과목 검색</h3><br><br>
+<h3>과목 버튼 선택</h3><br><br>
+<h3>수강할 과목 리스트 표시</h3><br><br>
+<h3>시간표 이미지 표출</h3><br><br>
