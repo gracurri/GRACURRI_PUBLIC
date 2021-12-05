@@ -14,11 +14,11 @@
 <br>
 <h2>제작자</h2>
 <ul>
-  <li>팀장 겸 풀스택 개발자 겸 DB Engineer 심원준</li>
+  <li>팀장 겸 풀스택 개발자 겸 DB Engineer <a href="https://github.com/makemyway-kr">심원준</a></li>
   <li>디자인 담당 전수연</li>
-  <li>프론트엔드 개발자 이수민</li>
-  <li>프론트엔드 개발자 김수진</li>
-  <li>프론트엔드 개발자 이지희</li>
+  <li>프론트엔드 개발자 <a href="https://github.com/intersoom">이수민</a></li>
+  <li>프론트엔드 개발자 <a href="https://github.com/SujinKim1127">김수진</a></li>
+  <li>프론트엔드 개발자 <a href="https://github.com/Zoe0929">이지희</a></li>
   <li>프론트엔드 개발자 강민수</li>
   <li>백엔드 개발자 손지안</li>
 </ul>
