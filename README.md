@@ -1,5 +1,5 @@
 <h1>GRACURRI </h1><br>
-<img src="(https://user-images.githubusercontent.com/58161987/144749241-e9ebe744-b783-4421-8d34-276a3acea9b1.png">
+<img src="https://user-images.githubusercontent.com/58161987/144749241-e9ebe744-b783-4421-8d34-276a3acea9b1.png">
 <img src="https://user-images.githubusercontent.com/58161987/144749286-45d0bd7b-d162-4fd0-9092-f0897f79e6d6.png">
 
 <br>
@@ -22,8 +22,9 @@
 <img src="https://user-images.githubusercontent.com/58161987/144749300-4a488187-5bee-4137-8f02-25ad433f9913.png">
 <br>
 <img src="https://user-images.githubusercontent.com/58161987/144749303-d7cdbbb6-e725-415f-92fa-e0fe8e0f5781.png">
-
 <br>
+<h2>🎬소개동영상</h2>
+<img width="80%" src="https://drive.google.com/file/d/1gZCfkUA1fL_edOuRlsfiZTA6YdTekZ5b/view?usp=sharing">
 <br>
 <h2>제작자</h2>
 <ul>
