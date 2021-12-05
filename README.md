@@ -23,8 +23,7 @@
 <br>
     <img align=center src="https://user-images.githubusercontent.com/58161987/144749303-d7cdbbb6-e725-415f-92fa-e0fe8e0f5781.png">
 <br>
-<h2>🎬소개동영상</h2>
-<iframe width="1232" height="693" src="https://www.youtube.com/embed/u2ESNHs6pfc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2><a href="https://www.youtube.com/watch?v=u2ESNHs6pfc">🎬소개동영상(링크)</a></h2>
 <br>
 <h2>제작자</h2>
 <ul>
