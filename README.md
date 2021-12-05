@@ -24,7 +24,7 @@
     <img align=center src="https://user-images.githubusercontent.com/58161987/144749303-d7cdbbb6-e725-415f-92fa-e0fe8e0f5781.png">
 <br>
 <h2>🎬소개동영상</h2>
-    [![그래커리 소개영상](https://youtu.be/u2ESNHs6pfc)
+    <iframe width="956" height="538" src="https://youtu.be/u2ESNHs6pfc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <br>
 <h2>제작자</h2>
 <ul>
