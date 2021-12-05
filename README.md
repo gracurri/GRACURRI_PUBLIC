@@ -1,6 +1,6 @@
 <h1>GRACURRI </h1><br>
-<img align="center" src="https://user-images.githubusercontent.com/58161987/144749241-e9ebe744-b783-4421-8d34-276a3acea9b1.png">
-<img align="center" src="https://user-images.githubusercontent.com/58161987/144749286-45d0bd7b-d162-4fd0-9092-f0897f79e6d6.png">
+    <img align="center" src="https://user-images.githubusercontent.com/58161987/144749241-e9ebe744-b783-4421-8d34-276a3acea9b1.png">
+    <img align="center" src="https://user-images.githubusercontent.com/58161987/144749286-45d0bd7b-d162-4fd0-9092-f0897f79e6d6.png">
 
 <br>
 <h2>그래커리란?</h2><br>
@@ -13,18 +13,18 @@
 <h2>😍이용방법</h2>
 <br>회원가입 후 이제까지 이수한 과목들을 입력하기만 하면 끝! 이수계획 확인 페이지와 시간표 페이지에서 결과물을 확인한다!
 <br><h2>📷Images</h2>
-<img align="center" src="https://user-images.githubusercontent.com/58161987/144749269-e481def2-5639-4844-9842-dedb117bbbff.png">
+    <img align="center" src="https://user-images.githubusercontent.com/58161987/144749269-e481def2-5639-4844-9842-dedb117bbbff.png">
 <br>
-<img align="center" src="https://user-images.githubusercontent.com/58161987/144749292-49741015-1e5b-4041-81cf-9b6538f029b7.png">
+    <img align="center" src="https://user-images.githubusercontent.com/58161987/144749292-49741015-1e5b-4041-81cf-9b6538f029b7.png">
 <br>
-<img align="center" src="https://user-images.githubusercontent.com/58161987/144749296-057140d3-bcb1-4ead-9ee8-ab657795791e.png">
+    <img align="center" src="https://user-images.githubusercontent.com/58161987/144749296-057140d3-bcb1-4ead-9ee8-ab657795791e.png">
 <br>
-<img align="center" src="https://user-images.githubusercontent.com/58161987/144749300-4a488187-5bee-4137-8f02-25ad433f9913.png">
+    <img align="center" src="https://user-images.githubusercontent.com/58161987/144749300-4a488187-5bee-4137-8f02-25ad433f9913.png">
 <br>
-<img align="center" src="https://user-images.githubusercontent.com/58161987/144749303-d7cdbbb6-e725-415f-92fa-e0fe8e0f5781.png">
+    <img align="center" src="https://user-images.githubusercontent.com/58161987/144749303-d7cdbbb6-e725-415f-92fa-e0fe8e0f5781.png">
 <br>
 <h2>🎬소개동영상</h2>
-<img align="center" width="80%" src="https://drive.google.com/file/d/1gZCfkUA1fL_edOuRlsfiZTA6YdTekZ5b/view?usp=sharing">
+    <img align="center" width="80%" src="https://drive.google.com/file/d/1gZCfkUA1fL_edOuRlsfiZTA6YdTekZ5b/view?usp=sharing">
 <br>
 <h2>제작자</h2>
 <ul>
