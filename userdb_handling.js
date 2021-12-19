@@ -2,7 +2,6 @@ const db = require('./database');
 var userdb = require('./database');
 var subdb = require('./subjectdbhandling');
 exports.signup2 = function(info, res) {
-    userdb.query('INSERT INTO users_classes_attended(EMAIL,id) VALUES(?,?);', [info.id, info.number]); //기존 들은 과목 db에 추가
     userdb.query('INSERT INTO semesters(EMAIL,id) VALUES(?,?);', [info.id, info.number]); //계획 DB에 추가
 }
 exports.signup = function(info, res) { //회원가입

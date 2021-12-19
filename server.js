@@ -79,7 +79,9 @@ app.get('/time_set', function(req, res) { //시간표
 
 app.post('/info_input', function(req, res, next) {
     db.query('USE gracurri_user;');
-    db.query('UPDATE users_classes_attended SET classcodes=? WHERE EMAIL=?', [cdhandling.classcodeadd(req), req.body.email]);
+    for (var i = 0; i < req.body.classcodes.length; i++) {
+        db.query('Insert into users_classes_attended (?,?,?)', [req.body.email, req.body.classcodes[i]]);
+    }
     db.query('UPDATE users SET unit_attended=?,major_basic=?,major_must=?,major_select=?,etc_must=?,etc_select=?,ethics=?,language=?,humanities=?,socialstudy=?,semester=?', tablemake.status(req.body.email, req.body.classcodes))
     next();
 }, function(req, res) {
@@ -98,11 +100,12 @@ app.post('/makeplan', function(req, res, next) {
                 })
             } else {
                 if (result.length > 0) {
-                    tablemake.planmake(result[0], req.body.email)
-                    res.send({
-                        "code": 200,
-                        "result": "success"
-                    })
+                    tablemake.planmake(result[0], req.body.email).then(
+                        res.send({
+                            "code": 200,
+                            "result": "success"
+                        })
+                    )
                 }
             }
         })

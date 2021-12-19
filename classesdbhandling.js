@@ -26,13 +26,6 @@ const e = require('express');
 
 }
 */
-exports.classcodeadd = function(req) {
-    let classcodestring = '';
-    for (var i = 0; i < req.body.classcodes.length; i++) {
-        classcodestring += req.body.classcodes[i]
-    }
-    return classcodestring
-}
 exports.getname = function(req, res) {
     db.query('USE subjects');
     db.query('SELECT name from subject_1 WHERE id=?;', [req.query.code],
